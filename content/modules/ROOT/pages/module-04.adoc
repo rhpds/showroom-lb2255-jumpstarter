@@ -1,0 +1,54 @@
+= Test and automate with HIL
+
+In previous modules, we've already built an RHIVOS image, and now we can flash that image to a virtual hardware instance for further manual/automated testing.
+
+[#interact]
+== Interacting with a remote Jumpstarter session with CLI
+
+Enter a jumpstarter shell session connecting to the designated virtual device
+
+[source,bash]
+----
+jmp shell --selector jumpstarter.dev/board=virtual
+----
+
+NOTE: This command is almost identical to the one we used to enter a local session in the last module, however by omitting the `--exporter-config` flag, the `jmp shell` command would instead use the default client config file at `~/.config/jumpstarter/clients/lab.yaml`, connecting us to a remote exporter.
+
+TIP: Notice that you shell prompt have been changed to `jumpstarter ⚡remote ➤`, this is to remind you that you are inside a remote Jumpstarter session.
+
+[#flash]
+== Flash RHIVOS image
+
+To flash the RHIVOS image to the device under test, run
+
+[source,bash]
+----
+j flasher flash <path to image file>
+----
+
+Due to the large size of the image, the flashing process would take a while.
+
+[#manual]
+== Manual testing with Jumpstarter CLI
+
+Now that the image is flashed, we can boot and interact with the virtual device with the `j` CLI.
+
+[source,bash]
+----
+j power on
+j console start-console
+----
+
+You would be dropped into a serial console with the boot messages showing up, and presented with a login prompt shortly after. You can login with the default username "jumpstarter" and password "password", and feel free to explore the RHIVOS environment on your own.
+
+When you are done, exit the console by pressing Ctrl+B 3 times, and you would be dropped back to the jumpstarter shell session.
+
+[#automated]
+== Automated testing with python
+
+While the jumpstarter CLI interface is well suited for interactive development and testing, a python API is also available for automated testing. You may write your test as a regular python script.
+
+[source,python]
+----
+include::example$test-script.py[]
+----
