@@ -1,0 +1,98 @@
+= First steps with Jumpstarter
+
+Jumpstarter is already pre-installed in the developer workspace, you can check for it with
+
+[source,bash]
+----
+jmp version
+----
+
+Jumpstarter interacts with hardware interfaces through "drivers", drivers are written in python to make use of the vast ecosystem of existing python packages. While you can always extend Jumpstarter by writing your own drivers, it comes with a collection of general purpose drivers to help you get started.
+
+[source,bash]
+----
+jmp driver list
+----
+
+TIP: Among the drivers you would notice a few with "mock" in their names, while these mock drivers do not provide access to the hardware, they are useful in showcasing the capability of Jumpstarter
+
+[#config]
+== Configuring Jumpstarter for local development
+
+Create a new file in the workspace named `first-steps.yaml`, this would be an "exporter config file". Within which we would configure a list of drivers representing the hardware interfaces we would like to "export" to the users (that happens to be ourselves in this case).
+
+.first-steps.yaml
+[source,yaml]
+----
+apiVersion: jumpstarter.dev/v1alpha1
+kind: ExporterConfig
+metadata:
+  namespace: default
+  name: first-steps
+endpoint: ""
+token: ""
+export:
+  power:
+    # provides power management: power on/off/cycle
+    type: jumpstarter_driver_power.driver.MockPower
+  console:
+    # provides serial console access
+    type: jumpstarter_driver_pyserial.driver.PySerial
+    config:
+      url: "loop://" # a mock serial port that echos everything
+  flasher:
+    # provides storage access: like flashing a disk image into a sdcard
+    type: jumpstarter_driver_opendal.driver.MockFlasher
+----
+
+NOTE: endpoint and token are intentionally left empty here, since they are only useful for remote access workflows.
+
+Now we can enter the exporter shell, within which a transient Jumpstarter exporter would be started and made available for us to interact with.
+
+[source,bash]
+----
+jmp shell --exporter-config ./first-steps.yaml
+----
+
+TIP: Notice that you shell prompt have been changed to `jumpstarter ⚡local ➤`, this is to remind you that you are inside a local Jumpstarter session.
+
+[#interact]
+== Interacting with a local Jumpstarter session with CLI
+
+A `j` command is available inside `jmp shell`, it is dynamically constructed reflecting the drivers configured on the exporter side. Not all dirvers have corresponding CLI interfaces, but it is available on most builtin drivers.
+
+[source,bash]
+----
+j
+----
+
+[NOTE]
+====
+With our particular configuration in `first-steps.yaml`, you should see something like
+
+....
+Usage: j [OPTIONS] COMMAND [ARGS]...
+
+  Generic composite device
+
+Options:
+  --help  Show this message and exit.
+
+Commands:
+  console  Serial port client
+  flasher  Generic flasher interface
+  power    Generic power
+....
+====
+
+Try turning the power of the device under test on and off
+
+[source,bash]
+----
+j power on
+j power off
+----
+
+TIP: Nothing actually happens because we are using a mock power driver, but have we configured it with a real power driver, e.g. a USB power relay, you could see the device under test being turned on and off.
+
+In this secion, we've learned how to configure Jumpstarter for local developement and how to interact with the device under test via the `j` command. If you still have time, explore the other subcommands (`j flasher`/`j console`)
