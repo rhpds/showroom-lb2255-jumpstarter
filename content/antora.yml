@@ -6,7 +6,8 @@ nav:
 
 asciidoc:
   attributes:
-    lab_name: "I'm the lab_name var"
+    lab_name: "Jumpstarter + RHIVOS Lab"
+    devhub_url: "https://example.com/devhub"
     release-version: master
     page-pagination: true
     my_var: "foo"
