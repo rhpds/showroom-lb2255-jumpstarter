@@ -5,3 +5,7 @@
 * xref:module-02.adoc[2. GitHub Sourced Container]
 ** xref:module-02.adoc#prerequisites[Install Prerequisites]
 ** xref:module-02.adoc#container[Enable Container]
+
+* xref:module-03.adoc[3. First steps with Jumpstarter]
+** xref:module-03.adoc#config[Configuring Jumpstarter for local development]
+** xref:module-03.adoc#interact[Interacting with a local Jumpstarter session with CLI]
