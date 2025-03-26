@@ -19,7 +19,7 @@ TIP: Among the drivers you would notice a few with "mock" in their names, while 
 [#config]
 == Configuring Jumpstarter for local development
 
-Create a new file in the workspace named `first-steps.yaml`, this would be an "exporter config file". Within which we would configure a list of drivers representing the hardware interfaces we would like to "export" to the users (that happens to be ourselves in this case).
+Create a new file in the workspace named `first-steps.yaml`, this would be an "exporter config file", in which we will configure a list of drivers representing the hardware interfaces we want to "export" to the users (in this case, ourselves).
 
 .first-steps.yaml
 [source,yaml]
@@ -47,7 +47,7 @@ export:
 
 NOTE: endpoint and token are intentionally left empty here, since they are only useful for remote access workflows.
 
-Now we can enter the exporter shell, within which a transient Jumpstarter exporter would be started and made available for us to interact with.
+Now we can enter the exporter shell, within which a transient Jumpstarter exporter will be started and made available for us to interact with.
 
 [source,bash]
 ----
@@ -59,7 +59,7 @@ TIP: Notice that you shell prompt have been changed to `jumpstarter ⚡local ➤
 [#interact]
 == Interacting with a local Jumpstarter session with CLI
 
-A `j` command is available inside `jmp shell`, it is dynamically constructed reflecting the drivers configured on the exporter side. Not all dirvers have corresponding CLI interfaces, but it is available on most builtin drivers.
+A `j` command is available inside `jmp shell`, it is dynamically constructed reflecting the drivers configured on the exporter side. Not all drivers have corresponding CLI interfaces, but it is available on most builtin drivers.
 
 [source,bash]
 ----
@@ -93,6 +93,6 @@ j power on
 j power off
 ----
 
-TIP: Nothing actually happens because we are using a mock power driver, but have we configured it with a real power driver, e.g. a USB power relay, you could see the device under test being turned on and off.
+TIP: Nothing actually happens because we are using a mock power driver, but have we configured it with a real power driver, e.g. a USB power relay, you would see the device under test being turned on and off.
 
-In this secion, we've learned how to configure Jumpstarter for local developement and how to interact with the device under test via the `j` command. If you still have time, explore the other subcommands (`j flasher`/`j console`)
+In this secion, we've learned how to configure Jumpstarter for local development and how to interact with the device under test via the `j` command. If you still have time, explore the other subcommands (`j flasher`/`j console`)
