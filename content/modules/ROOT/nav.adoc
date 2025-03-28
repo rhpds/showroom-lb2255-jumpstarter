@@ -6,7 +6,7 @@
 ** xref:module-02.adoc#prerequisites[Install Prerequisites]
 ** xref:module-02.adoc#container[Enable Container]
 
-* xref:module-04.adoc[4. Test and automate with HIL]
+* xref:module-04.adoc[4. Test and Automate with HIL]
 ** xref:module-04.adoc#interact[Interacting with a remote Jumpstarter session with CLI]
 ** xref:module-04.adoc#flash[Flash RHIVOS image]
 ** xref:module-04.adoc#manual[Manual testing with Jumpstarter CLI]

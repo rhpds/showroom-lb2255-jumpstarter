@@ -1,23 +1,23 @@
-= Test and automate with HIL
+= Test and Automate with HIL
 
-In previous modules, we've already built an RHIVOS image, and now we can flash that image to a virtual hardware instance for further manual/automated testing.
+In previous modules, we've built a RHIVOS image with our application. Now, we can use Jumpstarter to flash that image to a virtual hardware instance for further manual and automated testing.
 
 [#interact]
-== Interacting with a remote Jumpstarter session with CLI
+== Interacting with a Jumpstarter exporter using the CLI
 
-Enter a jumpstarter shell session connecting to the designated virtual device
+Enter a remote Jumpstarter shell session with a specified virtual target:
 
 [source,bash]
 ----
 jmp shell --selector jumpstarter.dev/board=virtual
 ----
 
-NOTE: This command is almost identical to the one we used to enter a local session in the last module, however by omitting the `--exporter-config` flag, the `jmp shell` command would instead use the default client config file at `~/.config/jumpstarter/clients/lab.yaml`, connecting us to a remote exporter.
+NOTE: This command is almost identical to the one we used to enter a local exporter shell in the last module, however by omitting the `--exporter-config` parameter, the `jmp shell` command will instead use the default client config file at `~/.config/jumpstarter/clients/lab.yaml`. The default client will use the `--selector` parameter to find an exporter that matches the label `jumpstarter.dev/board=virtual`.
 
 TIP: Notice that you shell prompt have been changed to `jumpstarter ⚡remote ➤`, this is to remind you that you are inside a remote Jumpstarter session.
 
 [#flash]
-== Flash RHIVOS image
+== Flash RHIVOS Image
 
 To flash the RHIVOS image to the device under test, run
 
@@ -26,12 +26,12 @@ To flash the RHIVOS image to the device under test, run
 j flasher flash <path to image file>
 ----
 
-Due to the large size of the image, the flashing process would take a while.
+NOTE: Due to the large size of the image, the flashing process might take a while to finish.
 
 [#manual]
-== Manual testing with Jumpstarter CLI
+== Manual Testing with the Jumpstarter CLI
 
-Now that the image is flashed, we can boot and interact with the virtual device with the `j` CLI.
+Now that the image is flashed, we can boot and interact with the virtual device using the `j` CLI within our remote shell session.
 
 [source,bash]
 ----
@@ -39,14 +39,14 @@ j power on
 j console start-console
 ----
 
-You would be dropped into a serial console with the boot messages showing up, and presented with a login prompt shortly after. You can login with the default username "jumpstarter" and password "password", and feel free to explore the RHIVOS environment on your own.
+You should be dropped into a serial console with the boot messages showing up. Once the image has finished booting, you will be presented with a login prompt. You can login with the default username `jumpstarter` and password `password`, feel free to explore the RHIVOS environment on your own.
 
 When you are done, exit the console by pressing Ctrl+B 3 times, and you would be dropped back to the jumpstarter shell session.
 
 [#automated]
-== Automated testing with python
+== Automated Testing with Python
 
-While the jumpstarter CLI interface is well suited for interactive development and testing, a python API is also available for automated testing. You may write your test as a regular python script.
+While the Jumpstarter CLI interface is well-suited for interactive development and testing, a Python API is also available for automated testing. Tests can be written as standard Python scripts and run with the Jumpstarter CLI.
 
 [source,python]
 ----
