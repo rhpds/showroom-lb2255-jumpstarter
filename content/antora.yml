@@ -8,6 +8,7 @@ asciidoc:
   attributes:
     lab_name: "Jumpstarter + RHIVOS Lab"
     devhub_url: "https://example.com/devhub"
+    devspaces_url: "https://example.com/devspaces"
     release-version: master
     page-pagination: true
     my_var: "foo"
