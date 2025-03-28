@@ -1,25 +1,32 @@
 = First steps with Jumpstarter
 
-Jumpstarter is already pre-installed in the developer workspace, you can check for it with
+Jumpstarter is already pre-installed and pre-configured in the developer workspace, so it should already be available in the console.
+
+To check that Jumpstarter is installed, run the following from the editor terminal:
 
 [source,bash]
 ----
 jmp version
 ----
 
-Jumpstarter interacts with hardware interfaces through "drivers", drivers are written in python to make use of the vast ecosystem of existing python packages. While you can always extend Jumpstarter by writing your own drivers, it comes with a collection of general purpose drivers to help you get started.
+Jumpstarter interacts with hardware interfaces through "drivers", drivers are written in Python to make use of the vast ecosystem of existing Python packages.
+While you can always extend Jumpstarter by writing your own drivers, it comes with a collection of general-purpose drivers to help you get started.
+
+To list the available drivers, run the following command:
 
 [source,bash]
 ----
 jmp driver list
 ----
 
-TIP: Among the drivers you would notice a few with "mock" in their names, while these mock drivers do not provide access to the hardware, they are useful in showcasing the capability of Jumpstarter
+[TIP]
+====
+Some driver packages provide mock drivers, usually with a `Mock` prefix. While mock drivers do not provide access to physical or virtual hardware, they are useful for demonstrating the capabilities of Jumpstarter.
 
 [#config]
-== Configuring Jumpstarter for local development
+== Configuring Jumpstarter for Local Development
 
-Create a new file in the workspace named `first-steps.yaml`, this would be an "exporter config file", in which we will configure a list of drivers representing the hardware interfaces we want to "export" to the users (in this case, ourselves).
+Create a new file in the workspace named `first-steps.yaml`, this will be our exporter config file. We can use this file to configure a list of drivers representing the hardware interfaces we want to "export" to the Jumpstarter clients.
 
 .first-steps.yaml
 [source,yaml]
@@ -47,7 +54,7 @@ export:
 
 NOTE: endpoint and token are intentionally left empty here, since they are only useful for remote access workflows.
 
-Now we can enter the exporter shell, within which a transient Jumpstarter exporter will be started and made available for us to interact with.
+To test out this config file, we can create a transient Jumpstarter exporter shell. This allows us to test an exporter config and drivers locally before deploying them into a testing environment.
 
 [source,bash]
 ----
@@ -59,7 +66,7 @@ TIP: Notice that you shell prompt have been changed to `jumpstarter ⚡local ➤
 [#interact]
 == Interacting with a local Jumpstarter session with CLI
 
-A `j` command is available inside `jmp shell`, it is dynamically constructed reflecting the drivers configured on the exporter side. Not all drivers have corresponding CLI interfaces, but it is available on most builtin drivers.
+A `j` command is available inside `jmp shell`, it is dynamically constructed reflecting the drivers configured on the exporter side. Not all drivers have corresponding CLI interfaces, but it is available on most built-in drivers.
 
 [source,bash]
 ----
@@ -68,7 +75,7 @@ j
 
 [NOTE]
 ====
-With our particular configuration in `first-steps.yaml`, you should see something like
+With the exporter config defined in `first-steps.yaml`, we should see an output like this:
 
 ....
 Usage: j [OPTIONS] COMMAND [ARGS]...
