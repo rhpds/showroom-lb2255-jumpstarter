@@ -41,7 +41,7 @@ j console start-console
 
 You should be dropped into a serial console with the boot messages showing up. Once the image has finished booting, you will be presented with a login prompt. You can login with the default username `jumpstarter` and password `password`, feel free to explore the RHIVOS environment on your own.
 
-When you are done, exit the console by pressing Ctrl+B 3 times, and you would be dropped back to the jumpstarter shell session.
+When you are done, exit the console by pressing Ctrl+B 3 times, this will drop you back into the Jumpstarter shell session. To exit the shell use Ctrl+D.
 
 [#automated]
 == Automated Testing with Python
