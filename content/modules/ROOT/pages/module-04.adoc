@@ -9,10 +9,10 @@ Enter a remote Jumpstarter shell session with a specified virtual target:
 
 [source,bash]
 ----
-jmp shell --selector jumpstarter.dev/board=virtual
+jmp shell --selector example.com/board=qemu
 ----
 
-NOTE: This command is almost identical to the one we used to enter a local exporter shell in the last module, however by omitting the `--exporter-config` parameter, the `jmp shell` command will instead use the default client config file at `~/.config/jumpstarter/clients/lab.yaml`. The default client will use the `--selector` parameter to find an exporter that matches the label `jumpstarter.dev/board=virtual`.
+NOTE: This command is almost identical to the one we used to enter a local exporter shell in the last module, however by omitting the `--exporter-config` parameter, the `jmp shell` command will instead use the default client config file at `~/.config/jumpstarter/clients/lab.yaml`. The default client will use the `--selector` parameter to find an exporter that matches the label `example.com/board=qemu`.
 
 TIP: Notice that you shell prompt have been changed to `jumpstarter ⚡remote ➤`, this is to remind you that you are inside a remote Jumpstarter session.
 
