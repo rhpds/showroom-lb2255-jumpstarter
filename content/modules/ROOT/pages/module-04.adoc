@@ -1,0 +1,54 @@
+= Test and Automate with HIL
+
+In previous modules, we've built a RHIVOS image with our application. Now, we can use Jumpstarter to flash that image to a virtual hardware instance for further manual and automated testing.
+
+[#interact]
+== Interacting with a Jumpstarter exporter using the CLI
+
+Enter a remote Jumpstarter shell session with a specified virtual target:
+
+[source,bash]
+----
+jmp shell --selector jumpstarter.dev/board=virtual
+----
+
+NOTE: This command is almost identical to the one we used to enter a local exporter shell in the last module, however by omitting the `--exporter-config` parameter, the `jmp shell` command will instead use the default client config file at `~/.config/jumpstarter/clients/lab.yaml`. The default client will use the `--selector` parameter to find an exporter that matches the label `jumpstarter.dev/board=virtual`.
+
+TIP: Notice that you shell prompt have been changed to `jumpstarter ⚡remote ➤`, this is to remind you that you are inside a remote Jumpstarter session.
+
+[#flash]
+== Flash RHIVOS Image
+
+To flash the RHIVOS image to the device under test, run
+
+[source,bash]
+----
+j flasher flash <path to image file>
+----
+
+NOTE: Due to the large size of the image, the flashing process might take a while to finish.
+
+[#manual]
+== Manual Testing with the Jumpstarter CLI
+
+Now that the image is flashed, we can boot and interact with the virtual device using the `j` CLI within our remote shell session.
+
+[source,bash]
+----
+j power on
+j console start-console
+----
+
+You should be dropped into a serial console with the boot messages showing up. Once the image has finished booting, you will be presented with a login prompt. You can login with the default username `jumpstarter` and password `password`, feel free to explore the RHIVOS environment on your own.
+
+When you are done, exit the console by pressing Ctrl+B 3 times, this will drop you back into the Jumpstarter shell session. To exit the shell use Ctrl+D.
+
+[#automated]
+== Automated Testing with Python
+
+While the Jumpstarter CLI interface is well-suited for interactive development and testing, a Python API is also available for automated testing. Tests can be written as standard Python scripts and run with the Jumpstarter CLI.
+
+[source,python]
+----
+include::example$test-script.py[]
+----
