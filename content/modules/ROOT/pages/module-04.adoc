@@ -48,7 +48,15 @@ When you are done, exit the console by pressing Ctrl+B 3 times, this will drop y
 
 While the Jumpstarter CLI interface is well-suited for interactive development and testing, a Python API is also available for automated testing. Tests can be written as standard Python scripts and run with the Jumpstarter CLI.
 
+.test-script.py
 [source,python]
 ----
 include::example$test-script.py[]
+----
+
+And to run the test script under a fresh remote Jumpstarter session
+
+[source,bash]
+----
+jmp shell --selector example.com/board=qemu -- python test-script.py
 ----
