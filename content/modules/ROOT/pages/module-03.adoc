@@ -22,6 +22,7 @@ jmp driver list
 [TIP]
 ====
 Some driver packages provide mock drivers, usually with a `Mock` prefix. While mock drivers do not provide access to physical or virtual hardware, they are useful for demonstrating the capabilities of Jumpstarter.
+====
 
 [#config]
 == Configuring Jumpstarter for Local Development
@@ -61,7 +62,7 @@ To test out this config file, we can create a transient Jumpstarter exporter she
 jmp shell --exporter-config ./first-steps.yaml
 ----
 
-TIP: Notice that you shell prompt have been changed to `jumpstarter ⚡local ➤`, this is to remind you that you are inside a local Jumpstarter session.
+TIP: Notice that your shell prompt have been changed to `jumpstarter ⚡local ➤`, this is to remind you that you are inside a local Jumpstarter session.
 
 [#interact]
 == Interacting with a local Jumpstarter session with CLI
