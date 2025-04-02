@@ -8,6 +8,7 @@ asciidoc:
   attributes:
     lab_name: "Jumpstarter + RHIVOS Lab"
     devhub_url: "https://example.com/devhub"
+    rhdh_url: "https://backstage-backstage.apps.cluster-6xw6w.6xw6w.sandbox4358.opentlc.com"
     release-version: master
     page-pagination: true
     my_var: "foo"
