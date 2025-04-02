@@ -21,8 +21,6 @@ and sign in with GitLab
 
 TIP: Find your unique username and password on the sticker attached to your laptop
 
-Then proceed to create a new workspace with the Jumpstarter template, and you would be dropped into an web-based vscode IDE with eveything ready for the rest of the lab.
-
 . Navigate to "Create" tab on the side bar
 . Choose the "Jumpstarter" template
 . Leave the forms as default for the "Provide Project Information", "Source Code Repository and Container Registry Information" and "Provide Cluster Information" screen, click "Next"
