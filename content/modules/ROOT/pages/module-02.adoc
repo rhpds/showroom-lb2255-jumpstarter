@@ -1,56 +1,11 @@
-# Build a simple automotive application
+= Build RHIVOS image
 
-## Use the Red Hat Developer Hub and templates to quickly set up a developer workspace
+[#rhivos]
+== RHIVOS
 
-Red Hat Developer Hub is an enterprise-grade Internal Developer Portal, combined with Red Hat OpenShift, Red Hat Developer Hub allows platform engineering teams to offer software templates, pre-architected and supported approaches to maximize developer skills, ease onboarding, and increase development productivity, and focus on writing great code by reducing friction and frustration for development teams.
+https://www.redhat.com/en/blog/new-standard-red-hat-vehicle-operating-system-modern-and-future-vehicles[RHIVOS], short for Red Hat In-Vehicle Operating System, is an extension to Red Hat Enterprise Linux, the world’s leading enterprise Linux platform. It can help enable and accelerate many of the current trends in the automotive space in ways that traditional proprietary systems cannot, moving the auto industry into a more scalable way of design.
 
-One component of Red Hat Developer Hub is Red Hat Openshift Dev Spaces, Built on the open source Eclipse Che project, Red Hat OpenShift Dev Spaces uses Kubernetes and containers to provide developers and other IT team members with a consistent, secure, and zero-configuration development environment. The experience is as fast and familiar as an integrated development environment (IDE) on your laptop.
+[#aib]
+== Automotive Image Builder
 
-To login into Dev Spaces, navigate to
-
-{devspaces_url}
-
-Then proceed to create a new workspace with the Jumpstarter template, and you would be dropped into an web-based vscode IDE with eveything ready for the rest of the lab.
-
-## Build and test the application in the cloud
-
-Placeholder text on how to build and test an automotive application in the dev space
-
-## Build a new RHIVOS image including the sample application
-
-After building and testing the application, now it's time to intergrate the application into a bootable RHIVOS image. Since the image can only be built on the same platform as the target platform, e.g., to build an arm-base image, you would need an arm machine, a shared arm-based builder is provided for your convenience.
-
-Ssh into the builder machine:
-
-[source,bash]
-----
-ssh builder
-----
-
-Create an image template file with your favorite editor:
-
-.automotive-app.aib.yml
-[source,yaml]
-----
-name: automotive-app
-content:
-  rpms:
-    - cloud-init
-    - openssh-server
-  add_files:
-    - path: /etc/selinux/config
-      text: |
-        SELINUX=permissive
-        SELINUXTYPE=targeted
-----
-
-TODO: install application into the image
-
-Then we can build the RHIVOS image with the `automotive-image-builder` tool:
-
-[source,bash]
-----
-sudo automotive-image-builder build \
-  --distro rhivos --mode package --target qemu --export qcow2 \
-  automotive-app.aib.yml automotive-app.qcow2
-----
+To build RHIVOS images, we would be using https://gitlab.com/CentOS/automotive/src/automotive-image-builder[automotive image builder], a tool to create various kinds of OS images based on CentOS derived distributions. The main tool is called `automotive-image-builder`, and the basic operation it does is called "composing" manifests. The compose operation takes a yaml-based automotive image manifest, as well as a set of options affecting the compose and resolves the manifest into an osbuild json file. This json file is a precise build instruction for how to build an image with osbuild with the very specific software that was chosen during the compose. For example, the version of selected packages and container images is chosen during the compose.
