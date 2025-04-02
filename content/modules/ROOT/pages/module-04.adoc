@@ -23,7 +23,7 @@ To flash the RHIVOS image to the device under test, run
 
 [source,bash]
 ----
-j flasher flash <path to image file>
+j flasher flash simple.qcow2
 ----
 
 NOTE: Due to the large size of the image, the flashing process might take a while to finish.

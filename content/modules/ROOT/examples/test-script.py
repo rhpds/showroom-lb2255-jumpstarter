@@ -3,7 +3,7 @@ import sys
 
 with env() as dut:  # use the jumpstarter shell session
     dut.power.off()
-    dut.flasher.flash("<path to image file>")
+    dut.flasher.flash("simple.qcow2")
     dut.power.on()
 
     with dut.console.pexpect() as p:
