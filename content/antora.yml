@@ -7,16 +7,9 @@ nav:
 asciidoc:
   attributes:
     lab_name: "Jumpstarter + RHIVOS Lab"
-    devhub_url: "https://example.com/devhub"
-    devspaces_url: "https://example.com/devspaces"
     rhdh_url: "https://backstage-backstage.apps.cluster-6xw6w.6xw6w.sandbox4358.opentlc.com"
     release-version: master
     page-pagination: true
-    my_var: "foo"
-    guid: my-guid
-    ssh_user: devops
-    ssh_password: devops
-    ssh_command: ssh someone@example.com
     page-links:
     - url: https://redhat.com
       text: Red Hat

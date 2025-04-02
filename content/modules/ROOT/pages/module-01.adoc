@@ -26,11 +26,11 @@ TIP: Find your unique username and password on the sticker attached to your lapt
 . Leave the forms as default for the "Provide Project Information", "Source Code Repository and Container Registry Information" and "Provide Cluster Information" screen, click "Next"
 . Click "Create" on the "Review" screen
 
-Our source code repository for RHIVOS image templates and a Dev Space should be created in a few seconds, click "Open Component in catalog" to get to the dashboard for our development environment. Then click "OpenShift DevSpaces (VS Code)" to enter the Dev Space and log in with rhsso.
+Our source code repository for RHIVOS image manifests and a Dev Space should be created in a few seconds, click "Open Component in catalog" to get to the dashboard for our development environment. Then click "OpenShift DevSpaces (VS Code)" to enter the Dev Space and log in with rhsso.
 
 TIP: Your username and password are the same as the ones for GitLab
 
 The Dev Space initialization can take a while, but you will soon be dropped into a VS Code based web IDE. When prompted with whether you trust the authors, click yes.
 
 == Recap
-In this module, with the help of Red Hat Developer Hub, we've created a source code repo for the RHIVOS image templates, and a Dev Space web IDE connected to the repo.
+In this module, with the help of Red Hat Developer Hub, we've created a source code repo for the RHIVOS image manifests, and a Dev Space web IDE connected to the repo.

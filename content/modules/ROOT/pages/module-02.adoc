@@ -9,3 +9,20 @@ https://www.redhat.com/en/blog/new-standard-red-hat-vehicle-operating-system-mod
 == Automotive Image Builder
 
 To build RHIVOS images, we would be using https://gitlab.com/CentOS/automotive/src/automotive-image-builder[automotive image builder], a tool to create various kinds of OS images based on CentOS derived distributions. The main tool is called `automotive-image-builder`, and the basic operation it does is called "composing" manifests. The compose operation takes a yaml-based automotive image manifest, as well as a set of options affecting the compose and resolves the manifest into an osbuild json file. This json file is a precise build instruction for how to build an image with osbuild with the very specific software that was chosen during the compose. For example, the version of selected packages and container images is chosen during the compose.
+
+[#aib-manifests]
+== Automotive Image Builder Manifests
+
+The source repo is already populated with some automotive image builder manifests for RHIVOS. From the file explorer of the Dev Space, open `manifests/simple.aib.yml`, which is an example showing how to build a minimal RHIVOS image with additional rpm packages and root password preset. Another noteworthy file is `.aib-ci.yml`, which specifies the base image to use, target architecture and board, and other parameters to be passed to `automotive-image-builder`
+
+[#aib-build]
+== Build RHIVOS image with Automotive Image Builder
+
+Automotive image builder does not support cross-compilation, to build images for other architectures (like aarch64), we must run it on the respective systems. A aarch64 base virtual machine is provisioned as part of the lab to serve as our builder host. A helper script is provided to execute the build on it, in the Dev Space terminal, run:
+
+[source,bash]
+----
+aib-build qemu simple.qcow2
+----
+
+NOTE: We are using the `qemu` preset in `.aib-ci.yaml` to build an image targeting the qemu platform, and store the resulting image as `simple.qcow2`

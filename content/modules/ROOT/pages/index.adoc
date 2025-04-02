@@ -30,9 +30,3 @@ This lab consists of 3 modules.
 * Module 2: Build a simple automotive application (30min)
 
 * Module 3: Test and automate with HIL (45 min)
-
-=== Lab Access
-
-The lab can be accesses through Red Hat Developer Hub, you can login with the credentials printed on the sticker attached to your laptop.
-
-{devhub_url}
