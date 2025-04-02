@@ -3,12 +3,9 @@
 ** xref:module-01.adoc#rhods[Red Hat OpenShift Dev Spaces]
 ** xref:module-01.adoc#setup[Create Development Environment with Red Hat Developer Hub]
 
-* xref:module-02.adoc[2. Build RHIVOS image]
+* xref:module-02.adoc[2. Build RHIVOS Image With Application]
 ** xref:module-02.adoc#application[Build A Simple Automotive Application]
-** xref:module-02.adoc#rhivos[RHIVOS]
-** xref:module-02.adoc#aib[Automotive Image Builder]
-** xref:module-02.adoc#aib-manifests[Automotive Image Builder Manifests]
-** xref:module-02.adoc#aib-build[Build RHIVOS image with Automotive Image Builder]
+** xref:module-02.adoc#rhivos[Build RHIVOS Image]
 
 * xref:module-03.adoc[3. First steps with Jumpstarter]
 ** xref:module-03.adoc#config[Configuring Jumpstarter for local development]
