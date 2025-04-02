@@ -1,7 +1,34 @@
 = Build RHIVOS image
 
+In this module we will learn how to build a simple automotive application, package it into a container, and embed the containerized application in an RHIVOS image.
+
 [#application]
 == Build A Simple Automotive Application
+
+The source repo contains a set of applications that demonstrate how typical automotive applications use SOME/IP to talk to each other, these apps work both natively and in a container. For the purpose of this lab, we would be focusing on `radio-service`, This is a service that emulates a radio, regularly publishing information about the current song, radio station and volume. It accepts requests to turn on/off, switch channel, and change volume.
+
+To build the applications, run the following commands in the Dev Space terminal:
+
+[source,bash]
+----
+cmake .
+make
+----
+
+Then start `radio-service` in the backgroud and interact with it using `radio-client`:
+
+[source,bash]
+----
+./radio-service &
+./radio-client
+----
+
+Press `+` or `-` to adjust the volume, `<SPACE>` to switch station, `<ESC>` to pause or resume, and `q` to quit the client. And finally stop `radio-service` when you are done testing:
+
+[source,bash]
+----
+pkill radio-service
+----
 
 [#rhivos]
 == RHIVOS
