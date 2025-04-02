@@ -1,5 +1,8 @@
 = Build RHIVOS image
 
+[#application]
+== Build A Simple Automotive Application
+
 [#rhivos]
 == RHIVOS
 
