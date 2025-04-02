@@ -19,7 +19,7 @@ We will be using Red Hat Developer Hub to setup the development environment for 
 
 and sign in with GitLab
 
-TIP: Find your unique username and password on the sticker attached to your laptop
+TIP: Your username is `{username}`, and password is `{password}`
 
 . Navigate to "Create" tab on the side bar
 . Choose the "Jumpstarter" template
@@ -28,7 +28,7 @@ TIP: Find your unique username and password on the sticker attached to your lapt
 
 Our source code repository for RHIVOS image manifests and a Dev Space should be created in a few seconds, click "Open Component in catalog" to get to the dashboard for our development environment. Then click "OpenShift DevSpaces (VS Code)" to enter the Dev Space and log in with rhsso.
 
-TIP: Your username and password are the same as the ones for GitLab
+TIP: Your username is `{username}`, and password is `{password}`
 
 The Dev Space initialization can take a while, but you will soon be dropped into a VS Code based web IDE. When prompted with whether you trust the authors, click yes.
 
