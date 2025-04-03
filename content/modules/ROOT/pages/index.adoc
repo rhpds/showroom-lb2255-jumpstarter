@@ -1,32 +1,70 @@
-= {lab_name}
+= Introduction
+:sectnums:
 
-image::jumpstarter.svg[jumpstarter,200,100]
+Welcome to the *{lab_name}*
+
+== About this lab
 
 The move to software-defined vehicles (SDVs) in the automotive industry presents challenges in developing software for electronic control units (ECUs) that require hardware-in-the-loop (HIL) testing.
 
-Project Jumpstarter is an open source framework for cloud-native HIL testing of automotive ECUs and edge devices. Integrated with development tools such as Red Hat Developer Hub and OpenShift Pipelines, it supports DevSecOps practices, including automation and infrastructure as code.
+This lab provides you with an integrated development environment that teaches you how to use a "Software Factory" approach for the development of automotive software. You will learn how to develop, build and test automotive software in https://developers.redhat.com/products/openshift-dev-spaces/overview[Red Hat OpenShift Dev Spaces], how to build a custom https://www.redhat.com/en/blog/new-standard-red-hat-vehicle-operating-system-modern-and-future-vehicles[Red Hat In-Vehicle OS (RHIVOS)] image with containerized automotive application embedded. You will also learn how to use https://jumpstarter.dev/[Jumpstarter] for cloud-native hardware-in-the-loop (HIL) testing of automotive ECUs and edge devices, and how it integrates with https://developers.redhat.com/rhdh/overview[Red Hat Developer Hub] and https://www.redhat.com/en/technologies/cloud-computing/openshift/pipelines[Red Hat OpenShift Pipelines] to enable DevSecOps practices, including automation, continuous integration, and infrastructure as code.
 
-This session will highlight Jumpstarter's role in
+== What is Red Hat In-Vehicle OS (RHIVOS)
 
-* Scaling cloud-native HIL testing for distributed teams
-* Automating ECU test scenarios in CI/CD workflows
-* Delivering infrastructure-as-code for hardware environments
+https://www.redhat.com/en/blog/new-standard-red-hat-vehicle-operating-system-modern-and-future-vehicles[RHIVOS], short for Red Hat In-Vehicle Operating System, is an extension to Red Hat Enterprise Linux, the world’s leading enterprise Linux platform. It can help enable and accelerate many of the current trends in the automotive space in ways that traditional proprietary systems cannot, moving the auto industry into a more scalable way of design.
 
-Real-world examples and demos will illustrate how Jumpstarter accelerates development, improves quality assurance, and enhances collaboration.
+== What is Jumpstarter
 
-== Objectives
+https://jumpstarter.dev/[Jumpstarter] is a project to enable *Hardware in the Loop* testing and development for Edge devices.
 
-* Learn how to use a "Software Factory" for the development of automotive software, including hardware-in-the-loop (HIL) testing and validation.
-* Learn how to use a cloud based development environment and CI/CD pipelines to test software on physical and virtual hardware.
-* Understand how to build a custom Red Hat In-Vehicle OS (RHIVOS) image and use "Jumpstarter" to deploy it onto an automotive development board (SoC).
-* Understand how to onboard and configure new hardware or devices into Jumpstarter.
+image::https://jumpstarter.dev/docs/pipeline.svg[pipeline,width=600,height=auto]
 
-=== Lab structure
+Embedded and Edge devices have been traditionally tested in a manual way with a human operator. This is not scalable, and unsuitable for CI/CD pipelines.
 
-This lab consists of 3 modules.
+In a modern development cycle we want to know that our software changes work well into our device hardware. We need to test the onboarding process, the software stack, the hardware, the updates and the interaction between all of them.
 
-* Module 1: Introduction to  Automotive Development Platform and "Project Jumpstarter" (15min)
+image::https://jumpstarter.dev/docs/ci_cd_hu38a0ca465dd331e6590be9c01b398043_217430_800x512_fit_catmullrom_3.png[]
 
-* Module 2: Build a simple automotive application (30min)
+With Jumpstarter it’s possible to use software CI/CD pipelines like Tekton, GitHub CI, GitLab CI, Jenkins, etc., as well as integrated development and scientific environments like Jupyter and Eclipse Che / Devspaces to interact with your physical hardware.
 
-* Module 3: Test and automate with HIL (45 min)
+=== How does Jumpstarter work
+
+Jumpstarter provides a set of tools that enable you to build a consistent development environment for your hardware. Think of it as a Makefile for hardware automation.
+
+These tools enable you to decouple your target hardware from the test runners, development machines, and CI/CD pipelines allowing you to use the same automation scripts, commands, and processes everywhere.
+
+The core components of Jumpstarter are:
+
+   * https://docs.jumpstarter.dev/main/introduction/clients.html[Clients] that allow you to interact with your hardware through a CLI tool or Python library.
+
+   * https://docs.jumpstarter.dev/main/introduction/drivers.html[Drivers] that describe how to interact with your hardware interfaces.
+
+   * https://docs.jumpstarter.dev/main/introduction/exporters.html[Exporters] that expose your device’s hardware using the drivers.
+
+   * A https://docs.jumpstarter.dev/main/introduction/service.html[Service] that helps you manage hardware access from anywhere.
+
+Since Jumpstarter’s core components are written in Python, it is possible to run them almost everywhere. This means that you can setup a test lab with low-cost exporters such as Raspberry Pis or mini PCs, while still using the same Linux-based CI systems you currently host in the cloud.
+
+Jumpstarter is also able to seamlessly integrate into the existing ecosystem of Python testing tools such as pytest. You can also use the Jumpstarter CLI directly from shell scripts and Makefiles allowing you to write simple automation scripts easily.
+
+In addition to testing, Jumpstarter can also act as a KVM allowing developers to remotely access hardware for ad-hoc development whether they are sitting at the next desk or on the other side of the globe.
+
+=== Jumpstarter Development Modes
+
+Jumpstarter can be used in either a local-only or distributed environment depending on your hardware development needs.
+
+==== Local-Only
+
+When using Jumpstarter locally, you can easily develop drivers, write automated tests, and control your hardware directly from your development machine.
+
+The local-only mode is useful when working with hardware on your desk that you have unlimited access to.
+
+image::https://docs.jumpstarter.dev/main/_images/how-it-works-local.svg[local,width=600,height=auto]
+
+==== Distributed
+
+When your project grows, Jumpstarter also can help you collaborate across teams, implement CI/CD pipelines, and automate common tasks such as firmware updates.
+
+The distributed mode takes advantage of Kubernetes to support the management of multiple target devices directly from your existing cluster. This allows for seamless integration with many existing Cloud Native technologies such as Tekton, ArgoCD, and Prometheus.
+
+image::https://docs.jumpstarter.dev/main/_images/how-it-works-distributed.svg[distributed,width=600,height=auto]
