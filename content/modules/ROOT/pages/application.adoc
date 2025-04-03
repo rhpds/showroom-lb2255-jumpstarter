@@ -1,50 +1,131 @@
-= Build RHIVOS Image With Application
+= Develop Automotive Software In Dev Space
+:sectnums:
 
-In this module we will learn how to build a simple automotive application, package it into a container, and embed the containerized application in an RHIVOS image.
-
-[#application]
-== Build A Simple Automotive Application
+In this module we will learn how to develop, build and test a simple automotive application in Red Hat OpenShift Dev Spaces.
 
 The source repo contains a set of applications that demonstrate how typical automotive applications use SOME/IP to talk to each other, these apps work both natively and in a container. For the purpose of this lab, we would be focusing on `radio-service`, This is a service that emulates a radio, regularly publishing information about the current song, radio station and volume. It accepts requests to turn on/off, switch channel, and change volume.
 
-To build the applications, run the following commands in the Dev Space terminal:
+== Build, Test And Publish A Simple Automotive Application
 
-[source,bash]
-----
-cmake .
-make
-----
+The process of building, testing and publishing our simple automative application would happen in the terminal of our Dev Space.
 
-Then start `radio-service` in the backgroud and interact with it using `radio-client`:
+image::18-vscode.png[]
 
-[source,bash]
-----
-./radio-service &
-./radio-client
-----
+IMPORTANT: placeholder image
 
-Press `+` or `-` to adjust the volume, `<SPACE>` to switch station, `<ESC>` to pause or resume, and `q` to quit the client. And finally stop `radio-service` when you are done testing:
+Press `Ctrl+`` to open the terminal.
 
-[source,bash]
-----
-pkill radio-service
-----
+image::18-vscode.png[]
 
-Feel free to make modification to `radio-stations.cpp` adding songs or stations, and repeat the build test cycle. When you are done, commit all the changes, create a new tag, and push the changes:
+IMPORTANT: placeholder image
 
-[source,bash]
+=== Build
+
+In the terminal, run the following commands:
+
+[,console]
 ----
-git commit -a -m "first revision"
-git tag v0.0.1
-git push
-git push --tags
+$ cmake .
+$ make
 ----
 
-A GitLab CI task would be triggered to build the applications into a container, and push the container into a registry. You can check the build process here:
+TIP: `cmake .` generates `Makefile` from `CMakeLists.txt` in our current working directory (`.`), which contains high-level instructions on how to build the applications. While `make` executes the generated low-level instructions in `Makefile` to actually build the applications.
 
-{app_build_pipeline}
+Check the content of our working directory by running the following command.
 
-[#rhivos]
+[,console]
+----
+$ ls
+----
+
+You should see a few executable files we've just built, including `radio-service` and `radio-client`.
+
+=== Test
+
+To test our `radio-service` application, we need to first start in in the backgroud:
+
+[,console]
+----
+$ ./radio-service &
+----
+
+TIP: `&` at the end of the command means executing it in the background, which frees up the terminal for us to run other commands in parallel.
+
+You will see the `radio-service` periodically print its current status into the terminal, in lines like `RADIO: Playing song "Upper Echelon" by Travi$ Scott feat. 2 Chainz & T.I. (on Radio Los Santos) 50% volume`
+
+Then we can start `radio-client` in the foreground to interact with `radio-service`.
+
+[,console]
+----
+$ ./radio-client
+----
+
+Press `+` or `-` to adjust the volume, `<SPACE>` to switch station, `<ESC>` to pause or resume the radio, and notice changes in the printed status messages in response to your requests.
+
+When done with testing, press `q` to quit the client, and stop `radio-service` by running:
+
+[,console]
+----
+$ pkill radio-service
+----
+
+=== Modify (Optional)
+
+If you are confident with programing in the C++ language, feel free to make modification to `radio-stations.cpp` adding songs or stations, and repeat the build test cycle.
+
+.Example
+[%collapsible]
+====
+[source,diff]
+----
+diff --git a/radio-stations.cpp b/radio-stations.cpp
+index 079a5ee..dc1abd3 100644
+--- a/radio-stations.cpp
++++ b/radio-stations.cpp
+@@ -2,6 +2,10 @@
+ 
+ #define SONGS(_station) (_station ## _songs), sizeof(_station ## _songs)/sizeof(struct song_info_t)
+ 
++static struct song_info_t wgbh_songs[] = {
++ { "Nestor Torres", "Thank You Willie", 2022 },
++};
++
+ static struct song_info_t radio_los_santos_songs[] = {
+   { "YG", "I'm A Real 1", 2013 },
+   { "100s", "Life of a Mack", 2013 },
+@@ -468,6 +472,7 @@ static struct song_info_t the_lab_songs[] = {
+ };
+ 
+ static struct radio_station_info_t radio_stations[] = {
++  { "WGBH", SONGS(wgbh) },
+   { "Radio Los Santos", SONGS(radio_los_santos) },
+   { "Space 103.2", SONGS(space_103_2) },
+   { "West Coast Classics", SONGS(west_cost_classics) },
+----
+====
+
+=== Publish
+
+Now we've finished developing and testing our application, we can publish it to our code repository.
+
+[,console]
+----
+$ git commit -a -m "first revision" --allow-empty
+$ git tag v0.0.1
+$ git push
+$ git push --tags
+----
+
+Once the changes are pushed to the code repository, an *Red Hat OpenShift Pipelines* task is triggered to automatically build the application and bundle it into a container.
+
+TIP: Container is a format for packaging an application and all its dependencies into a single unit, to ease the distribution of applications.
+
+To check the progress of the build, see  {app_build_pipeline}
+
+== Next Steps
+
+While *Red Hat OpenShift Dev Spaces* provides us with a convenient environment for developing, building and testing our automotive applications, we still need to test our application in an environment closer to the real-world deployments to ensure its functionality and stability in the field. In the next module we will build an *RHIVOS* image with our application embedded, to prepare for end-to-end testing in both virtualized and real hardware environments with *Jumpstarter*.
+
 == Build RHIVOS Image
 
 === Automotive Image Builder
