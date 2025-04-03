@@ -47,10 +47,6 @@ A GitLab CI task would be triggered to build the applications into a container, 
 [#rhivos]
 == Build RHIVOS Image
 
-=== RHIVOS
-
-https://www.redhat.com/en/blog/new-standard-red-hat-vehicle-operating-system-modern-and-future-vehicles[RHIVOS], short for Red Hat In-Vehicle Operating System, is an extension to Red Hat Enterprise Linux, the world’s leading enterprise Linux platform. It can help enable and accelerate many of the current trends in the automotive space in ways that traditional proprietary systems cannot, moving the auto industry into a more scalable way of design.
-
 === Automotive Image Builder
 
 To build RHIVOS images, we would be using https://gitlab.com/CentOS/automotive/src/automotive-image-builder[automotive image builder], a tool to create various kinds of OS images based on CentOS derived distributions. The main tool is called `automotive-image-builder`, and the basic operation it does is called "composing" manifests. The compose operation takes a yaml-based automotive image manifest, as well as a set of options affecting the compose and resolves the manifest into an osbuild json file. This json file is a precise build instruction for how to build an image with osbuild with the very specific software that was chosen during the compose. For example, the version of selected packages and container images is chosen during the compose.
