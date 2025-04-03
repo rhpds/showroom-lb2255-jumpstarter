@@ -1,4 +1,4 @@
-* xref:module-01.adoc[1. Environment Setup]
+* xref:environment.adoc[1. Environment Setup]
 
 * xref:module-02.adoc[2. Build RHIVOS Image With Application]
 ** xref:module-02.adoc#application[Build A Simple Automotive Application]
