@@ -2,11 +2,13 @@
 
 * xref:application.adoc[2. Develop Automotive Software In Dev Space]
 
-* xref:module-03.adoc[3. First steps with Jumpstarter]
+* xref:rhivos.adoc[3. Build RHIVOS image with Automotive Image Builder]
+
+* xref:module-03.adoc[4. First steps with Jumpstarter]
 ** xref:module-03.adoc#config[Configuring Jumpstarter for local development]
 ** xref:module-03.adoc#interact[Interacting with a local Jumpstarter session with CLI]
 
-* xref:module-04.adoc[4. Test and Automate with HIL]
+* xref:module-04.adoc[5. Test and Automate with HIL]
 ** xref:module-04.adoc#interact[Interacting with a remote Jumpstarter session with CLI]
 ** xref:module-04.adoc#flash[Flash RHIVOS image]
 ** xref:module-04.adoc#manual[Manual testing with Jumpstarter CLI]

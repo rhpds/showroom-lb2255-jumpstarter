@@ -125,28 +125,3 @@ To check the progress of the build, see  {app_build_pipeline}
 == Next Steps
 
 While *Red Hat OpenShift Dev Spaces* provides us with a convenient environment for developing, building and testing our automotive applications, we still need to test our application in an environment closer to the real-world deployments to ensure its functionality and stability in the field. In the next module we will build an *RHIVOS* image with our application embedded, to prepare for end-to-end testing in both virtualized and real hardware environments with *Jumpstarter*.
-
-== Build RHIVOS Image
-
-=== Automotive Image Builder
-
-To build RHIVOS images, we would be using https://gitlab.com/CentOS/automotive/src/automotive-image-builder[automotive image builder], a tool to create various kinds of OS images based on CentOS derived distributions. The main tool is called `automotive-image-builder`, and the basic operation it does is called "composing" manifests. The compose operation takes a yaml-based automotive image manifest, as well as a set of options affecting the compose and resolves the manifest into an osbuild json file. This json file is a precise build instruction for how to build an image with osbuild with the very specific software that was chosen during the compose. For example, the version of selected packages and container images is chosen during the compose.
-
-=== Automotive Image Builder Manifests
-
-The source repo is already populated with some automotive image builder manifests for RHIVOS. From the file explorer of the Dev Space, open `manifests/simple.aib.yml`, which is an example showing how to build a minimal RHIVOS image with additional rpm packages and root password preset. Another noteworthy file is `.aib-ci.yml`, which specifies the base image to use, target architecture and board, and other parameters to be passed to `automotive-image-builder`
-
-=== Build RHIVOS image with Automotive Image Builder
-
-Automotive image builder does not support cross-compilation, to build images for other architectures (like aarch64), we must run it on the respective systems. A aarch64 base virtual machine is provisioned as part of the lab to serve as our builder host. A helper script is provided to execute the build on it, in the Dev Space terminal, run:
-
-[source,bash]
-----
-aib-build qemu simple.qcow2
-----
-
-NOTE: We are using the `qemu` preset in `.aib-ci.yaml` to build an image targeting the qemu platform, and store the resulting image as `simple.qcow2`
-
-A GitLab CI task was also triggered to build the RHIVOS image with the application container embeded. You can check the build process here:
-
-{os_build_pipeline}
