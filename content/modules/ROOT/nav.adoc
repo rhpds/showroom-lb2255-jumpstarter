@@ -1,8 +1,6 @@
-* xref:module-01.adoc[1. Environment Setup]
+* xref:environment.adoc[1. Environment Setup]
 
-* xref:module-02.adoc[2. Build RHIVOS Image With Application]
-** xref:module-02.adoc#application[Build A Simple Automotive Application]
-** xref:module-02.adoc#rhivos[Build RHIVOS Image]
+* xref:application.adoc[2. Develop Automotive Software In Dev Space]
 
 * xref:module-03.adoc[3. First steps with Jumpstarter]
 ** xref:module-03.adoc#config[Configuring Jumpstarter for local development]
