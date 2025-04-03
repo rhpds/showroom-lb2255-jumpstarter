@@ -1,7 +1,4 @@
 * xref:module-01.adoc[1. Environment Setup]
-** xref:module-01.adoc#rhdh[Red Hat Developer Hub]
-** xref:module-01.adoc#rhods[Red Hat OpenShift Dev Spaces]
-** xref:module-01.adoc#setup[Create Development Environment with Red Hat Developer Hub]
 
 * xref:module-02.adoc[2. Build RHIVOS Image With Application]
 ** xref:module-02.adoc#application[Build A Simple Automotive Application]

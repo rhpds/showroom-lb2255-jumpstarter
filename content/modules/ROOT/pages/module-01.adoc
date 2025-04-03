@@ -1,36 +1,118 @@
 = Environment Setup
+:sectnums:
 
-[#rhdh]
-== Red Hat Developer Hub
+In this module, we’ll set up our source code repository and development environment with https://developers.redhat.com/rhdh/overview[Red Hat Developer Hub] and https://developers.redhat.com/products/openshift-dev-spaces/overview[Red Hat OpenShift Dev Spaces].
 
-https://developers.redhat.com/rhdh/overview[Red Hat Developer Hub] is an enterprise-grade Internal Developer Portal, combined with Red Hat OpenShift, Red Hat Developer Hub allows platform engineering teams to offer software templates, pre-architected and supported approaches to maximize developer skills, ease onboarding, and increase development productivity, and focus on writing great code by reducing friction and frustration for development teams.
-
-[#rhods]
-== Red Hat OpenShift Dev Spaces
-
-Built on the open source Eclipse Che project, https://developers.redhat.com/products/openshift-dev-spaces/overview[Red Hat OpenShift Dev Spaces] uses Kubernetes and containers to provide developers and other IT team members with a consistent, secure, and zero-configuration development environment. The experience is as fast and familiar as an integrated development environment (IDE) on your laptop.
-
-[#setup]
 == Create Development Environment with Red Hat Developer Hub
 
-We will be using Red Hat Developer Hub to setup the development environment for our lab. To get started, navigate to
+=== Login into Red Hat Developer Hub
 
-{rhdh_url}
+First, let's ensure we are logged into *Red Hat Developer Hub*, You can access the login page using this link: {rhdh_url}
 
-and sign in with GitLab
+image::00-backstage-login-annotated.png[]
 
-TIP: Your username is `{username}`, and password is `{password}`
+Choose the option *sign with GitLab*
 
-. Navigate to "Create" tab on the side bar
-. Choose the "Jumpstarter" template
-. Leave the forms as default for the "Provide Project Information", "Source Code Repository and Container Registry Information" and "Provide Cluster Information" screen, click "Next"
-. Click "Create" on the "Review" screen
+image::01-gitlab-login-annotated.png[]
 
-Our source code repository for RHIVOS image manifests and a Dev Space should be created in a few seconds, click "Open Component in catalog" to get to the dashboard for our development environment. Then click "OpenShift DevSpaces (VS Code)" to enter the Dev Space and log in with rhsso.
+You’ll be prompted to log in with your credentials, here they are as a reference:
 
-TIP: Your username is `{username}`, and password is `{password}`
+Username:
 
-The Dev Space initialization can take a while, but you will soon be dropped into a VS Code based web IDE. When prompted with whether you trust the authors, click yes.
+[source,text,subs="+attributes"]
+----
+{username}
+----
 
-== Recap
-In this module, with the help of Red Hat Developer Hub, we've created a source code repo for the RHIVOS image manifests, and a Dev Space web IDE connected to the repo.
+Password:
+
+[source,text,subs="+attributes"]
+----
+{password}
+----
+
+=== Create Dev Environment With Red Hat Developer Hub
+
+Once you’re logged in, you’ll be at the Red Hat Developer Hub dashboard.
+
+image::03-backstage-annotated.png[]
+
+Click the *Create* button on the side bar.
+
+image::04-backstage-create-annotated.png[]
+
+Choose to use the *Jumpstarter* template.
+
+image::05-backstage-create-project-info-annotated.png[]
+
+When ask to *Provide Project Information*, leave them as default, click *Next*.
+
+image::06-backstage-create-repo-annotated.png[]
+
+Same for *Source Code Repository and Container Registry Information*, click *Next*.
+
+image::07-backstage-create-cluster-info-annotated.png[]
+
+On the *Provide Cluster Information* page, please check the URL in the address bar of your browser, and fill in *Cluster GUID* and *Cluster Domain* accordingly, then click *Review*.
+
+CAUTION: Do NOT copy the *Cluster GUID* and *Cluster Domain* from the screenshot.
+
+image::08-backstage-create-review-annotated.png[]
+
+On the *Review* page, click *Create*.
+
+image::09-backstage-create-completion-annotated.png[]
+
+The source code repo and development environment will be created in a few seconds, and you will be greeted with the completion page. Click *Open Component in catalog* to see what's inside the environment.
+
+=== Login Into Red Hat OpenShift Dev Spaces
+
+image::10-backstage-component-annotated.png[]
+
+On the *jumpstarter-dev* service dashboard, click *OpenShift DevSpaces (VS Code)* to login into Red Hat OpenShift Dev Spaces.
+
+image::11-devspace-login-annotated.png[]
+
+Choose to *Log in with OpenShift*
+
+image::12-devspace-login-openshift-annotated.png[]
+
+On the *OpenShift* login page, choose to login with *rhsso*
+
+image::13-devspace-login-keycloak-annotated.png[]
+
+You’ll be prompted to log in with your credentials, here they are as a reference:
+
+Username:
+
+[source,text,subs="+attributes"]
+----
+{username}
+----
+
+Password:
+
+[source,text,subs="+attributes"]
+----
+{password}
+----
+
+image::14-devspace-access-annotated.png[]
+
+When asked to authorize *openshift-devspaces-client* to access your account, click *Allow selected permissions*.
+
+image::15-devspace-trust-annotated.png[]
+
+When asked *Do you trust the author of this repository*, click *Continue*.
+
+image::16-devspace-gitlab-access-annotated.png[]
+
+When asked to authorize *devspaces* to access your account on GitLab, click *Authorize devspaces*, and your Dev Space will be ready in a few minutes.
+
+image::17-vscode-trust-annotated.png[]
+
+Upon entering Dev Space, you will be prompted with *Do you trust the authors of the files in this workspace*, click *Yes, I trust the authors*.
+
+image::18-vscode.png[]
+
+And now you should be presented with a familiar VS Code based development environment, with everything preconfigured for the lab.
