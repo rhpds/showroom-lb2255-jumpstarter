@@ -1,7 +1,9 @@
 = Introduction
 :sectnums:
 
-Welcome to the *{lab_name}*
+Welcome to the *{lab_name}*!
+
+image::jumpstarter.svg[width=512px]
 
 == About this lab
 
@@ -15,9 +17,9 @@ https://www.redhat.com/en/blog/new-standard-red-hat-vehicle-operating-system-mod
 
 == What is Jumpstarter
 
-https://jumpstarter.dev/[Jumpstarter] is a project to enable *Hardware in the Loop* testing and development for Edge devices.
+https://jumpstarter.dev/[Jumpstarter] is an open-source project to enable *Hardware in the Loop* testing and development for Edge devices.
 
-image::https://jumpstarter.dev/docs/pipeline.svg[pipeline,width=600,height=auto]
+image::pipeline.svg[pipeline,width=600,height=auto]
 
 Embedded and Edge devices have been traditionally tested in a manual way with a human operator. This is not scalable, and unsuitable for CI/CD pipelines.
 
@@ -59,7 +61,7 @@ When using Jumpstarter locally, you can easily develop drivers, write automated 
 
 The local-only mode is useful when working with hardware on your desk that you have unlimited access to.
 
-image::https://docs.jumpstarter.dev/main/_images/how-it-works-local.svg[local,width=600,height=auto]
+image::local-only.svg[local,width=450,height=auto]
 
 ==== Distributed
 
@@ -67,4 +69,4 @@ When your project grows, Jumpstarter also can help you collaborate across teams,
 
 The distributed mode takes advantage of Kubernetes to support the management of multiple target devices directly from your existing cluster. This allows for seamless integration with many existing Cloud Native technologies such as Tekton, ArgoCD, and Prometheus.
 
-image::https://docs.jumpstarter.dev/main/_images/how-it-works-distributed.svg[distributed,width=600,height=auto]
+image::distributed.svg[distributed,width=600,height=auto]
