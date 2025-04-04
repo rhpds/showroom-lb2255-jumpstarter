@@ -11,7 +11,7 @@ First, let's ensure we are logged into the *Red Hat Developer Hub*, You can acce
 
 image::00-backstage-login-annotated.png[]
 
-Choose the option to *Sign with GitLab*.
+Choose the option to *Sign in with GitLab*.
 
 image::01-gitlab-login-annotated.png[]
 
