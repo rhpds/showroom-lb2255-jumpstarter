@@ -1,4 +1,4 @@
-= Build RHIVOS a Image with Automotive Image Builder
+= Build a RHIVOS Image with Automotive Image Builder
 :sectnums:
 
 In this module we will learn how to build and customize RHIVOS images with *Automotive Image Builder*, a tool to create various kinds of OS images based on RHEL/CentOS derived distributions with an automotive focus.
