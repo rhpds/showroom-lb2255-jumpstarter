@@ -4,6 +4,8 @@
 
 * xref:rhivos.adoc[3. Build RHIVOS image with Automotive Image Builder]
 
+* xref:exporter.adoc[4. Configuring Jumpstarter Exporter]
+
 * xref:module-03.adoc[4. First steps with Jumpstarter]
 ** xref:module-03.adoc#config[Configuring Jumpstarter for local development]
 ** xref:module-03.adoc#interact[Interacting with a local Jumpstarter session with CLI]
