@@ -12,8 +12,4 @@
 
 * xref:remote-pytest.adoc[7. Testing On Remote Jumpstarter Exporter With Pytest]
 
-* xref:module-04.adoc[7. Test and Automate with HIL]
-** xref:module-04.adoc#interact[Interacting with a remote Jumpstarter session with CLI]
-** xref:module-04.adoc#flash[Flash RHIVOS image]
-** xref:module-04.adoc#manual[Manual testing with Jumpstarter CLI]
-** xref:module-04.adoc#automated[Automated testing with python]
+* xref:pipeline.adoc[8. Continuous Integration with Jumpstarter and Red Hat OpenShift Pipelines]
