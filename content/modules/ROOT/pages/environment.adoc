@@ -1,17 +1,17 @@
 = Environment Setup
 :sectnums:
 
-In this module, we’ll set up our source code repository and development environment with https://developers.redhat.com/rhdh/overview[Red Hat Developer Hub] and https://developers.redhat.com/products/openshift-dev-spaces/overview[Red Hat OpenShift Dev Spaces].
+In this module, we’ll set up our source code repository and development environment with the https://developers.redhat.com/rhdh/overview[Red Hat Developer Hub] and https://developers.redhat.com/products/openshift-dev-spaces/overview[Red Hat OpenShift Dev Spaces].
 
 == Create Development Environment with Red Hat Developer Hub
 
-=== Login into Red Hat Developer Hub
+=== Login to Red Hat Developer Hub
 
-First, let's ensure we are logged into *Red Hat Developer Hub*, You can access the login page using this link: {rhdh_url}
+First, let's ensure we are logged into the *Red Hat Developer Hub*, You can access the login page using this link: {rhdh_url}
 
 image::00-backstage-login-annotated.png[]
 
-Choose the option *sign with GitLab*
+Choose the option to *Sign with GitLab*.
 
 image::01-gitlab-login-annotated.png[]
 
@@ -31,9 +31,9 @@ Password:
 {password}
 ----
 
-=== Create Dev Environment With Red Hat Developer Hub
+=== Create an Automotive Devevelopment Environment
 
-Once you’re logged in, you’ll be at the Red Hat Developer Hub dashboard.
+Once you’re logged in, you’ll be redirected to the Red Hat Developer Hub dashboard. Now we’ll create a pre-configured development environment using the Jumpstarter template provided for this lab.
 
 image::03-backstage-annotated.png[]
 
@@ -41,11 +41,11 @@ Click the *Create* button on the side bar.
 
 image::04-backstage-create-annotated.png[]
 
-Choose to use the *Jumpstarter* template.
+Choose to use the *Jumpstarter Development Template*.
 
 image::05-backstage-create-project-info-annotated.png[]
 
-When ask to *Provide Project Information*, leave them as default, click *Next*.
+When asked to *Provide Project Information*, leave the fields as the default values and cick *Next*.
 
 image::06-backstage-create-repo-annotated.png[]
 
@@ -63,21 +63,23 @@ On the *Review* page, click *Create*.
 
 image::09-backstage-create-completion-annotated.png[]
 
-The source code repo and development environment will be created in a few seconds, and you will be greeted with the completion page. Click *Open Component in catalog* to see what's inside the environment.
+The source code repo and development environment will be created in a few seconds, and you will be greeted with the completion page.
 
-=== Login Into Red Hat OpenShift Dev Spaces
+Click *Open Component in catalog* to see what's inside the environment.
+
+=== Open the Created Dev Space
 
 image::10-backstage-component-annotated.png[]
 
-On the *jumpstarter-dev* service dashboard, click *OpenShift DevSpaces (VS Code)* to login into Red Hat OpenShift Dev Spaces.
+On the *jumpstarter-dev* service dashboard, click *OpenShift DevSpaces (VS Code)* to launch the Dev Space created in the previous step.
 
 image::11-devspace-login-annotated.png[]
 
-Choose to *Log in with OpenShift*
+Choose to *Log in with OpenShift*.
 
 image::12-devspace-login-openshift-annotated.png[]
 
-On the *OpenShift* login page, choose to login with *rhsso*
+On the *OpenShift* login page, choose to login with *rhsso*.
 
 image::13-devspace-login-keycloak-annotated.png[]
 
@@ -115,4 +117,4 @@ Upon entering Dev Space, you will be prompted with *Do you trust the authors of 
 
 image::18-vscode.png[]
 
-And now you should be presented with a familiar VS Code based development environment, with everything preconfigured for the lab.
+Now you should see a familiar *VS Code* development environment in your browser. Take a moment to explore the created development enviornment, it should contain everything you need to complete this lab.
