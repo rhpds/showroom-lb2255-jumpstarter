@@ -1,0 +1,107 @@
+= Connecting To Remote Jumpstarter Exporter
+
+While Jumpstarter can help you to interact with locally connected devices under test with a unified interface, this does not scale well. When your project grows, Jumpstarter also can help you to share a limited number of hardware devices across graphically distributed teams, in a secure, controlled and efficient way.
+
+Your Dev Space is already configured with credentials to access a Jumpstarter Service installation with multiple Exporters available to lease. To list the Exporters available to you, run:
+
+[,console]
+----
+$ jmp get exporters
+----
+
+Every Exporter has a set of labels, that can be used to filter out the Exporters most suitable for you needs when requesting leases.
+
+== Lease And Interact With A Remote Exporter Using Jumpstarter CLI
+
+To lease an Exporter with the Jumpstarter CLI, run:
+
+[,console]
+----
+$ jmp shell --selector example.com/board=qemu
+----
+
+NOTE: This command is almost identical to the one we used to enter a local Jumpstarter shell session in the last module, however by omitting the `--exporter-config` parameter, the `jmp shell` command will instead use the default client config file at `~/.config/jumpstarter/clients/lab.yaml`. The default client will then use the `--selector` parameter to find an exporter that matches the label `example.com/board=qemu`.
+
+TIP: Notice that you shell prompt have been changed to `jumpstarter ⚡remote ➤`, this is to remind you that you are inside a remote Jumpstarter shell session.
+
+When you lease an Exporter, you get exclusive access to the hardware interfaces connected to the Exporter for the duration of the lease.
+
+To see the list of hardware interfaces exposed on the Exporter we've leased, run the `j` command without parameters:
+
+[,console]
+----
+$ j
+----
+
+And you should see an output like this:
+
+[source,text]
+----
+Usage: j [OPTIONS] COMMAND [ARGS]...
+
+  Generic composite device
+
+Options:
+  --help  Show this message and exit.
+
+Commands:
+  console  Serial port client
+  flasher  Generic flasher interface
+  power    Generic power
+  qemu     Generic composite device
+----
+
+Which means we get to control the power of the device, flash new disk images, and access its serial console. You would find the same `console`, `flasher` and `power` subcommands nested under the `qemu` subcommand, since the toplevel ones are aliases of the nested ones provided for easier access.
+
+=== The First Boot
+
+In previous modules, we've built a RHIVOS image with our application. Now, we can use Jumpstarter to flash that image to our device under test, boot it up, and take our first steps in testing our application.
+
+To flash the RHIVOS image, run
+
+[,console]
+----
+$ j flasher flash simple.qcow2
+----
+
+After flashing, to boot the device and view the boot messages via the serial console, run:
+
+[,console]
+----
+$ j power on && j console start-console
+----
+
+You should be dropped into a serial console with the boot messages showing up. Once the image has finished booting, you will be presented with a login prompt. You can login with the default username `jumpstarter` and password `password`.
+
+After logging into the system, you can launch `radio-client`:
+
+[,console]
+----
+$ radio-client
+----
+
+And control our `radio-server` as we did when we initially built and tested the application.
+
+[TIP]
+====
+The keybindings are: Press `+` or `-` to adjust the volume, `<SPACE>` to switch station, `<ESC>` to pause or resume the radio.
+====
+
+When you are done with testing, press `q` to quit `radio-client`. Then exit the serial console by pressing `Ctrl+B` 3 times, this will drop you back into the Jumpstarter shell session.
+
+=== Bridging The Distance
+
+Sometimes your test process cannot be fully executed on the device under test, e.g you might have to use a proprietary GUI client to control your application. To support these usecases, Jumpstarter also implements port forwarding, which allows you to interact with services running inside the target device from your local machine as if they are running locally.
+
+To forward a remote service port (for example, `radio-service`) to a local port, run the following command from within your remote Jumpstarter shell session:
+
+[,console]
+----
+$ j radio start-portforward 8000
+----
+
+This command will forward the remote `radio` port preconfigured in the exporter config to `localhost:8000` on your local machine. Once port forwarding is started, you can run `radio-client` from your local environment and interact with the `radio-service` running in the remote target device.
+
+To stop the port forward, simply exit the shell with `Ctrl+D`.
+
+Now we are finished with manual testing, exit the Jumpstarter shell session by pressing `Ctrl+D` again.
