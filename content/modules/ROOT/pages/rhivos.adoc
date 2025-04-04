@@ -50,4 +50,4 @@ Now that we have our application and RHIVOS image ready, we need to test it on o
 
 *Jumpstarter* allows you to abstract away the physical access with an easy-to-use software interface. This enables you to interact with your hardware and test your application on the bench, remotely, or in a CI/CD pipeline with a unified development experience.
 
-In the next module we will learn the basics of *Jumpstarter* including how to configure our virtual hardware for local development, use the *Jumpstarter* command line interface, and write custom tests in Python.
+In the next modules we will learn the basics of *Jumpstarter* including how to configure our virtual hardware for local development, use the *Jumpstarter* command line interface, and write custom tests in Python.
