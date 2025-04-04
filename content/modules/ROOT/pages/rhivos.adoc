@@ -1,33 +1,53 @@
-= Build RHIVOS image with Automotive Image Builder
+= Build RHIVOS a Image with Automotive Image Builder
 :sectnums:
 
-In this module we will learn how to build and customize RHIVOS images with *Automotive Image Builder*, a tool to create various kinds of OS images based on RHEL/CentOS derived distributions with an automotive focus. The basic operation it does is "composing" yaml-based manifests into an osbuild json file. This json file is a precise build instruction for how to build an image with osbuild with the very specific software that was chosen during the compose. For example, additional applications to install into the image.
+In this module we will learn how to build and customize RHIVOS images with *Automotive Image Builder*, a tool to create various kinds of OS images based on RHEL/CentOS derived distributions with an automotive focus.
+
+The Automotive Image Builder "composes" multiple YAML manifests into an osbuild JSON file. This JSON file defines the precise instructions for how to build an image. This allows us to customize the software that comes pre-installed in the image.
 
 == Manifests
 
-The source repo is already populated with some Automotive Image Builder manifests. From the file explorer of the Dev Space, open `manifests/simple.aib.yml`, which is an example showing how to build a minimal RHIVOS image with additional rpm packages and root password preset. Another noteworthy file is `.aib-ci.yml`, which specifies the base image to use, target architecture and hardware platform, and other parameters to be passed to `automotive-image-builder`.
+The source repo is already populated with some Automotive Image Builder manifests.
+
+From the file explorer of the Dev Space, open `manifests/simple.aib.yml`. This is an example manifest showing how to build a minimal RHIVOS image with additional RPM packages and the root password pre-set. 
 
 image::18-vscode.png[]
 
-IMPORTANT: placeholder image
+IMPORTANT: placeholder image, insert image showing manifest file.
 
-== Build RHIVOS image manually
+The `.aib-ci.yml` file specifies the base image to use, target architecture, hardware platform, and other parameters to be passed to `automotive-image-builder` tool.
 
-Automotive image builder does not support cross-compilation, to build images for other architectures (like aarch64), we must run it on the respective systems. An aarch64 based virtual machine is provisioned as part of the lab to serve as our builder host. A helper script is provided to execute the build on it, in the Dev Space terminal, run:
+image::18-vscode.png[]
+
+IMPORTANT: placeholder image, insert image showing manifest file.
+
+== Building the RHIVOS Image Manually
+
+Automotive Image Builder does not support cross-compilation to build images for other architectures (like ARM64), therefore must run it on the target architecture.
+
+An ARM64 virtual machine has been provisioned as part of the lab to serve as our builder host. A helper script is provided to execute the build on it, in the Dev Space terminal, run:
 
 [,console]
 ----
 $ aib-build qemu-simple simple.qcow2
 ----
 
-NOTE: We are using the `qemu-simple` preset in `.aib-ci.yaml` to build an image with the manifest `manifests/simple.aib.yaml` and targeting the qemu platform, which is the emulator for our virtualized hardware platform, and store the resulting image as `simple.qcow2`
+The resulting image will be stored as `simple.qcow2`.
 
-== Build RHIVOS image automatically
+NOTE: We are using the `qemu-simple` preset in `.aib-ci.yaml` to build an image targeting the QEMU platform, which is the emulator for our virtual hardware.
 
-When we push our changes to the code repository in the last module, another *Red Hat OpenShift Pipelines* task was also triggered to automatically build an RHIVOS image with the `qemu-application` preset in `.aib-ci.yaml`. This preset uses the manifest `manifests/application.aib.yaml`, which in additional to what's in `manifests/simple.aib.yaml`, also installs our application into the image.
+== Build the RHIVOS Image Automatically
+
+When we pushed our changes to the code repository in the last module, a *Red Hat OpenShift Pipelines* task was triggered to automatically build the RHIVOS image with our `qemu-application` preset in `.aib-ci.yaml`.
+
+This preset uses `manifests/application.aib.yaml` to install our application in addition to the configuration in `manifests/simple.aib.yaml`.
 
 To check the progress of the build, see {os_build_pipeline}
 
 == Next Steps
 
-Now we have our RHIVOS image ready, traditionally we would require physical access to the target platform to test it, which involves flashing sdcards or other storage mediums with the image, connecting various cables to a developer workstation, and many other manual steps. But with *Jumpstarter*, it abstracts the physical access away with an easy to use software interface, allowing you to interact with your hardware and test your application locally, remotely, or automatically with a unified experience. In the next module we will learn the basics of *Jumpstarter*, including how to configure *Jumpstarter* for local development and the *Jumpstarter* command line interface.
+Now that we have our application and RHIVOS image ready, we need to test it on our hardware to make sure everything works as expected. Traditionally, we would need to find some physical hardware, flash a ROM chip or SD Card, connect a harness to our laptop, and make sure everything is configured correctly. 
+
+*Jumpstarter* allows you to abstract away the physical access with an easy-to-use software interface. This enables you to interact with your hardware and test your application on the bench, remotely, or in a CI/CD pipeline with a unified development experience.
+
+In the next module we will learn the basics of *Jumpstarter* including how to configure our virtual hardware for local development, use the *Jumpstarter* command line interface, and write custom tests in Python.
