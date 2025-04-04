@@ -8,7 +8,11 @@
 
 * xref:exporter-run.adoc[5. Running Jumpstarter Exporter For Local Access]
 
-* xref:module-04.adoc[6. Test and Automate with HIL]
+* xref:remote-cli.adoc[6. Connecting To Remote Jumpstarter Exporter]
+
+* xref:remote-pytest.adoc[7. Testing On Remote Jumpstarter Exporter With Pytest]
+
+* xref:module-04.adoc[7. Test and Automate with HIL]
 ** xref:module-04.adoc#interact[Interacting with a remote Jumpstarter session with CLI]
 ** xref:module-04.adoc#flash[Flash RHIVOS image]
 ** xref:module-04.adoc#manual[Manual testing with Jumpstarter CLI]
