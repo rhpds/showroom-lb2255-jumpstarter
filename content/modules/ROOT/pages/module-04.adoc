@@ -31,17 +31,38 @@ NOTE: Due to the large size of the image, the flashing process might take a whil
 [#manual]
 == Manual Testing with the Jumpstarter CLI
 
+=== Testing Over Serial Console
+
 Now that the image is flashed, we can boot and interact with the virtual device using the `j` CLI within our remote shell session.
 
-[source,bash]
+[,console]
 ----
-j power on
-j console start-console
+$ j power on
+$ j console start-console
 ----
 
-You should be dropped into a serial console with the boot messages showing up. Once the image has finished booting, you will be presented with a login prompt. You can login with the default username `jumpstarter` and password `password`, feel free to explore the RHIVOS environment on your own.
+You should be dropped into a serial console with the boot messages showing up. Once the image has finished booting, you will be presented with a login prompt. You can login with the default username `jumpstarter` and password `password`, launch `radio-client` and interact with `radio-service` the same as in the last module. Feel free to explore the RHIVOS environment on your own.
 
-When you are done, exit the console by pressing Ctrl+B 3 times, this will drop you back into the Jumpstarter shell session. To exit the shell use Ctrl+D.
+When you are done, exit the console by pressing Ctrl+B 3 times, this will drop you back into the Jumpstarter shell session.
+
+=== Testing Over Port Forward
+
+In addition to testing over the serial console, Jumpstarter also supports port forwarding, which allows you to interact with services running inside the virtual target from your local machine as if they are running locally.
+
+To forward a remote service port (for example, `radio-service`) to a local port, run the following command from within your remote Jumpstarter shell session:
+
+[,console]
+----
+$ j radio start-portforward 8000
+----
+
+This command will forward the remote `radio` port preconfigured in the exporter config to `localhost:8000` on your local machine. Once port forwarding is started, you can run `radio-client` from your local environment and interact with the `radio-service` running in the remote target device.
+
+To stop the port forward, simply exit the shell with `Ctrl+D`.
+
+TIP: Port forwarding is useful to make use of external tools or GUIs applications running on your local system with a remote test target.
+
+Now we are finished with manual testing, exit the Jumpstarter shell session by pressing `Ctrl+D` again.
 
 [#automated]
 == Automated Testing with Python
