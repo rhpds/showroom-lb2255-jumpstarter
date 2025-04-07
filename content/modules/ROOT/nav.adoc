@@ -8,6 +8,6 @@
 .3. Testing with Jumpstarter
 ** xref:exporter-config.adoc[1. Configuring Jumpstarter Exporter]
 ** xref:exporter-run.adoc[2. Running Jumpstarter Exporter For Local Access]
-** xref:remote-cli.adoc[3. Connecting To Remote Jumpstarter Exporter]
+** xref:remote-cli.adoc[3. Connecting to a Remote Jumpstarter Exporter]
 ** xref:remote-pytest.adoc[4. Testing On Remote Jumpstarter Exporter With Pytest]
 ** xref:pipeline.adoc[5. Continuous Integration with Jumpstarter and Red Hat OpenShift Pipelines]
