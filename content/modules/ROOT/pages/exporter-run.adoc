@@ -1,30 +1,34 @@
 = Running Jumpstarter Exporter For Local Access
 
-In the last module, we've already configured our *Exporter* with various *Drivers*, we can now run it and interact with the *Drivers* with Jumpstarter *Client*. To start the exporter for local access, run the follow command:
+In the last module, we configured our *Exporter* with some *Drivers*. Now we can run it locally and interact with the *Drivers* through the local Jumpstarter *Client*. To start the exporter for local access, run the following command:
 
 [,console]
 ----
 $ jmp shell --exporter-config ./demo-exporter.yaml
 ----
 
-TIP: Notice that your shell prompt have been changed to `jumpstarter ⚡local ➤`, this is to remind you that you are inside a local Jumpstarter shell session.
+TIP: Notice that your shell prompt now shows: `jumpstarter ⚡local ➤`. This is to remind you that you are inside a local Jumpstarter shell session.
 
-Inside a Jumpstarter shell session, the environment variable `$JUMPSTARTER_HOST` is set, pointing to a unix domain socket which the Exporter is listening on. Jumpstarter *Client* would read this environment variable, connect to the *Exporter*, and send requests to control the hardware interfaces, e.g. turning the power switch on.
+Inside a Jumpstarter shell session, the environment variable `JUMPSTARTER_HOST` is set, pointing to a unix domain socket which the Exporter is listening on. The Jumpstarter *Client* reads this environment variable, connects to the *Exporter*, and sends requests to control the hardware interfaces, e.g. turning the power switch on.
 
-[,console]
-----
-echo $JUMPSTARTER_HOST
-----
-
-== Using The j Command
-
-The most straightforward way to interact with Jumpstarter Exporters is to use the magic `j` command. The `j` command is only available in a Jumpstarter shell session, and it is dynamically constructed reflecting the tree of Drivers configured on the currently connected Exporter. Not all Drivers have corresponding command line interfaces, those without would not be visible under the `j` command.
-
-Run the `j` command without any arguments to see its usage:
+To check the contents of your current `JUMPSTARTER_HOST` variable, you can run the following command within the Jumpstarter shell:
 
 [,console]
 ----
-$ j
+jumpstarter ⚡local ➤ echo $JUMPSTARTER_HOST
+----
+
+== Using The `j`` Command
+
+The simpilest way to interact with Jumpstarter Exporters is through their exposed Command Line Interfaces available through the "magic" `j` command. The `j` command is only available in a Jumpstarter shell session, and it is dynamically constructed reflecting the tree of Drivers configured on the currently connected Exporter.
+
+NOTE: Not all Drivers have defined Command Line Interfaces, if a driver class does not define a CLI, commands will not be available within the `j` command.
+
+Run the `j` command without any arguments to see the available Driver commands:
+
+[,console]
+----
+jumpstarter ⚡local ➤ j
 ----
 
 With the exporter config defined in `exporter-demo.yaml`, we should see an output like this:
@@ -44,13 +48,13 @@ Commands:
   power    Generic power
 ----
 
-TIP: The name of the subcommands matches the name we gave to the Drivers in the Exporter config
+TIP: The name of the subcommands matches the alias we gave to the Driver instances in the Exporter config.
 
-Run `j power` command to see its usage:
+Run the `j power` command to see its usage:
 
 [,console]
 ----
-$ j power
+jumpstarter ⚡local ➤ j power
 ----
 
 With the `MockPower` Driver, we should see an output like this:
@@ -70,21 +74,21 @@ Commands:
   on     Power on
 ----
 
-This means the `MockPower` Driver provides three methods, power on, power off, or power cycle the device under test.
+This indicates that the `MockPower` Driver provides three methods, `power on`, `power off`, or `power cycle` for our mock power controller.
 
 Try turning the power of the device under test on and off
 
 [,console]
 ----
-$ j power on
-$ j power off
+jumpstarter ⚡local ➤ j power on
+jumpstarter ⚡local ➤ j power off
 ----
 
-TIP: Nothing actually happens because we are using a mock power driver, but have we configured it with a real power driver, e.g. a USB power relay, you would see the device under test being turned on and off.
+TIP: Since we are using a mock power driver nothing will happen, but if we configured it with a real power driver, e.g. a USB power relay, you would see the device being turned on and off.
 
 == Using The Python API (Optional)
 
-Another way to interact with Jumpstarter Exporters is to use the Jumpstarter Python API. Jumpstarter Python API is more powerful than the `j` command as it offers the full functionalities of the Drivers but is also harder to use.
+Another way to interact with Jumpstarter Exporters is to use the Python API. The Jumpstarter Python API is more powerful than the `j` command as it offers the full functionalities of the Drivers, however, it also requires experience with Python scripting to use.
 
 To use the Python API, let's write a simple Python script:
 
@@ -94,13 +98,19 @@ To use the Python API, let's write a simple Python script:
 from jumpstarter.common.utils import env
 
 with env() as dut:
-    dut.power.on()
-    dut.power.off()
+    print(dut.power.on())
+    print(dut.power.off())
 ----
 
-The `env` helper method reads the `$JUMPSTARTER_HOST` environment variable, connects to the Exporters, asks the Exporter for a list of all the configured Drivers, and then constructs a magic object mirroring the tree of Drivers. And then you can call the methods on the magic object to control the hardware interfaces, just as what we've done with the `j` command. To see what methods are available in the Python API of each Driver, check https://docs.jumpstarter.dev/main/api-reference/drivers/index.html[Jumpstarter Driver API Reference]
+TIP: We are using the `with` keyword as the `env()` function returns a context manager. This allows Jumpstarter to setup and teardown connections to the Exporter gracefully.
+
+In this example, the `env` helper method reads the `JUMPSTARTER_HOST` environment variable, connects to the Exporter, requests a list of configured drivers, and the constructs a "magic" client object mirroring the tree of Drivers exposed by the Exporter.
+
+When we call the methods on the client object, commands are sent to the Exporter drivers similar to the `j` command. To see what methods are available in the Python API of each Driver, see https://docs.jumpstarter.dev/main/api-reference/drivers/index.html[Jumpstarter Driver API Reference]
+
+We can run the Python script within our local Jumpstarter shell session to test it:
 
 [,console]
 ----
-$ python power-control.py
+jumpstarter ⚡local ➤ python power-control.py
 ----
