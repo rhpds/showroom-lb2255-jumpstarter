@@ -46,7 +46,7 @@ Commands:
 
 TIP: The name of the subcommands matches the name we gave to the Drivers in the Exporter config
 
-Run `j power` comand to see its usage:
+Run `j power` command to see its usage:
 
 [,console]
 ----

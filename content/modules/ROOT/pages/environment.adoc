@@ -45,7 +45,7 @@ Choose to use the *Jumpstarter Development Template*.
 
 image::05-backstage-create-project-info-annotated.png[]
 
-When asked to *Provide Project Information*, leave the fields as the default values and cick *Next*.
+When asked to *Provide Project Information*, leave the fields as the default values and click *Next*.
 
 image::06-backstage-create-repo-annotated.png[]
 
@@ -117,4 +117,4 @@ Upon entering Dev Space, you will be prompted with *Do you trust the authors of 
 
 image::18-vscode.png[]
 
-Now you should see a familiar *VS Code* development environment in your browser. Take a moment to explore the created development enviornment, it should contain everything you need to complete this lab.
+Now you should see a familiar *VS Code* development environment in your browser. Take a moment to explore the created development environment, it should contain everything you need to complete this lab.

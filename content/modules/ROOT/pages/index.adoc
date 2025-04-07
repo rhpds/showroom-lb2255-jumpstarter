@@ -27,7 +27,7 @@ In a modern development cycle we want to know that our software changes work wel
 
 image::https://jumpstarter.dev/docs/ci_cd_hu38a0ca465dd331e6590be9c01b398043_217430_800x512_fit_catmullrom_3.png[]
 
-With Jumpstarter it’s possible to use software CI/CD pipelines like Tekton, GitHub CI, GitLab CI, Jenkins, etc., as well as integrated development and scientific environments like Jupyter and Eclipse Che / Devspaces to interact with your physical hardware.
+With Jumpstarter it's possible to use software CI/CD pipelines like Tekton, GitHub CI, GitLab CI, Jenkins, etc., as well as integrated development and scientific environments like Jupyter and Eclipse Che / Devspaces to interact with your physical hardware.
 
 === How does Jumpstarter work
 
@@ -45,7 +45,7 @@ The core components of Jumpstarter are:
 
    * A https://docs.jumpstarter.dev/main/introduction/service.html[Service] that helps you manage hardware access from anywhere.
 
-Since Jumpstarter’s core components are written in Python, it is possible to run them almost everywhere. This means that you can setup a test lab with low-cost exporters such as Raspberry Pis or mini PCs, while still using the same Linux-based CI systems you currently host in the cloud.
+Since Jumpstarter's core components are written in Python, it is possible to run them almost everywhere. This means that you can setup a test lab with low-cost exporters such as Raspberry Pis or mini PCs, while still using the same Linux-based CI systems you currently host in the cloud.
 
 Jumpstarter is also able to seamlessly integrate into the existing ecosystem of Python testing tools such as pytest. You can also use the Jumpstarter CLI directly from shell scripts and Makefiles allowing you to write simple automation scripts easily.
 

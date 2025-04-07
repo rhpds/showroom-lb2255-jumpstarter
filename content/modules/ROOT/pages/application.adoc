@@ -129,6 +129,6 @@ To check the progress of the build, see {app_build_pipeline}
 
 == Next Steps
 
-While *Red Hat OpenShift Dev Spaces* provides us with a consistent environment for developing, building, and testing our automotive applications, it's still necassary to test our code on virtual or physical hardware to ensure stability and compatibility.
+While *Red Hat OpenShift Dev Spaces* provides us with a consistent environment for developing, building, and testing our automotive applications, it's still necessary to test our code on virtual or physical hardware to ensure stability and compatibility.
 
 In the next module we will build a *RHIVOS* image with our application embedded to prepare for end-to-end testing in both virtualized and physical hardware environments with *Jumpstarter*.
