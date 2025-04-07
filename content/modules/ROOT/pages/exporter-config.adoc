@@ -1,8 +1,8 @@
 = Configuring Jumpstarter Exporter
 
-At the core of Jumpstarter is *Exporter*, a program that exposes *hardware interfaces* on your *device under test* to a local or remote *Client*. The Exporter typically runs on a "host" system directly connected to your hardware through various test harnesses (think USB to UART adapters or JTAG connectors).
+At the core of Jumpstarter is the *Exporter*, a program that exposes *hardware interfaces* on your *Device Under Test (DUT)* to a local or remote *Client*. Exporter typically run on a "host" system directly connected to your hardware through various test harnesses (think USB to UART adapters or JTAG connectors).
 
-Exporter uses *Drivers* to abstract *hardware interfaces* into *software interfaces* allowing for simplified access. Drivers are written in *Python* to make use of the vast ecosystem of existing Python packages. While Jumpstarter comes with Drivers for many basic interfaces, custom Drivers can also be developed for specialized hardware/interfaces or to provide domain-specific abstractions for your use case.
+Exporters use *Drivers* to abstract *hardware interfaces* into *software interfaces*, providing a unified abstraction for controlling your hardware. Drivers are written in *Python* to make use of the vast ecosystem of existing Python packages. While Jumpstarter comes with Drivers for many basic interfaces, custom Drivers can also be developed for specialized hardware/interfaces or to provide domain-specific abstractions for your use case.
 
 == List Available Drivers
 To list the Drivers available in your Jumpstarter installation, run the following command:
@@ -17,9 +17,9 @@ $ jmp driver list
 Some driver packages provide mock drivers, usually with a `Mock` prefix. While mock drivers do not provide access to physical or virtual hardware, they are useful for testing or demonstration.
 ====
 
-== Writing Jumpstarter Exporter Config
+== Writing an Exporter Config
 
-Jumpstarter Exporter can be configured with a yaml-based config file consisting of multiple parts.
+Exporters can be configured with a YAML config file. Jumpstarter uses a Kubernetes-style YAML syntax for writing configs.
 
 .header
 [source,yaml]
@@ -28,7 +28,7 @@ apiVersion: jumpstarter.dev/v1alpha1
 kind: ExporterConfig
 ----
 
-The first part is the header, which denotes the version and kind of the config, so future versions of Jumpstarter can still be compatible with old configs.
+The first section is the header. This denotes the Jumpstarter API version (`apiVersion`) and type (`kind`) of config. This allows for backwards-compatibility with future versions of Jumpstarter.
 
 .metadata
 [source,yaml]
@@ -38,7 +38,12 @@ metadata:
   name: demo
 ----
 
-The second part is the metadata, for distinguishing between multiple exporter configs.
+The second section is the `metadata`. This section provides information about the `name` and `namespace` of the Exporter. Jumpstarter uses these to correlate the local config file with resources in the cluster.
+
+[TIP]
+====
+The exporter `namespace` can be used to divide exporters into different groups. For example, the namespace `jumpstarter-lab01` could contain all exporters within a specific lab.
+====
 
 .connection info
 [source,yaml]
@@ -47,7 +52,7 @@ endpoint: ""
 token: ""
 ----
 
-The third part is the connection info, to connect the Exporter to the Jumpstarter Service for remote access. Since we would only be using this Exporter for local access, they can be left empty.
+The third section is the connection info. This provides an `endpoint` and authentication `token` to connect to the Jumpstarter Service for remote access. Since we will only be using this Exporter for local access, these fields can be left empty.
 
 .export
 [source,yaml]
@@ -66,6 +71,10 @@ export:
     type: jumpstarter_driver_opendal.driver.MockFlasher
 ----
 
-The last and most important part is export, which is a tree of Drivers to be exported to the Client. Here we've configured three Drivers, `power`, `console` and `flasher`. Drivers can be specified with its full Python import path, and be configured with additional parameters, e.g. we configured the `PySerial` Driver to connect to the `loop://` serial port, which is a virtual serial port that echos everything sent to it.
+The last and most important section is `export`. This dictionary field contains a tree of Drivers to be exported to the Client. We use this section to specify the "shape" of our test harness that clients will see.
+
+In the example above we've configured three Drivers, `power`, `console` and `flasher`. These keys are used as aliases for the driver instances attached to our Exporter.
+
+Drivers classes are specified using the fully-qualified Python type in the `type` field. Driver-specific configurations can be passed through the `config` field. In this example, we configured the `PySerial` Driver to connect to the `loop://` serial port, which is a virtual serial port that echos everything sent to it.
 
 To see what config options are available on each Driver, check https://docs.jumpstarter.dev/main/api-reference/drivers/index.html[Jumpstarter Driver API Reference]
