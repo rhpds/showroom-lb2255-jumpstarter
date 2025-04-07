@@ -114,3 +114,7 @@ We can run the Python script within our local Jumpstarter shell session to test 
 ----
 jumpstarter ⚡local ➤ python power-control.py
 ----
+
+== Next Steps
+
+Now we have created our own Exporter config, tested it locally within our Dev Space, and learned about the `j` command and Python API. In the next module, we will connect to a remote exporter instance hosted within the OpenShift cluster directly from our Dev Space.
