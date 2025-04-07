@@ -1,4 +1,4 @@
-= Running Jumpstarter Exporter For Local Access
+= Running Jumpstarter an Exporter Locally
 
 In the last module, we configured our *Exporter* with some *Drivers*. Now we can run it locally and interact with the *Drivers* through the local Jumpstarter *Client*. To start the exporter for local access, run the following command:
 
@@ -18,9 +18,9 @@ To check the contents of your current `JUMPSTARTER_HOST` variable, you can run t
 jumpstarter ⚡local ➤ echo $JUMPSTARTER_HOST
 ----
 
-== Using The `j`` Command
+== Using the `j` Command
 
-The simpilest way to interact with Jumpstarter Exporters is through their exposed Command Line Interfaces available through the "magic" `j` command. The `j` command is only available in a Jumpstarter shell session, and it is dynamically constructed reflecting the tree of Drivers configured on the currently connected Exporter.
+The simplest way to interact with Jumpstarter Exporters is through the Command Line Interfaces available through the "magic" `j` command. The `j` command is only available in a Jumpstarter shell session, and is dynamically constructed reflecting the tree of Drivers configured on the currently connected Exporter.
 
 NOTE: Not all Drivers have defined Command Line Interfaces, if a driver class does not define a CLI, commands will not be available within the `j` command.
 
@@ -88,7 +88,7 @@ TIP: Since we are using a mock power driver nothing will happen, but if we confi
 
 == Using The Python API (Optional)
 
-Another way to interact with Jumpstarter Exporters is to use the Python API. The Jumpstarter Python API is more powerful than the `j` command as it offers the full functionalities of the Drivers, however, it also requires experience with Python scripting to use.
+Another way to interact with Jumpstarter Exporters is through the Python API. The Jumpstarter Python API is more powerful than the `j` command as it offers the full functionalities of the Drivers, however, it also requires experience with Python scripting to use.
 
 To use the Python API, let's write a simple Python script:
 
