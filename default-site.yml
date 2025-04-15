@@ -1,6 +1,7 @@
 ---
 site:
-  title: Showroom Template Demo
+  title: |
+    LB2255 - Project Jumpstarter: An open source framework for cloud-native hardware-in-the-loop (HIL) testing in Automotive DevSecOps
   url: https://redhat-scholars.github.io/course-template
   start_page: modules::index.adoc
 
