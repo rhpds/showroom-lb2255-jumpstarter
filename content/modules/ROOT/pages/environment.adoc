@@ -31,6 +31,10 @@ Password:
 {password}
 ----
 
+image::02-gitlab-access-annotated.png[]
+
+Authorize keycloak to access GitLab
+
 === Create an Automotive Devevelopment Environment
 
 Once you’re logged in, you’ll be redirected to the Red Hat Developer Hub dashboard. Now we’ll create a pre-configured development environment using the Jumpstarter template provided for this lab.
@@ -46,16 +50,6 @@ Choose to use the *Jumpstarter Development Template*.
 image::05-backstage-create-project-info-annotated.png[]
 
 When asked to *Provide Project Information*, leave the fields as the default values and click *Next*.
-
-image::06-backstage-create-repo-annotated.png[]
-
-Same for *Source Code Repository and Container Registry Information*, click *Next*.
-
-image::07-backstage-create-cluster-info-annotated.png[]
-
-On the *Provide Cluster Information* page, please check the URL in the address bar of your browser, and fill in *Cluster GUID* and *Cluster Domain* accordingly, then click *Review*.
-
-CAUTION: Do NOT copy the *Cluster GUID* and *Cluster Domain* from the screenshot.
 
 image::08-backstage-create-review-annotated.png[]
 
