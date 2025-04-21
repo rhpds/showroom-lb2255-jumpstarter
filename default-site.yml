@@ -1,7 +1,7 @@
 ---
 site:
   title: |
-    LB2255 - Project Jumpstarter: An open source framework for cloud-native hardware-in-the-loop (HIL) testing in Automotive DevSecOps
+    LB2255 - Jumpstarter: An open source framework for hardware-in-the-loop testing in modern DevSecOps pipelines
   url: https://redhat-scholars.github.io/course-template
   start_page: modules::index.adoc
 
