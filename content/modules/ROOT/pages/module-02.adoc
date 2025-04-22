@@ -64,7 +64,7 @@ image::app/07-client-running.png[]
 
 In the radio client, press `+` or `-` to adjust the volume, `<SPACE>` to switch stations, and `<ESC>` to pause or resume the radio. Notice the changes in the printed status messages in response to your requests.
 
-When done with testing, press `q` to quit the client, and stop `radio-service` by running:
+When done with testing, press `q` to quit the client.
 
 === Modify the Radio Service (Optional)
 
@@ -116,15 +116,35 @@ After finishing editing, click the triangular button at the bottom left of the w
 
 Now that we've finished developing and testing our code, we can publish it to our code repository.
 
-Run the following commands to commit, tag, and push the changes:
+image::app/14-branch.png[]
 
-[,console]
-----
-$ git commit -a -m "first revision" --allow-empty
-$ git tag v0.0.1
-$ git push
-$ git push --tags
-----
+Bring up the branch selector by clicking the button saying `main` at the bottom left of the screen.
+
+'''
+
+image::app/15-branch-create.png[]
+
+In the input box, put `develop`, then click *Create new branch*.
+
+'''
+
+image::app/16-branch-created.png[]
+
+Make sure the button on the bottom left of the screen now says `develop`, the name of the newly created branch, click the annotated button on the left to open the source control tab.
+
+'''
+
+image::app/17-commit.png[]
+
+In the input box, put `add new radio station` as the commit message, click *Commit*.
+
+'''
+
+image::app/18-push.png[]
+
+Click the cloud like button to push the new changes to our code repository.
+
+'''
 
 Once the changes are pushed to the code repository, a *Red Hat OpenShift Pipelines* task is triggered to automatically build the application and bundle it into a container.
 
