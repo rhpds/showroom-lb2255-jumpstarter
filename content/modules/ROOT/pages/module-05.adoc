@@ -80,3 +80,110 @@ In the example above we've configured three Drivers, `power`, `console` and `fla
 Drivers classes are specified using the fully-qualified Python type in the `type` field. Driver-specific configurations can be passed through the `config` field. In this example, we configured the `PySerial` Driver to connect to the `loop://` serial port, which is a virtual serial port that echos everything sent to it.
 
 To see what config options are available on each Driver, check https://docs.jumpstarter.dev/main/api-reference/drivers/index.html[Jumpstarter Driver API Reference]
+
+== Running Jumpstarter Exporter For Local Access
+
+In the last section, we've already configured our *Exporter* with various *Drivers*, we can now run it and interact with the *Drivers* with Jumpstarter *Client*. To start the exporter for local access, run the follow command:
+
+[,console]
+----
+$ jmp shell --exporter-config ./demo-exporter.yaml
+----
+
+TIP: Notice that your shell prompt have been changed to `jumpstarter ⚡local ➤`, this is to remind you that you are inside a local Jumpstarter shell session.
+
+Inside a Jumpstarter shell session, the environment variable `$JUMPSTARTER_HOST` is set, pointing to a unix domain socket which the Exporter is listening on. Jumpstarter *Client* would read this environment variable, connect to the *Exporter*, and send requests to control the hardware interfaces, e.g. turning the power switch on.
+
+[,console]
+----
+echo $JUMPSTARTER_HOST
+----
+
+=== Using The j Command
+
+The most straightforward way to interact with Jumpstarter Exporters is to use the magic `j` command. The `j` command is only available in a Jumpstarter shell session, and it is dynamically constructed reflecting the tree of Drivers configured on the currently connected Exporter. Not all Drivers have corresponding command line interfaces, those without would not be visible under the `j` command.
+
+Run the `j` command without any arguments to see its usage:
+
+[,console]
+----
+$ j
+----
+
+With the exporter config defined in `exporter-demo.yaml`, we should see an output like this:
+
+[source,text]
+----
+Usage: j [OPTIONS] COMMAND [ARGS]...
+
+  Generic composite device
+
+Options:
+  --help  Show this message and exit.
+
+Commands:
+  console  Serial port client
+  flasher  Generic flasher interface
+  power    Generic power
+----
+
+TIP: The name of the subcommands matches the name we gave to the Drivers in the Exporter config
+
+Run `j power` command to see its usage:
+
+[,console]
+----
+$ j power
+----
+
+With the `MockPower` Driver, we should see an output like this:
+
+[source,text]
+----
+Usage: j power [OPTIONS] COMMAND [ARGS]...
+
+  Generic power
+
+Options:
+  --help  Show this message and exit.
+
+Commands:
+  cycle  Power cycle
+  off    Power off
+  on     Power on
+----
+
+This means the `MockPower` Driver provides three methods, power on, power off, or power cycle the device under test.
+
+Try turning the power of the device under test on and off
+
+[,console]
+----
+$ j power on
+$ j power off
+----
+
+TIP: Nothing actually happens because we are using a mock power driver, but have we configured it with a real power driver, e.g. a USB power relay, you would see the device under test being turned on and off.
+
+=== Using The Python API (Optional)
+
+Another way to interact with Jumpstarter Exporters is to use the Jumpstarter Python API. Jumpstarter Python API is more powerful than the `j` command as it offers the full functionalities of the Drivers but is also harder to use.
+
+To use the Python API, let's write a simple Python script:
+
+.power-control.py
+[source,python]
+----
+from jumpstarter.common.utils import env
+
+with env() as dut:
+    dut.power.on()
+    dut.power.off()
+----
+
+The `env` helper method reads the `$JUMPSTARTER_HOST` environment variable, connects to the Exporters, asks the Exporter for a list of all the configured Drivers, and then constructs a magic object mirroring the tree of Drivers. And then you can call the methods on the magic object to control the hardware interfaces, just as what we've done with the `j` command. To see what methods are available in the Python API of each Driver, check https://docs.jumpstarter.dev/main/api-reference/drivers/index.html[Jumpstarter Driver API Reference]
+
+[,console]
+----
+$ python power-control.py
+----
