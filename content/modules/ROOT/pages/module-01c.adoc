@@ -1,20 +1,20 @@
 = Development Workflow
+:sectnums:
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a eleifend orci, quis tempor risus. Donec sodales pretium facilisis. 
-Aenean mollis rhoncus mauris, quis pretium nisl aliquam sed. Nam eu consequat nisi, ut volutpat magna. Vestibulum auctor ultrices auctor. 
-Curabitur at blandit dolor, sed convallis est. Cras vel urna eget erat varius sodales. Quisque suscipit leo eu tellus pharetra, at malesuada dolor sagittis. 
-Praesent pharetra cursus quam eget commodo.
+Jumpstarter can be used in either a local-only or distributed environment depending on your hardware development needs.
 
-Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Ut tincidunt eros ornare diam sodales, eget consequat 
-dui sagittis. Nulla rhoncus lectus eget erat convallis suscipit. Nulla eu consequat risus. Nullam nec odio molestie, mollis enim id, auctor dui. 
-Quisque est erat, condimentum sed gravida in, dignissim a risus. Mauris luctus malesuada turpis eget bibendum. Pellentesque dapibus sed nisi in tincidunt. 
-Sed blandit egestas eros, id sagittis ante suscipit eu. Etiam quis condimentum sem.
+==== Local-Only
 
-Nullam risus est, pharetra vel pulvinar at, convallis sit amet lorem. Sed a pellentesque tellus, non hendrerit odio. 
-In blandit sagittis nisl, eu fringilla massa bibendum non. Phasellus id facilisis ante, non tempus libero. Pellentesque ut arcu in risus ullamcorper 
-congue quis id ligula. Nulla vestibulum tincidunt massa a scelerisque. Donec lobortis vestibulum porta. Cras consequat libero nisi, a tristique justo tempus eu. 
-Fusce congue porta erat vitae pulvinar. Pellentesque in mi est. Vivamus quis maximus nisl. Cras vestibulum mi nec nisi consectetur feugiat. Nullam sit amet 
-dui eu sem hendrerit scelerisque et ac quam. Nunc a fermentum ligula, eu dapibus ligula. Integer egestas venenatis sollicitudin. Donec ut efficitur turpis.
+When using Jumpstarter locally, you can easily develop drivers, write automated tests, and control your hardware directly from your development machine.
 
+The local-only mode is useful when working with hardware on your desk that you have unlimited access to.
 
-* Overview of the development & build workflow
+image::local-only.svg[local,width=450,height=auto]
+
+==== Distributed
+
+When your project grows, Jumpstarter also can help you collaborate across teams, implement CI/CD pipelines, and automate common tasks such as firmware updates.
+
+The distributed mode takes advantage of Kubernetes to support the management of multiple target devices directly from your existing cluster. This allows for seamless integration with many existing Cloud Native technologies such as Tekton, ArgoCD, and Prometheus.
+
+image::distributed.svg[distributed,width=600,height=auto]
