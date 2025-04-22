@@ -61,26 +61,31 @@ If you are confident with programing in C++, feel free to make some changes to t
 .Example
 [%collapsible]
 ====
-[source,diff]
-----
-// ...
- 
-+static struct song_info_t wgbh_songs[] = {
-+ { "Nestor Torres", "Thank You Willie", 2022 },
-+};
+image::app/08-src.png[]
 
- static struct song_info_t radio_los_santos_songs[] = {
-   { "YG", "I'm A Real 1", 2013 },
-   { "100s", "Life of a Mack", 2013 },
- };
- 
- static struct radio_station_info_t radio_stations[] = {
-+  { "WGBH", SONGS(wgbh) },
-   { "Radio Los Santos", SONGS(radio_los_santos) },
-   { "Space 103.2", SONGS(space_103_2) },
-   { "West Coast Classics", SONGS(west_cost_classics) },
- };
-----
+Click `src` in the file explorer to open the src folder.
+
+image::app/09-stations.png[]
+
+Click `radio-stations.cpp` to open the source file containing the radio stations and songs.
+
+image::app/10-songs-before.png[]
+
+At the top of the file, remove the two annotated lines.
+
+image::app/11-songs-after.png[]
+
+The remaining lines should look like this after editing.
+
+image::app/12-stations-before.png[]
+
+Scroll down to the bottom of the file, remote the two annotated lines.
+
+image::app/13-stations-after.png[]
+
+The remaining lines should look like this after editing.
+
+After finishing editing, click the triangular button at the bottom left of the window to rerun `radio-service`, and start `radio-client` again on the right half of the terminal. Try switching stations by pressing `<SPACE>`, and find the newly added *Red Hat Summit Radio* station.
 ====
 
 === Publish Applications
