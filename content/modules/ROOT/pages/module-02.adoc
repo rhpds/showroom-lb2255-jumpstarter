@@ -1,18 +1,110 @@
 = Build the Sample Application
+:sectnums:
 
-=== Overview
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a eleifend orci, quis tempor risus. Donec sodales pretium facilisis. 
-Aenean mollis rhoncus mauris, quis pretium nisl aliquam sed. Nam eu consequat nisi, ut volutpat magna. Vestibulum auctor ultrices auctor. 
-Curabitur at blandit dolor, sed convallis est. Cras vel urna eget erat varius sodales. Quisque suscipit leo eu tellus pharetra, at malesuada dolor sagittis. 
-Praesent pharetra cursus quam eget commodo.
+In this module we will learn how to develop, build, and test a simple automotive application using Red Hat OpenShift Dev Spaces.
 
-* describe the application
+The source repo contains a set of applications that demonstrate how typical automotive applications use SOME/IP communicate, these apps work both natively and in a container. For the purpose of this lab, we would be focusing on the `radio-service` application. This is a service that emulates a radio, regularly publishing information about the current track, station, and volume level. This service accepts requests to turn on/off, change channel, and adjust the volume over SOME/IP.
 
-* describe the steps how to build the application in devspaces
-* describe the steps how to run the application in devspaces
-* describe the steps how to modify the app and test the changes
+== Build, Test, and Publish a Simple Automotive Application
 
-* build the application using the pipeline
-** commit push to modified code
-** describe how the application is deployed to the cluster
-** verify that the application is running on the cluster
+We can easily build, test, and publish our application using the cmake build system in our Dev Space.
+
+=== Build the Applications
+
+image::app/00-build.png[]
+
+Click *build* button at the bottom left of the window.
+
+image::app/01-kit.png[]
+
+Choose to build with the GCC toolkit.
+
+=== Test the Applications
+
+image::app/02-build-finish.png[]
+
+After finishing building (the line *Build finished with exit code 0* shows up in the *OUTPUT*), click the triangular button at the bottom left of the window to run our application.
+
+image::app/03-run.png[]
+
+Choose to run *radio-service*.
+
+image::app/04-running.png[]
+
+When the radio service is running, you will see log lines like
+
+[,console]
+----
+RADIO: Playing song "Upper Echelon" by Travi$ Scott feat. 2 Chainz & T.I. (on Radio Los Santos) 50% volume
+----
+
+showing up in the terminal. Next, we can start the `radio-client` to interact the running `radio-service`. First, split the terminal by clicking book like button on the right middle of the screen.
+
+image::app/05-split.png[]
+
+You will see the terminal being splitted into two halves, with the radio service running on the left, and bash shell on the right.
+
+image::app/06-run-client.png[]
+
+Start *radio-client* by clicking the right half of the terminal, type `./radio-client` then press `Enter`.
+
+image::app/07-client-running.png[]
+
+In the radio client, press `+` or `-` to adjust the volume, `<SPACE>` to switch stations, and `<ESC>` to pause or resume the radio. Notice the changes in the printed status messages in response to your requests.
+
+When done with testing, press `q` to quit the client, and stop `radio-service` by running:
+
+=== Modify the Radio Service (Optional)
+
+If you are confident with programing in C++, feel free to make some changes to the `radio-stations.cpp` source file. You can add songs or stations, and repeat the build test cycle.
+
+.Example
+[%collapsible]
+====
+[source,diff]
+----
+// ...
+ 
++static struct song_info_t wgbh_songs[] = {
++ { "Nestor Torres", "Thank You Willie", 2022 },
++};
+
+ static struct song_info_t radio_los_santos_songs[] = {
+   { "YG", "I'm A Real 1", 2013 },
+   { "100s", "Life of a Mack", 2013 },
+ };
+ 
+ static struct radio_station_info_t radio_stations[] = {
++  { "WGBH", SONGS(wgbh) },
+   { "Radio Los Santos", SONGS(radio_los_santos) },
+   { "Space 103.2", SONGS(space_103_2) },
+   { "West Coast Classics", SONGS(west_cost_classics) },
+ };
+----
+====
+
+=== Publish Applications
+
+Now that we've finished developing and testing our code, we can publish it to our code repository.
+
+Run the following commands to commit, tag, and push the changes:
+
+[,console]
+----
+$ git commit -a -m "first revision" --allow-empty
+$ git tag v0.0.1
+$ git push
+$ git push --tags
+----
+
+Once the changes are pushed to the code repository, a *Red Hat OpenShift Pipelines* task is triggered to automatically build the application and bundle it into a container.
+
+TIP: We're using a container as it's the best way to package an application and all of its dependencies into a single unit. This makes it simple to distribute to physical or virtual  hardware for testing.
+
+To check the progress of the build, see {app_build_pipeline}
+
+== Next Steps
+
+While *Red Hat OpenShift Dev Spaces* provides us with a consistent environment for developing, building, and testing our automotive applications, it's still necessary to test our code on virtual or physical hardware to ensure stability and compatibility.
+
+In the next module we will build a *RHIVOS* image with our application embedded to prepare for end-to-end testing in both virtualized and physical hardware environments with *Jumpstarter*.
