@@ -1,4 +1,6 @@
-* xref:module-01.adoc[]
+* xref:module-01a.adoc[]
+* xref:module-01b.adoc[]
+* xref:module-01c.adoc[]
 
 * xref:environment-setup.adoc[]
 
@@ -10,4 +12,4 @@
 
 * xref:module-05.adoc[]
 
-* xref:lab-access.adoc[]
+* xref:cheatsheet.adoc[]

@@ -20,10 +20,9 @@ of automotive ECUs and edge devices, and how it integrates with https://develope
 and https://www.redhat.com/en/technologies/cloud-computing/openshift/pipelines[Red Hat OpenShift Pipelines] to enable DevSecOps practices, 
 including automation, continuous integration, and infrastructure as code.
 
-* describe what the lab is about
+== Lab Objectives
 
-* describe the underlying concepts
-** What is a "Software Factory"?
-** What is Hardware-in-the-Loop (HIL) testing?
-** Overview of the Automotive Development Platform architecture
-** Overview of the Jumpstarter architecture
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a eleifend orci, quis tempor risus. Donec sodales pretium facilisis. 
+Aenean mollis rhoncus mauris, quis pretium nisl aliquam sed. Nam eu consequat nisi, ut volutpat magna. Vestibulum auctor ultrices auctor. 
+Curabitur at blandit dolor, sed convallis est. Cras vel urna eget erat varius sodales. Quisque suscipit leo eu tellus pharetra, at malesuada dolor sagittis. 
+Praesent pharetra cursus quam eget commodo.
