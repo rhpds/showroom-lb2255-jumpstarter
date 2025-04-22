@@ -1,0 +1,18 @@
+= Deploy and Test the Sample Application
+
+=== Overview
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a eleifend orci, quis tempor risus. Donec sodales pretium facilisis. 
+Aenean mollis rhoncus mauris, quis pretium nisl aliquam sed. Nam eu consequat nisi, ut volutpat magna. Vestibulum auctor ultrices auctor. 
+Curabitur at blandit dolor, sed convallis est. Cras vel urna eget erat varius sodales. Quisque suscipit leo eu tellus pharetra, at malesuada dolor sagittis. 
+Praesent pharetra cursus quam eget commodo.
+
+* describe how the OS image is tested
+** create a PR
+** describe the pipeline run
+
+* describe how the application is "released"
+** merge the PR
+** describe the pipeline run
+
+* Demo how to deploy the application to "real" devices
+** either show with HW in the room or with a video

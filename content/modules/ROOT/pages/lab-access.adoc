@@ -1,0 +1,20 @@
+= Cheatsheet
+
+For your convenience, this page contains access information to all systems in your lab environment.
+
+== Lab Login (OpenShift Console)
+Click link:{console_url}[here,window=_blank] to access your Lab Environment
+
+[.no-copy-label]
+.Username
+[source,sh,role=execute,subs=attributes+]
+----
+{user}
+----
+
+[.no-copy-label]
+.Password
+[source,sh,role=execute,subs=attributes+]
+----
+{password}
+----

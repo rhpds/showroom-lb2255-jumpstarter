@@ -1,13 +1,13 @@
-.1. Getting Started
-** xref:environment.adoc[1. Environment Setup]
+* xref:module-01.adoc[]
 
-.2. Build an Application with RHIVOS
-** xref:application.adoc[1. Develop Automotive Software In Dev Space]
-** xref:rhivos.adoc[2. Build RHIVOS image with Automotive Image Builder]
+* xref:environment-setup.adoc[]
 
-.3. Testing with Jumpstarter
-** xref:exporter-config.adoc[1. Configuring Jumpstarter Exporter]
-** xref:exporter-run.adoc[2. Running Jumpstarter Exporter For Local Access]
-** xref:remote-cli.adoc[3. Connecting to a Remote Jumpstarter Exporter]
-** xref:remote-pytest.adoc[4. Testing On Remote Jumpstarter Exporter With Pytest]
-** xref:pipeline.adoc[5. Continuous Integration with Jumpstarter and Red Hat OpenShift Pipelines]
+* xref:module-02.adoc[]
+
+* xref:module-03.adoc[]
+
+* xref:module-04.adoc[]
+
+* xref:module-05.adoc[]
+
+* xref:lab-access.adoc[]

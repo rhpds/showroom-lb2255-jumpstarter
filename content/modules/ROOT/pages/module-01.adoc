@@ -1,0 +1,20 @@
+= Development Workflow
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a eleifend orci, quis tempor risus. Donec sodales pretium facilisis. 
+Aenean mollis rhoncus mauris, quis pretium nisl aliquam sed. Nam eu consequat nisi, ut volutpat magna. Vestibulum auctor ultrices auctor. 
+Curabitur at blandit dolor, sed convallis est. Cras vel urna eget erat varius sodales. Quisque suscipit leo eu tellus pharetra, at malesuada dolor sagittis. 
+Praesent pharetra cursus quam eget commodo.
+
+Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Ut tincidunt eros ornare diam sodales, eget consequat 
+dui sagittis. Nulla rhoncus lectus eget erat convallis suscipit. Nulla eu consequat risus. Nullam nec odio molestie, mollis enim id, auctor dui. 
+Quisque est erat, condimentum sed gravida in, dignissim a risus. Mauris luctus malesuada turpis eget bibendum. Pellentesque dapibus sed nisi in tincidunt. 
+Sed blandit egestas eros, id sagittis ante suscipit eu. Etiam quis condimentum sem.
+
+Nullam risus est, pharetra vel pulvinar at, convallis sit amet lorem. Sed a pellentesque tellus, non hendrerit odio. 
+In blandit sagittis nisl, eu fringilla massa bibendum non. Phasellus id facilisis ante, non tempus libero. Pellentesque ut arcu in risus ullamcorper 
+congue quis id ligula. Nulla vestibulum tincidunt massa a scelerisque. Donec lobortis vestibulum porta. Cras consequat libero nisi, a tristique justo tempus eu. 
+Fusce congue porta erat vitae pulvinar. Pellentesque in mi est. Vivamus quis maximus nisl. Cras vestibulum mi nec nisi consectetur feugiat. Nullam sit amet 
+dui eu sem hendrerit scelerisque et ac quam. Nunc a fermentum ligula, eu dapibus ligula. Integer egestas venenatis sollicitudin. Donec ut efficitur turpis.
+
+
+* Overview of the development & build workflow

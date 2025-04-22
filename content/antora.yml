@@ -1,12 +1,12 @@
 name: modules
-title: Default Title
+title: "LB2255: Jumpstarter + Red Hat In-Vehicle OS Lab"
 version: master
 nav:
   - modules/ROOT/nav.adoc
 
 asciidoc:
   attributes:
-    lab_name: "Jumpstarter + RHIVOS Lab"
+    lab_name: "Jumpstarter + Red Hat In-Vehicle OS Lab"
     rhdh_url: "https://backstage-backstage.apps.cluster-6xw6w.6xw6w.sandbox4358.opentlc.com"
     username: user3
     password: pkbxsJmV

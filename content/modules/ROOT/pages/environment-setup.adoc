@@ -1,0 +1,5 @@
+= Lab Access
+
+In this section, we’ll set up our source code repository and development environment with the https://developers.redhat.com/rhdh/overview[Red Hat Developer Hub] 
+and https://developers.redhat.com/products/openshift-dev-spaces/overview[Red Hat OpenShift Dev Spaces].
+

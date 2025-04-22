@@ -1,0 +1,18 @@
+= Build the Sample Application
+
+=== Overview
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a eleifend orci, quis tempor risus. Donec sodales pretium facilisis. 
+Aenean mollis rhoncus mauris, quis pretium nisl aliquam sed. Nam eu consequat nisi, ut volutpat magna. Vestibulum auctor ultrices auctor. 
+Curabitur at blandit dolor, sed convallis est. Cras vel urna eget erat varius sodales. Quisque suscipit leo eu tellus pharetra, at malesuada dolor sagittis. 
+Praesent pharetra cursus quam eget commodo.
+
+* describe the application
+
+* describe the steps how to build the application in devspaces
+* describe the steps how to run the application in devspaces
+* describe the steps how to modify the app and test the changes
+
+* build the application using the pipeline
+** commit push to modified code
+** describe how the application is deployed to the cluster
+** verify that the application is running on the cluster

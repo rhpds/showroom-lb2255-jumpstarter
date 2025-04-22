@@ -1,0 +1,13 @@
+= Working with Jumpstarter interactively
+
+=== Overview
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a eleifend orci, quis tempor risus. Donec sodales pretium facilisis. 
+Aenean mollis rhoncus mauris, quis pretium nisl aliquam sed. Nam eu consequat nisi, ut volutpat magna. Vestibulum auctor ultrices auctor. 
+Curabitur at blandit dolor, sed convallis est. Cras vel urna eget erat varius sodales. Quisque suscipit leo eu tellus pharetra, at malesuada dolor sagittis. 
+Praesent pharetra cursus quam eget commodo.
+
+* describe what you can dow with Jumpstarter
+** Jumpstarter client and exporters in Devspaces
+** flash the device manually
+
+* create and run test from Devspaces

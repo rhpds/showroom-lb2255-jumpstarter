@@ -1,1 +1,0 @@
-= Continuous Integration with Jumpstarter and Red Hat OpenShift Pipelines
