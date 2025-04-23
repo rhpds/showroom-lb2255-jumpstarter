@@ -13,7 +13,8 @@ $ jmp get exporters
 
 Each Exporter has a set of labels, these labels can be used to select the a specific group of exporters when requesting a lease. For example, you could specify a label for the architecture and then select the correct device with an `arch=aarch64`.
 
-== Lease and Interact with a Remote Exporter Using Jumpstarter CLI
+[#jmpexporterlease]
+== Lease and interact with a remote exporter
 
 To lease an Exporter with the Jumpstarter CLI, run:
 
@@ -77,7 +78,7 @@ export:
 ----
 ====
 
-=== First Boot
+=== First boot
 
 In previous modules, we built a RHIVOS image with our application. Now, we can use Jumpstarter to flash that image to our virtual device, boot it up, and take our first steps in testing our application remotely.
 
@@ -130,7 +131,7 @@ Press `+` or `-` to adjust the volume, `<SPACE>` to switch stations, and `<ESC>`
 
 When you are done with testing, press `q` to quit `radio-client`. Then exit the serial console by pressing `Ctrl+B` 3 times, this will drop you back into the Jumpstarter shell session.
 
-=== Bridging The Gap
+=== Bridging the gap
 
 Sometimes your tests cannot be executed directly on the target device or the Exporter host. For example, you may need to use a proprietary GUI client or service to control your application. To support these use cases, Jumpstarter implements port forwarding, which allows you to interact with services running inside the target device from your local machine as if they are running locally.
 
@@ -147,7 +148,8 @@ To stop the port forwarding, simply exit the shell with `Ctrl+D`.
 
 Now we are finished with manual testing, exit the Jumpstarter shell session by pressing `Ctrl+D` again.
 
-== Testing On Remote Jumpstarter Exporter With Pytest
+[#jmptestingpytest]
+== Testing on remote exporter with Pytest
 
 While connecting to a Jumpstarter Exporter remotely to execute our tests is already a huge step forward from the traditional ways of hardware testing, by combining the Jumpstater Python API with the pytest unit test framework, we can further improve our test process to be more automated and reliable.
 
