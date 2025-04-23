@@ -131,7 +131,8 @@ When asked *Do you trust the author of this repository*, click *Continue*.
 
 image::setup/14-devspace-gitlab-access.png[]
 
-When asked to authorize *devspaces* to access your account on GitLab, click *Authorize devspaces*
+When asked to authorize *devspaces* to access your account on GitLab, click *Authorize devspaces*, this will create
+a GitLab access token for you, and install it in your DevSpace.
 
 '''
 

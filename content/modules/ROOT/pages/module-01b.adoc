@@ -23,13 +23,13 @@ These tools enable you to decouple your target hardware from the test runners, d
 
 The core components of Jumpstarter are:
 
-   * https://docs.jumpstarter.dev/main/introduction/clients.html[Clients] that allow you to interact with your hardware through a CLI tool or Python library.
+   * https://docs.jumpstarter.dev/introduction/clients.html[Clients] that allow you to interact with your hardware through a CLI tool or Python library.
 
-   * https://docs.jumpstarter.dev/main/introduction/drivers.html[Drivers] that describe how to interact with your hardware interfaces.
+   * https://docs.jumpstarter.dev/introduction/drivers.html[Drivers] that describe how to interact with your hardware interfaces.
 
-   * https://docs.jumpstarter.dev/main/introduction/exporters.html[Exporters] that expose your device’s hardware using the drivers.
+   * https://docs.jumpstarter.dev/introduction/exporters.html[Exporters] that expose your device’s hardware using the drivers.
 
-   * A https://docs.jumpstarter.dev/main/introduction/service.html[Service] that helps you manage hardware access from anywhere.
+   * A https://docs.jumpstarter.dev/introduction/service.html[Service] that helps you develop and test on your hardware from anywhere.
 
 Since Jumpstarter's core components are written in Python, it is possible to run them almost everywhere. This means that you can setup a test lab with low-cost exporters such as Raspberry Pis or mini PCs, while still using the same Linux-based CI systems you currently host in the cloud.
 
