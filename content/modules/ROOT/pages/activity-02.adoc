@@ -1,15 +1,17 @@
-= Build the Sample Application
-:sectnums:
+= Application Development
 
 In this module we will learn how to develop, build, and test a simple automotive application using Red Hat OpenShift Dev Spaces.
 
-The source repo contains a set of applications that demonstrate how typical automotive applications use SOME/IP communicate, these apps work both natively and in a container. For the purpose of this lab, we would be focusing on the `radio-service` application. This is a service that emulates a radio, regularly publishing information about the current track, station, and volume level. This service accepts requests to turn on/off, change channel, and adjust the volume over SOME/IP.
+The source repo contains a set of applications that demonstrate how typical automotive applications use SOME/IP communicate, 
+these apps work both natively and in a container. For the purpose of this lab, we would be focusing on the `radio-service` application. 
+This is a service that emulates a radio, regularly publishing information about the current track, station, and volume level. 
+This service accepts requests to turn on/off, change channel, and adjust the volume over SOME/IP.
 
-== Build, Test, and Publish a Simple Automotive Application
+== Build and test the sample application
 
 We can easily build, test, and publish our application using the cmake build system in our Dev Space.
 
-=== Build the Applications
+=== Build the applications
 
 image::app/00-build.png[]
 
@@ -29,11 +31,12 @@ performs those steps on your behalf, but you can also do it manually if you want
 ****
 
 
-=== Test the Applications
+=== Test the applications
 
 image::app/02-build-finish.png[]
 
-After finishing building (the line *Build finished with exit code 0* shows up in the *OUTPUT*), click the triangular button at the bottom left of the window to run our application.
+After finishing building (the line *Build finished with exit code 0* shows up in the *OUTPUT*), click the triangular button at the bottom 
+left of the window to run our application.
 
 '''
 
@@ -50,9 +53,8 @@ When the radio service is running, you will see log lines like
 RADIO: Playing song "Upper Echelon" by Travi$ Scott feat. 2 Chainz & T.I. (on Radio Los Santos) 50% volume
 ----
 
-image::app/04-running.png[]
-
-showing up in the terminal. Next, we can start the `radio-client` to interact the running `radio-service`. First, split the terminal by clicking book like button on the right middle of the screen.
+showing up in the terminal. Next, we can start the `radio-client` to interact the running `radio-service`. First, split the terminal by 
+clicking book like button on the right middle of the screen.
 
 '''
 
@@ -70,13 +72,15 @@ Start *radio-client* by clicking the right half of the terminal, type `./radio-c
 
 image::app/07-client-running.png[]
 
-In the radio client, press `+` or `-` to adjust the volume, `<SPACE>` to switch stations, and `<ESC>` to pause or resume the radio. Notice the changes in the printed status messages in response to your requests.
+In the radio client, press `+` or `-` to adjust the volume, `<SPACE>` to switch stations, and `<ESC>` to pause or resume the radio. 
+Notice the changes in the printed status messages in response to your requests.
 
 When done with testing, press `q` to quit the client.
 
-=== Modify the Radio Service (Optional)
+=== Modify the application (Optional)
 
-If you are confident with programing in C++, feel free to make some changes to the `radio-stations.cpp` source file. You can add songs or stations, and repeat the build test cycle.
+If you are confident with programing in C++, feel free to make some changes to the `radio-stations.cpp` source file. 
+You can add songs or stations, and repeat the build test cycle.
 
 .Example
 [%collapsible]
@@ -117,7 +121,8 @@ The remaining lines should look like this after editing.
 
 '''
 
-After finishing editing, click the triangular button at the bottom left of the window to rerun `radio-service`, and start `radio-client` again on the right half of the terminal. Try switching stations by pressing `<SPACE>`, and find the newly added *Red Hat Summit Radio* station.
+After finishing editing, click the triangular button at the bottom left of the window to rerun `radio-service`, and start `radio-client` again on the 
+right half of the terminal. Try switching stations by pressing `<SPACE>`, and find the newly added *Red Hat Summit Radio* station.
 ====
 
 === Publish Applications
@@ -138,7 +143,8 @@ In the input box, put `develop`, then click *Create new branch*.
 
 image::app/16-branch-created.png[]
 
-Make sure the button on the bottom left of the screen now says `develop`, the name of the newly created branch, click the annotated button on the left to open the source control tab.
+Make sure the button on the bottom left of the screen now says `develop`, the name of the newly created branch, 
+click the annotated button on the left to open the source control tab.
 
 '''
 
@@ -156,12 +162,15 @@ Click the cloud like button to push the new changes to our code repository.
 
 Once the changes are pushed to the code repository, a *Red Hat OpenShift Pipelines* task is triggered to automatically build the application and bundle it into a container.
 
-TIP: We're using a container as it's the best way to package an application and all of its dependencies into a single unit. This makes it simple to distribute to physical or virtual  hardware for testing.
+TIP: We're using a container as it's the best way to package an application and all of its dependencies into a single unit. 
+This makes it simple to distribute to physical or virtual  hardware for testing.
 
 To check the progress of the build, see {app_build_pipeline}
 
-== Next Steps
+== Next
 
-While *Red Hat OpenShift Dev Spaces* provides us with a consistent environment for developing, building, and testing our automotive applications, it's still necessary to test our code on virtual or physical hardware to ensure stability and compatibility.
+While *Red Hat OpenShift Dev Spaces* provides us with a consistent environment for developing, building, and testing our automotive applications, it's still 
+necessary to test our code on virtual or physical hardware to ensure stability and compatibility.
 
-In the next module we will build a *RHIVOS* image with our application embedded to prepare for end-to-end testing in both virtualized and physical hardware environments with *Jumpstarter*.
+In the next activity, we will build a *Red Hat In-Vehicle OS* image with our application embedded to prepare for end-to-end testing in both 
+virtualized and physical hardware environments with *Jumpstarter*.
