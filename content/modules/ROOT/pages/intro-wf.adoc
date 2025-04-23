@@ -19,10 +19,10 @@ NOTE: This is covered in xref:activity-01.adoc[Activity 1].
 [#application_development]
 == Application development
 
-Utilize Red Hat DevSpaces as your integrated development environment:
+Use Red Hat DevSpaces as your integrated development environment:
 
 - Write, edit, and refine your automotive software code in the browser-based IDE
-- Run preliminary tests directly within the DevSpaces environment
+- Run preliminary tests directly within the Red Hat OpenShift Dev Spaces environment
 
 Validate basic functionality before proceeding to formal testing phases.
 
@@ -31,11 +31,11 @@ NOTE: This is covered in xref:activity-02.adoc[Activity 2].
 [#application_testing]
 == Application testing
 
-Push your code to the designated source code repository (the hosted GitLab):
+Push your code to the local source code repository (GitLab):
 
 - Code commits automatically trigger the configured CI/CD build pipelines
-- Successfully built artifacts (RPM packages, containers, OS images) are generated
-- Leverage cloud infrastructure for comprehensive integration testing
+- Built artifacts (RPM packages, containers, OS images) are being generated
+- Leverage cloud infrastructure for integration testing
 
 This phase helps verify component interactions before advancing to virtual or HIL testing.
 
@@ -57,4 +57,5 @@ Create a new release and merge the PR into the main branch to finalize the valid
 
 == Next
 
-Now that we've covered the fundamentals of the Red Hat Automotive Development Platform (RHADP), Jumpstarter, and the development workflow, we're ready to proceed with hands-on lab activities!
+Now that we've covered the fundamentals of the Red Hat Automotive Development Platform (RHADP), Jumpstarter, and 
+the development workflow, we're ready to proceed with hands-on lab activities!

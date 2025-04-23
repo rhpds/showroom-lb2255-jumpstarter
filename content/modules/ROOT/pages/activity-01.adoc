@@ -1,24 +1,33 @@
 = Project creation
 
-In this module, we’ll set up our source code repository and development environment with the https://developers.redhat.com/rhdh/overview[Red Hat Developer Hub] and https://developers.redhat.com/products/openshift-dev-spaces/overview[Red Hat OpenShift Dev Spaces].
+In this first activity, we will set up our development environment with the https://developers.redhat.com/rhdh/overview[Red Hat Developer Hub] 
+and https://developers.redhat.com/products/openshift-dev-spaces/overview[Red Hat OpenShift Dev Spaces].
 
-== Create development environment
+We'll leverage Red Hat Developer Hub as our central developer portal, providing:
 
-=== Login to Red Hat Developer Hub
+- *Template-driven* project creation for instant productivity
+- Curated software catalogs and component libraries
+- Centralized documentation and development resources
+- Automated CI/CD pipeline configuration
 
-First, let's ensure we are logged into the *Red Hat Developer Hub*, You can access the login page using this link: {rhdh_url}
+Our development will take place within Red Hat OpenShift Dev Spaces, offering:
 
-'''
+- Consistent, cloud-based development environments
+- Pre-configured workspace templates tailored to automotive development
+- Browser-based IDE with full development capabilities
+- Seamless integration with Red Hat OpenShift container platform
+
+== Access Red Hat Developer Hub
+
+First, let's ensure we are logged into the *Red Hat Developer Hub*. You can access the login page using this link: 
+
+{rhdh_url}
 
 image::setup/00-sign-in-backstage.png[]
 
-Choose the option to *Sign in with GitLab*.
+WARNING: Choose the option to *Sign in with GitLab*.
 
-'''
-
-image::setup/01-sign-in-gitlab.png[]
-
-You’ll be prompted to log in with your credentials, here they are as a reference:
+You’ll be prompted to log in with your credentials:
 
 Username:
 
@@ -38,67 +47,56 @@ Password:
 
 image::setup/02-access-gitlab.png[]
 
-Authorize keycloak to access GitLab
+WARNING: Authorize Keycloak to access GitLab
 
-=== Create an Automotive Devevelopment Environment
 
-Once you’re logged in, you’ll be redirected to the Red Hat Developer Hub dashboard. Now we’ll create a pre-configured development environment using the Jumpstarter template provided for this lab.
+== Create the development environment
 
-'''
+Once you are logged in, you will be redirected to the Red Hat Developer Hub dashboard. 
+
+Next, we will create a pre-configured development environment using the Jumpstarter template provided for this lab.
 
 image::setup/03-backstage-dashboard.png[]
 
-Click the *Create* button on the side bar.
-
-'''
+WARNING: Click the *Create* button on the side bar
 
 image::setup/04-backstage-create.png[]
 
-Choose to use the *LB2255 - Jumpstarter* template.
-
-'''
+WARNING: Choose to use the *LB2255 - Jumpstarter* template
 
 image::setup/05-backstage-create-info.png[]
 
-When asked to *Provide Project Information*, leave the fields as the default values and click *Next*.
-
-'''
+TIP: When asked to *Provide Project Information*, leave the default values and click *Review*
 
 image::setup/06-backstage-create-review.png[]
 
-On the *Review* page, click *Create*.
-
-'''
+TIP: On the *Review* page, click *Create*
 
 image::setup/07-backstage-create-finish.png[]
 
 The source code repo and development environment will be created in a few seconds, and you will be greeted with the completion page.
 
-Click *Open Component in catalog* to see what's inside the environment.
-
-=== Open the Created Dev Space
+TIP: Click *Open Component in catalog* to see what's inside the environment
 
 image::setup/08-backstage-component.png[]
 
-On the *jumpstarter-lab* service dashboard, click *DevSpace jumpstarter-lab* to launch the Dev Space created in the previous step.
+TIP: On the *jumpstarter-lab* service dashboard, click *DevSpace jumpstarter-lab* to launch the Red Hat OpenShift Dev Space created in the previous step.
 
-'''
+
+== Access Red Hat OpenShift Dev Spaces
+
+As we did when accessing the Red Hat Developer Hub, we will need to log in to the Red Hat OpenShift Dev Spaces 
+and authorize the application to access Red Hat OpenShift.
 
 image::setup/09-log-in-devspace.png[]
 
-Choose to *Log in with OpenShift*.
-
-'''
+WARNING: Choose to *Log in with OpenShift*
 
 image::setup/10-login-devspace-rhsso.png[]
 
-On the *OpenShift* login page, choose to login with *rhsso*.
+WARNING: On the *OpenShift* login page, choose to login with *rhsso*.
 
-'''
-
-image::setup/11-login-devspace-keycloak.png[]
-
-You’ll be prompted to log in with your credentials, here they are as a reference:
+You’ll be prompted to log in with your credentials:
 
 Username:
 
@@ -118,48 +116,38 @@ Password:
 
 image::setup/12-login-devspace-openshift.png[]
 
-When asked to authorize *openshift-devspaces-client* to access your account, click *Allow selected permissions*.
-
-'''
+WARNING: When asked to authorize access to your account, click *Allow selected permissions*
 
 image::setup/13-devspace-create.png[]
 
-When asked *Do you trust the author of this repository*, click *Continue*.
-
-'''
+WARNING: When asked "Do you trust the author of this repository?", click *Continue*.
 
 image::setup/14-devspace-gitlab-access.png[]
 
-When asked to authorize *devspaces* to access your account on GitLab, click *Authorize devspaces*, this will create
-a GitLab access token for you, and install it in your DevSpace.
-
-'''
+WARNING: When asked to authorize *devspaces* to access your account on GitLab, click *Authorize devspaces*
 
 image::setup/15-devspace-starting.png[]
 
-Dev Space creation can take a few minutes, please be patient and your Dev Space will be ready soon.
+NOTE: The creation of the *DevWorkspace* instance can take a few minutes, please be patient !
 
-'''
+== Prepare the workspace
+
+Once the Dev Workspace is created, you will be redirected to a *VS Code like* development environment.
 
 image::setup/16-devspace-extensions.png[]
 
-Upon entering Dev Space, you will be prompted with *Do you trust the authors of the files in this workspace*, click *Trust Workspace & Install*.
-
-'''
+WARNING: When prompted *"Do you trust the authors of the files in this workspace?"*, click *Trust Workspace & Install*
 
 image::setup/17-devspace-trust.png[]
 
-If you see a prompt like this, click *Yes, I trust the authors*
-
-'''
+WARNING: When prompted *"Do you trust the authors of the files in this workspace?"*, click *Yes, I trust the authors*
 
 image::setup/18-devspace-reload.png[]
 
-On the bottom right of the screen is a popup asking to reload Visual Studio Code, click *Reload Now*, if you missed the popup, refresh the page by pressing `F5`.
+TIP: On the bottom right of the screen is a popup asking to reload Visual Studio Code, click *Reload Now*, if you missed the popup, refresh the page by pressing `F5`.
 
-'''
-
-Now you should see a familiar *VS Code* development environment in your browser. Take a moment to explore the created development environment, it should contain everything you need to complete this lab.
+Now you should see a familiar *VS Code* development environment in your browser. 
+Take a moment to explore the created development environment, it should contain everything you need to complete this lab.
 
 == Next
 
