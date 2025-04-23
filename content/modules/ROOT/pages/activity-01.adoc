@@ -1,9 +1,8 @@
 = Project creation
-:sectnums:
 
 In this module, we’ll set up our source code repository and development environment with the https://developers.redhat.com/rhdh/overview[Red Hat Developer Hub] and https://developers.redhat.com/products/openshift-dev-spaces/overview[Red Hat OpenShift Dev Spaces].
 
-== Create Development Environment with Red Hat Developer Hub
+== Create development environment
 
 === Login to Red Hat Developer Hub
 
@@ -161,3 +160,7 @@ On the bottom right of the screen is a popup asking to reload Visual Studio Code
 '''
 
 Now you should see a familiar *VS Code* development environment in your browser. Take a moment to explore the created development environment, it should contain everything you need to complete this lab.
+
+== Next
+
+Now that we have our development environment set up, we can start developing our application.

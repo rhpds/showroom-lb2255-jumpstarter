@@ -1,19 +1,35 @@
-= Deploy and Test the Sample Application
-:sectnums:
+= Testing and Validation
 
-=== Overview
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a eleifend orci, quis tempor risus. Donec sodales pretium facilisis. 
-Aenean mollis rhoncus mauris, quis pretium nisl aliquam sed. Nam eu consequat nisi, ut volutpat magna. Vestibulum auctor ultrices auctor. 
-Curabitur at blandit dolor, sed convallis est. Cras vel urna eget erat varius sodales. Quisque suscipit leo eu tellus pharetra, at malesuada dolor sagittis. 
-Praesent pharetra cursus quam eget commodo.
+While Red Hat OpenShift Dev Spaces provides a consistent environment for developing, building, and testing automotive applications, 
+comprehensive validation requires testing on virtual or physical hardware to ensure stability, performance, and compatibility across target platforms.
 
-* describe how the OS image is tested
-** create a PR
-** describe the pipeline run
+In this activity, we will build a RHIVOS image with our application embedded, preparing it for end-to-end testing in both 
+virtualized and physical hardware environments using Jumpstarter.
 
-* describe how the application is "released"
-** merge the PR
-** describe the pipeline run
+== Development testing pipeline
 
-* Demo how to deploy the application to "real" devices
-** either show with HW in the room or with a video
+Create a pull request to merge your changes from the ⁠develop branch into the ⁠main branch. This action triggers an automated CI pipeline that:
+
+- Builds a new container image containing your modified application
+- Generates a new RHIVOS image with your application integrated
+- Leverages Jumpstarter and the Qemu exporter to create a virtual machine image
+- Executes a comprehensive test suite against the virtual machine image
+
+This pipeline validates your application in a controlled virtualized environment before proceeding to physical hardware deployment.
+
+== Release deployment pipeline
+
+After successful testing, create a "release" by merging the ⁠develop branch into the ⁠main branch. This triggers the deployment pipeline that:
+
+- Builds the production-ready RHIVOS image optimized for your specific hardware platform
+- Uses Jumpstarter to flash the image directly to the physical hardware
+
+NOTE: The release pipeline focuses on deployment rather than testing, assuming all validation has been completed in the development pipeline.
+
+== Next
+
+Now that we've completed the development workflow, we'll explore advanced Jumpstarter capabilities including:
+
+- Writing custom test cases for your specific application requirements
+- Manual hardware flashing procedures for development and troubleshooting
+
