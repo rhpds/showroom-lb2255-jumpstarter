@@ -81,8 +81,8 @@ The *local-only mode* is useful when:
 - Creating initial test automation scripts
 - Using QEMU or other virtualization tools to emulate target devices
 
-For details on how this mode works, see the [Running Tests
-Locally](../architecture.md#local-mode) section in the architecture
+For details on how this mode works, see the https://docs.jumpstarter.dev/architecture.html#local-mode[Running Tests
+Locally] section in the architecture
 documentation.
 
 === Distributed mode
