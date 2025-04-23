@@ -1,5 +1,6 @@
 = Application Development
 
+== Introduction
 In this module we will learn how to develop, build, and test a simple automotive application using Red Hat OpenShift Dev Spaces.
 
 The source repo contains a set of applications that demonstrate how typical automotive applications use SOME/IP communicate, 
@@ -7,17 +8,15 @@ these apps work both natively and in a container. For the purpose of this lab, w
 This is a service that emulates a radio, regularly publishing information about the current track, station, and volume level. 
 This service accepts requests to turn on/off, change channel, and adjust the volume over SOME/IP.
 
-== Build and test the sample application
+
+== Build the applications
 
 We can easily build, test, and publish our application using the cmake build system in our Dev Space.
-
-=== Build the applications
 
 image::app/00-build.png[]
 
 Click *build* button at the bottom left of the window.
 
-'''
 
 image::app/01-kit.png[]
 
@@ -31,7 +30,7 @@ performs those steps on your behalf, but you can also do it manually if you want
 ****
 
 
-=== Test the applications
+== Test the applications
 
 image::app/02-build-finish.png[]
 
@@ -77,7 +76,8 @@ Notice the changes in the printed status messages in response to your requests.
 
 When done with testing, press `q` to quit the client.
 
-=== Modify the application (Optional)
+
+== Modify the application 
 
 If you are confident with programing in C++, feel free to make some changes to the `radio-stations.cpp` source file. 
 You can add songs or stations, and repeat the build test cycle.
@@ -125,7 +125,8 @@ After finishing editing, click the triangular button at the bottom left of the w
 right half of the terminal. Try switching stations by pressing `<SPACE>`, and find the newly added *Red Hat Summit Radio* station.
 ====
 
-=== Publish Applications
+
+== Publish Applications
 
 Now that we've finished developing and testing our code, we can publish it to our code repository.
 

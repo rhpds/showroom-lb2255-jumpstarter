@@ -3,14 +3,14 @@
 In this first activity, we will set up our development environment with the https://developers.redhat.com/rhdh/overview[Red Hat Developer Hub] 
 and https://developers.redhat.com/products/openshift-dev-spaces/overview[Red Hat OpenShift Dev Spaces].
 
-We'll leverage Red Hat Developer Hub as our central developer portal, providing:
+We will leverage *Red Hat Developer Hub* as our central developer portal, providing:
 
 - *Template-driven* project creation for instant productivity
 - Curated software catalogs and component libraries
 - Centralized documentation and development resources
 - Automated CI/CD pipeline configuration
 
-Our development will take place within Red Hat OpenShift Dev Spaces, offering:
+Our development will take place within *Red Hat OpenShift Dev Spaces*, offering:
 
 - Consistent, cloud-based development environments
 - Pre-configured workspace templates tailored to automotive development
@@ -50,7 +50,7 @@ image::setup/02-access-gitlab.png[]
 WARNING: Authorize Keycloak to access GitLab
 
 
-== Create the development environment
+== Project creation
 
 Once you are logged in, you will be redirected to the Red Hat Developer Hub dashboard. 
 
@@ -129,6 +129,7 @@ WARNING: When asked to authorize *devspaces* to access your account on GitLab, c
 image::setup/15-devspace-starting.png[]
 
 NOTE: The creation of the *DevWorkspace* instance can take a few minutes, please be patient !
+
 
 == Prepare the workspace
 
