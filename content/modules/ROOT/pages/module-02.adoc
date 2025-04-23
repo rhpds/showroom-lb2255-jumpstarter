@@ -21,6 +21,14 @@ image::app/01-kit.png[]
 
 Choose to build with the GCC toolkit.
 
+.The build process
+****
+The demo application is built using the *cmake* build system. The build process involves creating a "build" directory, and calling cmake to generate the Makefile,
+then make will be called to compile the source code into multiple executable files. The cmake vscode plugin automatically detects the source code and
+performs those steps on your behalf, but you can also do it manually if you want to.
+****
+
+
 === Test the Applications
 
 image::app/02-build-finish.png[]
