@@ -1,7 +1,5 @@
 = Jumpstarter
 
-Jumpstarter is a free and open source testing tool that enables you to test your software stack on both real hardware and virtual environments using CI/CD principles.
-
 Automated testing with physical hardware (Hardware-in-the-Loop or HiL) and virtual devices has been established for years in industries such as 
 automotive and manufacturing. However, these tools are often expensive and inaccessible to hobbyists and open source projects.
 
@@ -12,7 +10,7 @@ the next generation of edge devices, whether physical or emulated.
 For a detailed technical overview of the architecture, see the https://docs.jumpstarter.dev/architecture.html[Jumpstarter Architecture] documentation.
 
 [#jmp_components]
-== Core Components
+== Core components
 
 Jumpstarter consists of the following core components:
 
@@ -28,7 +26,7 @@ Jumpstarter consists of the following core components:
   access
 
 [#jmp_relationships]
-== Key Component Relationships
+== Key component relationships
 
 The relationship between these components is important to understand:
 
@@ -45,7 +43,7 @@ while in distributed mode, this is managed by the central controller.
 Together, these components form a layered architecture that separates concerns and allows for a flexible, extensible testing system.
 
 [#jmp_development]
-== Development Environment
+== Development environment
 
 Since Jumpstarter's core components are written in Python, they can run almost
 anywhere. This means that you can set up a test lab with physical hardware or
@@ -64,12 +62,12 @@ remotely access and control both physical and virtual devices for ad-hoc
 development whether they are sitting at the next desk or working remotely.
 
 [#jmp_operation_modes]
-== Operation Modes
+== Operation modes
 
 Jumpstarter can be used in either a *local-only* or *distributed* environment
 depending on your development needs.
 
-=== Local-Only Mode
+=== Local-Only mode
 
 When using Jumpstarter locally, you can develop drivers, write automated tests,
 and control your devices directly from your development machine without
@@ -87,7 +85,7 @@ For details on how this mode works, see the [Running Tests
 Locally](../architecture.md#local-mode) section in the architecture
 documentation.
 
-=== Distributed Mode
+=== Distributed mode
 
 As your project grows, Jumpstarter helps you collaborate across teams, implement
 CI/CD pipelines, and automate common tasks such as firmware updates.
@@ -106,3 +104,6 @@ The distributed mode is ideal when:
 - Test environments are distributed across multiple locations
 - Devices (physical or virtual) need to be managed remotely
 
+== Next
+
+Now let's have a look at a typical workflow for developing and testing automotive software

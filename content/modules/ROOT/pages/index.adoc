@@ -1,4 +1,4 @@
-= Lab Overview
+= Lab overview
 
 Welcome to the *{lab_name}*!
 
@@ -20,9 +20,15 @@ of automotive ECUs and edge devices, and how it integrates with https://develope
 and https://www.redhat.com/en/technologies/cloud-computing/openshift/pipelines[Red Hat OpenShift Pipelines] to enable DevSecOps practices, 
 including automation, continuous integration, and infrastructure as code.
 
-== Lab Objectives
+== Lab activities and objectives
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a eleifend orci, quis tempor risus. Donec sodales pretium facilisis. 
-Aenean mollis rhoncus mauris, quis pretium nisl aliquam sed. Nam eu consequat nisi, ut volutpat magna. Vestibulum auctor ultrices auctor. 
-Curabitur at blandit dolor, sed convallis est. Cras vel urna eget erat varius sodales. Quisque suscipit leo eu tellus pharetra, at malesuada dolor sagittis. 
-Praesent pharetra cursus quam eget commodo.
+In this lab, we will follow a typical development workflow for automotive software:
+
+* xref:activity-01.adoc[Activity 1:] Create a new automotive app project from a template
+* xref:activity-02.adoc[Activity 2:] Develop and test the application in RH DevSpaces
+* xref:activity-03.adoc[Activity 3:] Build a new Red Hat In-Vehicle OS (RHIVOS) image with the application and test it on a virtual machine
+* xref:activity-04.adoc[Activity 4:] Use Jumpstarter to test the application interactively
+
+== Next
+
+Before diving into the lab activities, let's take a look at the Red Hat Automotive Development Platform (RHADP) and Jumpstarter!

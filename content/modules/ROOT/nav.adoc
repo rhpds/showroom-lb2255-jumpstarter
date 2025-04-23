@@ -3,10 +3,10 @@
 ** xref:intro-rhadp.adoc#hiltesting[Virtual and Hardware-in-the-Loop Testing]
 
 * xref:intro-jmp.adoc[]
-** xref:intro-jmp.adoc#jmp_components[Core Components]
-** xref:intro-jmp.adoc#jmp_relationships[Key Components Relationships]
-** xref:intro-jmp.adoc#jmp_development[Development Environment]
-** xref:intro-jmp.adoc#jmp_operation_mode[Operation Modes]
+** xref:intro-jmp.adoc#jmp_components[Core components]
+** xref:intro-jmp.adoc#jmp_relationships[Key components relationships]
+** xref:intro-jmp.adoc#jmp_development[Development environment]
+** xref:intro-jmp.adoc#jmp_operation_mode[Operation modes]
 
 * xref:intro-wf.adoc[]
 ** xref:intro-wf.adoc#project_creation[Project creation]
