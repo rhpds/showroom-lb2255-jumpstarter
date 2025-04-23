@@ -21,6 +21,8 @@
 * xref:activity-03.adoc[Activity 3: Testing and Validation] 
 
 * xref:activity-04.adoc[Activity 4: Interactive Jumpstarter]
+** xref:activity-04.adoc#jmpexporterlease[Interact with an Exporter]
+** xref:activity-04.adoc##jmptestingpytest[Testing with Pytest]
 
 * xref:activity-05.adoc[Additional Topics]
 
