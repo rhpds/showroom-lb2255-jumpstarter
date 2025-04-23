@@ -22,4 +22,6 @@
 
 * xref:activity-04.adoc[Activity 4: Interactive Jumpstarter]
 
+* xref:activity-05.adoc[Additional Topics]
+
 * xref:cheatsheet.adoc[]
