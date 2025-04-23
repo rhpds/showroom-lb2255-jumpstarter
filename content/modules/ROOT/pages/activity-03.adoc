@@ -1,4 +1,5 @@
 = Deploy and Test the Sample Application
+:sectnums:
 
 === Overview
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a eleifend orci, quis tempor risus. Donec sodales pretium facilisis. 

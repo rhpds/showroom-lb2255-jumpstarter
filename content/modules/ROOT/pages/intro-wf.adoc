@@ -1,0 +1,35 @@
+= Development Workflow
+
+The following workflows show how a developer writes automotive software, orchestrates, and runs virtual tests and HIL tests on a target automotive platform: 
+
+image::rhadp/01-workflow.png[]
+
+[#project_creation]
+== Project creation
+
+- Development begins in the Red Hat Developer Hub portal.
+- The developer selects a software template to instantiate a new project.
+- After providing initial setup information, a new project is created and all the supporting infrastructure (e.g. build pipelines) is provisioned using OpenShift GitOps.
+
+[#application_development]
+== Application development
+
+- The developer uses the RH DevSpaces to write code and also runs the first test locally, within the Web IDE.
+
+[#application_testing]
+== Application testing
+
+- The code is pushed to the source code repository (e.g. GitHub or a hosted GitLab instance).
+- Pushing the code triggers the build pipeline(s).
+- After a successful build, the resulting artefacts (rpm, container, OS image) are stored in a central repository (e.g. Red Hat Quay) or storage location (e.g. S3).
+- Optional: The cloud infrastructure is used to perform more complex integration tests prior to SIL or HIL testing.
+
+[#application_validation]
+== Application validation
+
+- Software-in-the-Loop (SIL) testing of the application using VMs / Qemu.
+- Software-in-the-Loop (SIL) testing of the application with virtualised and simulated hardware (e.g. provided by Corellium).
+- Hardware-in-the-loop (HIL) testing by connecting the cloud-based development platform to “real” hardware.
+
+=== Up Next
+**TBD REFERENCE ACTIVITY 1**

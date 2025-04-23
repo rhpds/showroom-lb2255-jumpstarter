@@ -1,15 +1,25 @@
-* xref:module-01a.adoc[]
-* xref:module-01b.adoc[]
-* xref:module-01c.adoc[]
+* xref:intro-rhadp.adoc[]
+** xref:intro-rhadp.adoc#solution_architecture[Solution Architecture]
+** xref:intro-rhadp.adoc#hiltesting[Virtual and Hardware-in-the-Loop Testing]
 
-* xref:environment-setup.adoc[]
+* xref:intro-jmp.adoc[]
+** xref:intro-jmp.adoc#jmp_components[Core Components]
+** xref:intro-jmp.adoc#jmp_relationships[Key Components Relationships]
+** xref:intro-jmp.adoc#jmp_development[Development Environment]
+** xref:intro-jmp.adoc#jmp_operation_mode[Operation Modes]
 
-* xref:module-02.adoc[]
+* xref:intro-wf.adoc[]
+** xref:intro-wf.adoc#project_creation[Project creation]
+** xref:intro-wf.adoc#application_development[Development]
+** xref:intro-wf.adoc#application_testing[Testing]
+** xref:intro-wf.adoc#application_validation[Validation]
 
-* xref:module-03.adoc[]
+* xref:activity-01.adoc[Activity 1: Project creation]
 
-* xref:module-04.adoc[]
+* xref:activity-02.adoc[Activity 2: Application Development]
 
-* xref:module-05.adoc[]
+* xref:activity-03.adoc[Activity 3: Testing and Validation] 
+
+* xref:activity-04.adoc[Activity 4: Interactive Jumpstarter]
 
 * xref:cheatsheet.adoc[]

@@ -1,0 +1,33 @@
+= Red Hat Automotive Development Platform
+
+Red Hat Developer Hub creates the core of the Red Hat Automotive Development Platform (RHADP) that consolidates tools and workflows for software-defined vehicle development. 
+It provides a centralised environment where development teams can access standardised tools, automated testing processes and pre-configured components. 
+The platform streamlines common tasks through automation and ensures compliance with automotive safety standards, while allowing developers to use familiar Linux-based tools. 
+Its cloud integration enables scalable testing and development, and supports rapid prototyping and deployment of automotive software components.
+
+[#solution_architecture]
+== Solution architecture
+
+The RHADP leverages a comprehensive cloud-native ecosystem centered around Red Hat Developer Hub and Red Hat DevSpaces, 
+providing developers with instant access to fully configured development environments. 
+
+This enterprise-grade internal development platform (IDP), built on the open source Backstage project, comes pre-loaded with all necessary development tools, 
+extensions, and configurations through a centralized dashboard. The standardized approach not only enables teams to begin working immediately without setup delays, 
+but also streamlines development processes while maintaining proper security and governance across the enterprise, ensuring consistency across development teams 
+and minimizing environment-related issues.
+
+The diagram below provides an overview of the RHADP architecture:
+
+image::rhadp/01-architecture.png[]
+
+[#hiltesting]
+== Virtual and Hardware-in-the-Loop Testing
+
+Virtual testing and Hardware-in-the-loop (HIL) testing are key methods in modern automotive software development. Virtual testing allows developers to 
+validate vehicle systems through simulation, eliminating the need for physical prototypes and reducing development costs and time. 
+
+HIL testing takes this a step further by connecting actual vehicle hardware components, such as ECUs, sensors and actuators, to a simulation platform 
+that creates a controlled test environment.
+
+=== Up Next
+**TBD REFERENCE TO JUMPSTARTER**
