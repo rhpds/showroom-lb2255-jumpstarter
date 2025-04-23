@@ -29,5 +29,7 @@ validate vehicle systems through simulation, eliminating the need for physical p
 HIL testing takes this a step further by connecting actual vehicle hardware components, such as ECUs, sensors and actuators, to a simulation platform 
 that creates a controlled test environment.
 
-=== Up Next
-**TBD REFERENCE TO JUMPSTARTER**
+== Next
+
+Jumpstarter is a free and open source testing tool that enables you to test your software stack on both 
+real hardware and virtual environments using CI/CD principles. Let's have a look !
