@@ -91,7 +91,7 @@ image::ui-links.png[]
 
 == Dev Mode
 
-As a convenience to developers, the Dev Mode Extention (disabled by default) displays the asciidoc attributes you have to work with while writing your lab instructions.
+As a convenience to developers, the Dev Mode Extension (disabled by default) displays the asciidoc attributes you have to work with while writing your lab instructions.
 
 . Disable/Enable Dev Mode by changing `enabled: true` or `enabled: false`
 +

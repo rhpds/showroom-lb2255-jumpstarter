@@ -22,7 +22,7 @@ NOTE: This is covered in xref:activity-01.adoc[Activity 1].
 Utilize Red Hat DevSpaces as your integrated development environment:
 
 - Write, edit, and refine your automotive software code in the browser-based IDE
-- Run preliminary tests directly within the DevSpaces environmen
+- Run preliminary tests directly within the DevSpaces environment
 
 Validate basic functionality before proceeding to formal testing phases.
 
