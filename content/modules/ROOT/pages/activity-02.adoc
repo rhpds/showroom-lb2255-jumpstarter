@@ -43,14 +43,14 @@ Choose to run *radio-service*.
 
 '''
 
-image::app/04-running.png[]
-
 When the radio service is running, you will see log lines like
 
 [,console]
 ----
 RADIO: Playing song "Upper Echelon" by Travi$ Scott feat. 2 Chainz & T.I. (on Radio Los Santos) 50% volume
 ----
+
+image::app/04-running.png[]
 
 showing up in the terminal. Next, we can start the `radio-client` to interact the running `radio-service`. First, split the terminal by clicking book like button on the right middle of the screen.
 
