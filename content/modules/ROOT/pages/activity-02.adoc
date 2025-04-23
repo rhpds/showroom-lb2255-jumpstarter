@@ -58,7 +58,7 @@ showing up in the terminal. Next, we can start the `radio-client` to interact th
 
 image::app/05-split.png[]
 
-You will see the terminal being splitted into two halves, with the radio service running on the left, and bash shell on the right.
+You will see the terminal being split into two halves, with the radio service running on the left, and bash shell on the right.
 
 '''
 
