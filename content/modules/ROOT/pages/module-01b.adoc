@@ -11,9 +11,9 @@ Embedded and Edge devices have been traditionally tested in a manual way with a 
 
 In a modern development cycle we want to know that our software changes work well into our device hardware. We need to test the onboarding process, the software stack, the hardware, the updates and the interaction between all of them.
 
-image::https://jumpstarter.dev/docs/ci_cd_hu38a0ca465dd331e6590be9c01b398043_217430_800x512_fit_catmullrom_3.png[]
+image::pipelineproducts.png[pipelineproducts,width=800,height=auto]
 
-With Jumpstarter it's possible to use software CI/CD pipelines like Tekton, GitHub CI, GitLab CI, Jenkins, etc., as well as integrated development and scientific environments like Jupyter and Eclipse Che / Devspaces to interact with your physical hardware.
+With Jumpstarter it's possible to use software CI/CD pipelines like OpenShift Pipelines, GitHub CI, GitLab CI, Jenkins, etc., as well as integrated development and scientific environments like Jupyter and Devspaces to interact with your physical hardware.
 
 == How does Jumpstarter work
 
