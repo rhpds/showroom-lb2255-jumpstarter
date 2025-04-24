@@ -1,21 +1,75 @@
 = Testing and Validation
 
-While Red Hat OpenShift Dev Spaces provides a consistent environment for developing, building, and testing automotive applications, 
+While Red Hat OpenShift Dev Spaces provides a consistent environment for developing, building, and testing automotive applications,
 comprehensive validation requires testing on virtual or physical hardware to ensure stability, performance, and compatibility across target platforms.
 
-In this activity, we will build a RHIVOS image with our application embedded, preparing it for end-to-end testing in both 
-virtualized and physical hardware environments using Jumpstarter.
+== Overview
+In this activity, we will build a RHIVOS image with our application embedded, preparing it for end-to-end testing in
+virtualized hardware environments using Jumpstarter, by:
 
-== Development testing pipeline
+- Taking the `develop` branch that we created in the previous activity, and propose a merge request to the `main` branch.
+- Understanding how the pipelines build the RHIVOS image and perform testing with Jumpstarter in virtual hardware.
 
-Create a pull request to merge your changes from the ⁠develop branch into the ⁠main branch. This action triggers an automated CI pipeline that:
+== Create a Merge Request
 
-- Builds a new container image containing your modified application
-- Generates a new RHIVOS image with your application integrated
-- Leverages Jumpstarter and the Qemu exporter to create a virtual machine image
-- Executes a comprehensive test suite against the virtual machine image
+Create a merge request to merge your changes from the `⁠develop` branch into the ⁠main branch. To perform this
+we should go to the gitlab interface and select the `develop` branch. Click on the *Merge Request* button to create a new merge request.
 
-This pipeline validates your application in a controlled virtualized environment before proceeding to physical hardware deployment.
+We can get to the GitLab interface by clicking on the View source of our component in the Red Hat Developer Hub dashboard:
+
+{rhdh_url}/catalog/default/component/{username}-jumpstarter-lab[window=_blank]
+
+once there, click on the *View source* link:
+
+image::act3/01-go-to-gitlab.png[]
+
+
+'''
+
+Once in the GitLab interface, we should select the `develop` branch and click on the *Merge Request* button,
+
+image::act3/02-create-mr.png[]
+
+Merge requests are a way to propose changes to the codebase. They allow for code review, discussion, and **automated testing** before merging changes into the main branch,
+let's create it by clicking on the *Create Merge Request* button:
+
+
+image::act3/03-create-mr-2.png[]
+
+By creating a merge request a different pipeline will be triggered, in this case, the one contained in `.tekton/tasks/pr-build-test.yaml`.
+
+image::act3/04-mr-pipeline-running.png[]
+
+'''
+
+If we go to the CI tab in our component in backstage, or just the links in the GitLab merge request comments we can see the pipelines running:
+
+image::act3/05-pipeline-details-backstage.png[]
+
+{rhdh_url}/catalog/default/component/{username}-jumpstarter-lab[window=_blank]
+
+
+'''
+
+image::act3/06-pipeline-details.png[]
+
+Looking in detail, this pipeline performs the following steps, some in parallel:
+
+- `fetch-repository`: Clones the repository and checks out the *develop* branch from our merge request.
+- `prepare-jumpstarter-config`: Prepares the Jumpstarter configuration files for authenticating to the Jumpstarter service.
+- `build-container`: Builds and pushes the container image for our application using the *Containerfile* located in the *src* directory.
+- `tag-container`: Tags the container image as *latest*.
+- `prepare-build`: Validates the RHIVOS automotime image builder definition in *.aib-ci.yaml* and prepares the build environment.
+- `automotive-image-builder`: Builds the RHIVOS image using the *automotive-image-builder tool*, which is a part of the Red Hat In-Vehicle OS (RHIVOS) project.
+- `create-jumpstarter-lease`: Requests and waits for a Jumpstarter exporter lease, the leased device (or virtual device) will be used for testing in the following tasks.
+- `flash-with-jumpstarter`: Flashes the RHIVOS image to the leased device using Jumpstarter.
+- `test-with-jumpstarter`: Runs the defined test cases in the *tests* directory of our project on the flashed device.
+- `release`: Finishes the lease and releases the device back to Jumpstarter.
+- `s3-upload`: Uploads the built image to an *S3 bucket* for interactive, we will use this on the next.
+
+
+
+'''
 
 == Release deployment pipeline
 
@@ -23,13 +77,17 @@ After successful testing, create a "release" by merging the ⁠develop branch in
 
 - Builds the production-ready RHIVOS image optimized for your specific hardware platform
 - Uses Jumpstarter to flash the image directly to the physical hardware
+- Uses Jumpstarter to run the defined test cases on the physical hardware
 
-NOTE: The release pipeline focuses on deployment rather than testing, assuming all validation has been completed in the development pipeline.
+NOTE: The release pipeline focuses on hardware testing rather than virtual testing, assuming all validation has been completed in the development pipeline. *An good alternative* is to always use physical devices on merge requests if your lab has sufficient resources,
+      this way you can validate the code on hardware before merging it to the main branch.
+
+NOTE: Due to the limited availability of physical hardware in this lab, we will only show this on screen, but the participant pipelines will still test on virtual hardware.
 
 == Next
 
 Now that we've completed the development workflow, we'll explore advanced Jumpstarter capabilities including:
 
+- Manual interaction with hardware for development and troubleshooting
 - Writing custom test cases for your specific application requirements
-- Manual hardware flashing procedures for development and troubleshooting
 
