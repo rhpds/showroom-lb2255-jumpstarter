@@ -1,15 +1,55 @@
 = Testing and Validation
 
-While Red Hat OpenShift Dev Spaces provides a consistent environment for developing, building, and testing automotive applications,
-comprehensive validation requires testing on virtual or physical hardware to ensure stability, performance, and compatibility across target platforms.
-
 == Overview
-In this activity, we will build a RHIVOS image with our application embedded, preparing it for end-to-end testing in
-virtualized hardware environments using Jumpstarter, by:
+
+While Red Hat OpenShift Dev Spaces provides a consistent environment for developing, building, and 
+testing automotive applications, comprehensive validation requires testing on virtual or physical hardware to 
+ensure stability, performance, and compatibility across target platforms.
+
+Before we can build a production-ready RHIVOS image, we need to ensure that our application is working correctly in a cloud environment. 
+For this, we will pick up from the previous activity where we modified the application code and built a container image from the modfied source code.
+
+After that, we will build a RHIVOS image with our application embedded, preparing it for end-to-end testing in
+virtualized hardware environments using Jumpstarter:
 
 - Taking the `develop` branch that we created in the previous activity, and propose a merge request to the `main` branch.
 - Understanding how the pipelines build the RHIVOS image and perform testing with Jumpstarter in virtual hardware.
 
+
+[#container]
+== Container image build
+
+In order to build the container image, we will create a *pull request* against the `main` branch.
+
+image::app/14-branch.png[]
+
+Bring up the branch selector by clicking the button saying `main` at the bottom left of the screen.
+
+image::app/15-branch-create.png[]
+
+In the input box, put `develop`, then click *Create new branch*.
+
+image::app/16-branch-created.png[]
+
+Make sure the button on the bottom left of the screen now says `develop`, the name of the newly created branch, 
+click the annotated button on the left to open the source control tab.
+
+image::app/17-commit.png[]
+
+In the input box, put `add new radio station` as the commit message, click *Commit*.
+
+image::app/18-push.png[]
+
+Click the cloud like button to push the new changes to our code repository.
+
+Once the changes are pushed to the code repository, a *Red Hat OpenShift Pipelines* task is triggered to automatically build the application and bundle it into a container.
+
+TIP: We're using a container as it's the best way to package an application and all of its dependencies into a single unit. 
+This makes it simple to distribute to physical or virtual  hardware for testing.
+
+To check the progress of the build, see {app_build_pipeline}
+
+[#merge]
 == Create a Merge Request
 
 Create a merge request to merge your changes from the `⁠develop` branch into the ⁠main branch. To perform this
@@ -23,9 +63,6 @@ once there, click on the *View source* link:
 
 image::act3/01-go-to-gitlab.png[]
 
-
-'''
-
 Once in the GitLab interface, we should select the `develop` branch and click on the *Merge Request* button,
 
 image::act3/02-create-mr.png[]
@@ -33,14 +70,11 @@ image::act3/02-create-mr.png[]
 Merge requests are a way to propose changes to the codebase. They allow for code review, discussion, and **automated testing** before merging changes into the main branch,
 let's create it by clicking on the *Create Merge Request* button:
 
-
 image::act3/03-create-mr-2.png[]
 
 By creating a merge request a different pipeline will be triggered, in this case, the one contained in `.tekton/tasks/pr-build-test.yaml`.
 
 image::act3/04-mr-pipeline-running.png[]
-
-'''
 
 If we go to the CI tab in our component in backstage, or just the links in the GitLab merge request comments we can see the pipelines running:
 
@@ -48,8 +82,6 @@ image::act3/05-pipeline-details-backstage.png[]
 
 
 https://backstage-backstage.{openshift_cluster_ingress_domain}/catalog/default/component/{user}-jumpstarter-lab[window=_blank]
-
-'''
 
 image::act3/06-pipeline-details.png[]
 
@@ -72,6 +104,7 @@ Once the pipeline is finished, we can see the results reported back to GitLab.
 
 image::act3/07-mr-ready.png[]
 
+[#release]
 == Release deployment pipeline
 
 Once everything went well, we can merge the merge-request to main, this will trigger the *release* pipeline, which is defined in `.tekton/tasks/pr-build-release.yaml`.
