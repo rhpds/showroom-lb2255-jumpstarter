@@ -12,7 +12,7 @@ For this, we will pick up from the previous activity where we modified the appli
 After that, we will build a RHIVOS image with our application embedded, preparing it for end-to-end testing in
 virtualized hardware environments using Jumpstarter:
 
-- Taking the `develop` branch that we created in the previous activity, and propose a merge request to the `main` branch.
+- Create a new `develop` branch with our changes, and propose a merge request to the `main` branch.
 - Understanding how the pipelines build the RHIVOS image and perform testing with Jumpstarter in virtual hardware.
 
 
@@ -45,9 +45,9 @@ Click the cloud like button to push the new changes to our code repository.
 Once the changes are pushed to the code repository, a *Red Hat OpenShift Pipelines* task is triggered to automatically build the application and bundle it into a container.
 
 TIP: We're using a container as it's the best way to package an application and all of its dependencies into a single unit. 
-This makes it simple to distribute to physical or virtual  hardware for testing.
+This makes it simple to distribute to physical or virtual hardware for testing.
 
-To check the progress of the build, see {app_build_pipeline}
+To check the progress of the build, see https://backstage-backstage.{openshift_cluster_ingress_domain}/catalog/default/component/{user}-jumpstarter-lab/ci[here,window=_blank]
 
 [#merge]
 == Create a Merge Request
@@ -81,7 +81,7 @@ If we go to the CI tab in our component in backstage, or just the links in the G
 image::act3/05-pipeline-details-backstage.png[]
 
 
-https://backstage-backstage.{openshift_cluster_ingress_domain}/catalog/default/component/{user}-jumpstarter-lab[window=_blank]
+https://backstage-backstage.{openshift_cluster_ingress_domain}/catalog/default/component/{user}-jumpstarter-lab/ci[window=_blank]
 
 image::act3/06-pipeline-details.png[]
 

@@ -7,8 +7,6 @@ nav:
 asciidoc:
   attributes:
     lab_name: "Jumpstarter + Red Hat In-Vehicle OS Lab"
-    app_build_pipeline: "https://example.com/app-build"
-    os_build_pipeline: "https://example.com/os-build"
     release-version: master
     page-pagination: true
     page-links:
