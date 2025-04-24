@@ -82,7 +82,7 @@ When done with testing, press `q` to quit the client.
 If you are confident with programing in C++, feel free to make some changes to the `radio-stations.cpp` source file. 
 You can add songs or stations, and repeat the build test cycle.
 
-.Example
+.Example modification
 [%collapsible]
 ====
 image::app/08-src.png[]
@@ -121,8 +121,10 @@ The remaining lines should look like this after editing.
 
 '''
 
-After finishing editing, click the triangular button at the bottom left of the window to rerun `radio-service`, and start `radio-client` again on the 
-right half of the terminal. Try switching stations by pressing `<SPACE>`, and find the newly added *Red Hat Summit Radio* station.
+After finishing editing, click on the radio-service terminal and push `CTRL+C` to stop the execution, then
+click the triangular button at the bottom left of the window to rerun `radio-service`, and
+start `radio-client` again on the right half of the terminal. Try switching stations by pressing `<SPACE>`,
+and find the newly added *Red Hat Summit Radio* station.
 ====
 
 
