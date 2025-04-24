@@ -86,10 +86,10 @@ To flash the RHIVOS image we built earlier, run:
 
 [,console]
 ----
-jumpstarter ⚡remote ➤ ./script/flash
+jumpstarter ⚡remote ➤ ./scripts/flash-prebuilt
 ----
 
-NOTE: the `./script/flash` helper script reads the git commit you are on, and flashes the RHIVOS image built from the commit by the OpenShift Pipelines.
+NOTE: the `./scripts/flash-prebuilt` helper script flashes a prebuilt RHIVOS image to the virtual device.
 
 After flashing, to boot the device and view the boot messages via the serial console, run:
 
