@@ -140,15 +140,15 @@ Once the Dev Workspace is created, you will be redirected to a *VS Code like* de
 
 image::setup/16-devspace-extensions.png[]
 
-WARNING: When prompted "Do you trust the authors of the files in this workspace?", click *Trust Workspace & Install*
+WARNING: If prompted "Do you trust the authors of the files in this workspace?", click *Trust Workspace & Install*
 
 image::setup/17-devspace-trust.png[]
 
-WARNING: When prompted "Do you trust the authors of the files in this workspace?", click *Yes, I trust the authors*
+WARNING: If prompted "Do you trust the authors of the files in this workspace?", click *Yes, I trust the authors*
 
-image::setup/18-devspace-reload.png[]
+image::setup/18-devspace-popup.png[]
 
-TIP: On the bottom right of the screen is a popup asking to reload Visual Studio Code, click *Reload Now*, if you missed the popup, refresh the page by pressing `F5`.
+TIP: On the bottom right of the screen you may see some popup notifications, you can safely ignore them.
 
 Now you should see a familiar *VS Code* development environment in your browser. 
 Take a moment to explore the created development environment, it should contain everything you need to complete this lab.
