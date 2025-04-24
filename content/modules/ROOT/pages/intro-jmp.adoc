@@ -7,7 +7,7 @@ Jumpstarter provides powerful testing tools that leverage https://www.cncf.io/[C
 the next generation of edge devices, whether physical or emulated.
 
 
-For a detailed technical overview of the architecture, see the https://docs.jumpstarter.dev/architecture.html[Jumpstarter Architecture] documentation.
+For a detailed technical overview of the architecture, see the https://docs.jumpstarter.dev/architecture.html[Jumpstarter architecture] documentation.
 
 [#jmp_components]
 == Core components

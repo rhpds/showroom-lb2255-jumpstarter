@@ -1,5 +1,6 @@
 * xref:intro-rhadp.adoc[]
 ** xref:intro-rhadp.adoc#solution_architecture[Solution Architecture]
+** xref:intro-rhadp.adoc#workflow[Development workflow]
 ** xref:intro-rhadp.adoc#hiltesting[Virtual and Hardware-in-the-Loop Testing]
 
 * xref:intro-jmp.adoc[]
@@ -8,7 +9,7 @@
 ** xref:intro-jmp.adoc#jmp_development[Development environment]
 ** xref:intro-jmp.adoc#jmp_operation_mode[Operation modes]
 
-* xref:intro-wf.adoc[]
+* xref:intro-wf.adoc[Getting started]
 ** xref:intro-wf.adoc#project_creation[Project creation]
 ** xref:intro-wf.adoc#application_development[Development]
 ** xref:intro-wf.adoc#application_testing[Testing]

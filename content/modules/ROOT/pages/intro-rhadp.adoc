@@ -1,35 +1,84 @@
 = Red Hat Automotive Development Platform
 
-Red Hat Developer Hub creates the core of the Red Hat Automotive Development Platform (RHADP) that consolidates tools and workflows for software-defined vehicle development. 
-It provides a centralised environment where development teams can access standardised tools, automated testing processes and pre-configured components. 
-The platform streamlines common tasks through automation and ensures compliance with automotive safety standards, while allowing developers to use familiar Linux-based tools. 
-Its cloud integration enables scalable testing and development, and supports rapid prototyping and deployment of automotive software components.
+https://developers.redhat.com/rhdh/overview[Red Hat Developer Hub] sits at the core of the Red Hat Automotive Development Platform (RHADP), 
+creating an integrated ecosystem for software-defined vehicle development. Think of it as your central command center where you and your team can:
 
-[#solution_architecture]
+- Access pre-configured tools and standardized workflows without the usual setup headaches
+- Leverage automated testing processes that maintain compliance with automotive safety standards
+- Use familiar Linux-based tools that feel like home to developers 
+
+The platform's cloud integration isn't just buzzword compliance—it gives you genuinely scalable testing environments and supports rapid 
+prototyping when you need to validate concepts quickly.
+
+
 == Solution architecture
 
-The RHADP leverages a comprehensive cloud-native ecosystem centered around Red Hat Developer Hub and Red Hat DevSpaces, 
-providing developers with instant access to fully configured development environments. 
+At its heart, RHADP combines Red Hat Developer Hub with Red Hat Dev Spaces to give you instant access to fully-configured development environments. 
 
-This enterprise-grade internal development platform (IDP), built on the open source Backstage project, comes pre-loaded with all necessary development tools, 
-extensions, and configurations through a centralized dashboard. The standardized approach not only enables teams to begin working immediately without setup delays, 
-but also streamlines development processes while maintaining proper security and governance across the enterprise, ensuring consistency across development teams 
-and minimizing environment-related issues.
+This Internal Development Platform (IDP) is built on the open-source https://backstage.spotify.com/[Backstage] project and comes ready 
+with all the tools, extensions, and configurations you need through a single dashboard. 
+
+This approach means:
+
+- Your team starts coding immediately instead of wrestling with environment setup
+- You maintain consistent security and governance practices across teams
+- Development processes follow standardized patterns while still allowing for innovation
+- Environment-related issues become a thing of the past
 
 The diagram below provides an overview of the RHADP architecture:
 
 image::rhadp/01-architecture.png[]
 
+[#workflow]
+== Development workflow
+
+The development workflow follows a structured yet flexible path from initial code creation to final deployment. 
+
+As a developer, when you start your day, you'll access your cloud workspace and pull the latest code base. Behind the scenes, the 
+platform automatically processes your metadata (Infrastructure-as-Code) to configure your development environment with exactly 
+what you need (GitOps principles in action).
+
+As you code, continuous validation and testing processes run in the background, giving you immediate feedback about code quality, 
+security vulnerabilities, and potential issues. This DevSecOps approach means you'll catch problems early when they're 
+easier and cheaper to fix, rather than discovering them during final testing.
+
+Your code undergoes multiple layers of validation through a comprehensive testing strategy. It starts with cloud-based testing 
+environments to verify basic functionality and integration with other components. This is where most common issues are caught and resolved quickly.
+
+From there, your code progresses to testing on virtual hardware, where you can observe how it behaves in a simulated automotive environment. 
+Finally, Hardware-in-the-Loop (HIL) testing connects your software to actual automotive components (SoCs) in controlled conditions, 
+giving you confidence that your code will perform as expected in real vehicles.
+
+Key Components:
+
+- OpenShift Pipelines and OpenShift GitOps for continuous integration and deployment
+- https://pipelinesascode.com/[Pipelines as Code] for defining your CI/CD workflows as code
+- OpenShift Dev Spaces for consistent, cloud-based development environments
+- https://jumpstarter.dev/[Jumpstarter] for automated testing across virtual and physical hardware
+
 [#hiltesting]
 == Virtual and Hardware-in-the-Loop Testing
 
-Virtual testing and Hardware-in-the-loop (HIL) testing are key methods in modern automotive software development. Virtual testing allows developers to 
-validate vehicle systems through simulation, eliminating the need for physical prototypes and reducing development costs and time. 
+Virtual testing and Hardware-in-the-Loop (HIL) testing are essential methods in modern automotive software development. 
+With virtual testing, you can validate vehicle systems through sophisticated simulations, eliminating the need for physical 
+prototypes in early development stages. 
 
-HIL testing takes this a step further by connecting actual vehicle hardware components, such as ECUs, sensors and actuators, to a simulation platform 
-that creates a controlled test environment.
+This approach significantly reduces development costs and time while allowing you to test edge cases that might be dangerous or impractical to test with real hardware.
+
+HIL testing takes validation to the next level by connecting actual vehicle hardware components (e.g. ECUs, sensors, and 
+actuators) to a cloud platform that creates a controlled test environment. This hybrid approach gives you the 
+best of both worlds: the safety and reproducibility of cloud environments with the confidence that comes from testing on real hardware. 
+
+[#jumpstarter]
+=== Jumpstarter
+
+Jumpstarter seamlessly integrates with your HIL testing environment, serving as the bridge between your CI/CD pipeline and physical hardware testing. 
+This https://github.com/jumpstarter-dev[open source] tool automates the deployment of your software to both virtual environments and actual 
+automotive hardware components, maintaining consistent testing conditions throughout your development process. 
+
+By incorporating Jumpstarter into your workflow, you'll eliminate the traditional disconnect between software development and hardware 
+validation, allowing your HIL tests to become a natural extension of your continuous integration process rather than a separate, manual testing phase. 
 
 == Next
 
-Jumpstarter is a free and open source testing tool that enables you to test your software stack on both 
-real hardware and virtual environments using CI/CD principles. Let's have a look !
+In the next section, we'll dive deeper into Jumpstarter and its role in the automotive software development lifecycle.
