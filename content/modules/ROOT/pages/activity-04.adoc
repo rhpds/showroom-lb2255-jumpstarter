@@ -37,7 +37,7 @@ $ jmp shell --selector type=virtual
 
 NOTE: This `jmp shell` command uses the default client config file located at `~/.config/jumpstarter/clients/lab.yaml`. The default client will then use the `--selector` parameter to find an exporter that matches the label `type=virtual`.
 
-TIP: Notice that you shell prompt have been changed to `jumpstarter ⚡remote ➤`, this is to remind you that you are inside a remote Jumpstarter shell session.
+TIP: Notice that your shell prompt have been changed to `jumpstarter ⚡remote ➤`, this is to remind you that you are inside a remote Jumpstarter shell session.
 
 When you lease an Exporter, you get exclusive access to the hardware interfaces connected to the Exporter for the duration of the lease.
 
@@ -92,9 +92,7 @@ export:
 
 === First boot
 
-In previous modules, we built a RHIVOS image with our application. Now, we can use Jumpstarter to flash that image to our virtual device, boot it up, and take our first steps in testing our application remotely.
-
-To flash the RHIVOS image we built earlier, run:
+Before booting our virtual device, we need to flash it with an operating system image.
 
 [,console]
 ----
@@ -110,51 +108,60 @@ After flashing, to boot the device and view the boot messages via the serial con
 jumpstarter ⚡remote ➤ j power on && j console start-console
 ----
 
-You should be dropped into a serial console with the boot messages showing up. Once the image has finished booting, you will be presented with a login prompt. You can login with the following credentials:
+You should be dropped into a serial console with the boot messages showing up. Once the image has finished booting, you will be presented with a login prompt (`localhost login:`). You can login with the following credentials:
 
-[username,console]
+.Username
+[source,text]
 ----
 root
 ----
 
-[password,console]
+.Password
+[source,text]
 ----
 password
 ----
 
-After logging into the system, you can launch the installed `radio-client`:
+TIP: Notice that your shell prompt have been changed to `[root@localhost ~]#`, this is to remind you that you are inside the serial console of the virtual device.
 
-[NOTE]
-====
-The `radio-service` is already running in the background as a daemon started on boot.
-====
+After logging into the system, you can check the system architecture using `uname`:
 
 [,console]
 ----
-$ radio-client
+$ uname -m
 ----
 
-Now we can control our `radio-service` as we did when we initially built and tested the application.
+It should print `aarch64` meaning that this is a arm based virtual device.
 
-[TIP]
-====
-Press `+` or `-` to adjust the volume, `<SPACE>` to switch stations, and `<ESC>` to pause or resume the radio.
-====
+Then quit the serial console by pressing `Ctrl+B` three times.
 
-When you are done with testing, press `q` to quit `radio-client`. Then exit the serial console by pressing `Ctrl+B` 3 times, this will drop you back into the Jumpstarter shell session.
+TIP: Your shell prompt should be restored to `jumpstarter ⚡remote ➤`, this is to remind you that you are back inside a remote Jumpstarter shell session, not the serial console of the virtual device.
 
 === Bridging the gap
 
 Sometimes your tests cannot be executed directly on the target device or the Exporter host. For example, you may need to use a proprietary GUI client or service to control your application. To support these use cases, Jumpstarter implements port forwarding, which allows you to interact with services running inside the target device from your local machine as if they are running locally.
 
-To forward a remote service port such as the `radio-service` to a local port, run the following command from within your remote Jumpstarter shell session:
+To forward a remote service port such as the `ssh` to a local port, run the following command from within your remote Jumpstarter shell session:
 
 [,console]
 ----
-jumpstarter ⚡remote ➤ j radio start-portforward 9000
+$ j qemu ssh forward-tcp 9000 &
 ----
 
-This command will forward the remote `radio` port preconfigured in the exporter config to `localhost:8000` on your local machine. Once port forwarding is started, you can run `radio-client` from your local environment and interact with the `radio-service` running on the remote device.
+This command will forward the remote `ssh` port (port 22) preconfigured in the exporter config to `localhost:9000` on your local machine. Once port forwarding is started, you can run `ssh` client from your local environment and execute commands on the virtual device remotely, e.g. listing all the files under the root directory:
+
+[,console]
+----
+$ ssh -p 9000 -o StrictHostKeyChecking=no root@localhost ls /
+----
+
+When prompted for password, enter:
+
+.Password
+[source,text]
+----
+password
+----
 
 To stop the port forwarding, simply exit the shell with `Ctrl+D`.
 
