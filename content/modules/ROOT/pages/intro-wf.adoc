@@ -2,7 +2,7 @@
 
 This section outlines the comprehensive workflow for automotive software development, from initial project creation through testing and validation on target platforms. 
 
-image::rhadp/01-workflow.png[]
+image::rhadp/02-workflow.png[]
 
 [#project_creation]
 == Project creation

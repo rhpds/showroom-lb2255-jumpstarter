@@ -21,8 +21,8 @@ including automation, continuous integration, and infrastructure as code.
 
 In this lab, we will follow a typical development workflow for automotive software:
 
-* xref:activity-01.adoc[Activity 1:] Create a new automotive app project from a template
-* xref:activity-02.adoc[Activity 2:] Develop and test the application in RH DevSpaces
+* xref:activity-01.adoc[Activity 1:] Create a new application project from a Red Hat Developer Hub template
+* xref:activity-02.adoc[Activity 2:] Develop and test the application in Red Hat Dev Spaces
 * xref:activity-03.adoc[Activity 3:] Build a new Red Hat In-Vehicle OS (RHIVOS) image with the application and test it on a virtual machine
 * xref:activity-04.adoc[Activity 4:] Use Jumpstarter to test the application interactively
 
@@ -30,5 +30,4 @@ At the end of this lab, you will have a basic understanding of the Red Hat Autom
 
 == Next
 
-Before diving into the lab activities, let's take a look at the Red Hat Automotive Development Platform 
-and Project https://docs.jumpstarter.dev/index.html[Jumpstarter].
+Before diving into the lab activities, let's take a look at the Red Hat Automotive Development Platform and Jumpstarter.
