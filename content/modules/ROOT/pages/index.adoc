@@ -1,10 +1,7 @@
-= Lab overview
-
-Welcome to the *{lab_name}*!
 
 image::jumpstarter.svg[width=512px]
 
-== About this lab
+== Introduction to the Lab
 
 The move to software-defined vehicles (SDVs) in the automotive industry presents challenges in developing software for electronic control units (ECUs) that 
 require hardware-in-the-loop (HIL) testing.
@@ -29,6 +26,9 @@ In this lab, we will follow a typical development workflow for automotive softwa
 * xref:activity-03.adoc[Activity 3:] Build a new Red Hat In-Vehicle OS (RHIVOS) image with the application and test it on a virtual machine
 * xref:activity-04.adoc[Activity 4:] Use Jumpstarter to test the application interactively
 
+At the end of this lab, you will have a basic understanding of the Red Hat Automotive Development Platform and how to use it to develop, build, and test automotive software.
+
 == Next
 
-Before diving into the lab activities, let's take a look at the Red Hat Automotive Development Platform (RHADP) and Jumpstarter!
+Before diving into the lab activities, let's take a look at the Red Hat Automotive Development Platform 
+and Project https://docs.jumpstarter.dev/index.html[Jumpstarter].

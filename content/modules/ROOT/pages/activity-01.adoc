@@ -1,7 +1,14 @@
 = Project creation
 
-In this first activity, we will set up our development environment with the https://developers.redhat.com/rhdh/overview[Red Hat Developer Hub] 
-and https://developers.redhat.com/products/openshift-dev-spaces/overview[Red Hat OpenShift Dev Spaces].
+== Overview
+
+Begin your development journey in the https://developers.redhat.com/rhdh/overview[Red Hat Developer Hub] portal:
+
+- Browse and select an appropriate software template for your automotive application
+- Provide necessary configuration parameters and initial setup information
+- Access the https://developers.redhat.com/products/openshift-dev-spaces/overview[Red Hat OpenShift Dev Spaces] environment
+
+The Red Hat Developer Hub portal automatically creates your project structure and provisions all supporting infrastructure through OpenShift GitOps.
 
 We will leverage *Red Hat Developer Hub* as our central developer portal, providing:
 

@@ -12,7 +12,7 @@ Begin your development journey in the Red Hat Developer Hub portal:
 - Browse and select an appropriate software template for your automotive application
 - Provide necessary configuration parameters and initial setup information
 
-The system automatically creates your project structure and provisions all supporting infrastructure through OpenShift GitOps.
+The platform automatically creates your project structure and provisions all supporting infrastructure through OpenShift GitOps.
 
 NOTE: This is covered in xref:activity-01.adoc[Activity 1].
 
