@@ -180,22 +180,23 @@ An example pytest script using Jumpstarter would look like this:
 [source,python]
 ----
 from jumpstarter_testing import JumpstarterTest
+from subprocess import run
 import pytest
 
 class TestRHIVOS(JumpstarterTest):
     @pytest.fixture(autouse=True, scope="session")
     def prepare(self, dut):
         dut.power.off()
-        dut.flasher.flash("simple.qcow2")
+        run(["./scripts/flash-prebuilt"])
         dut.power.on()
 
     def test_kernel_version(self, dut):
         with dut.shell() as shell:
-          assert shell.run("uname -r").stdout.strip().startswith("6.11.4")
+          assert shell.run("uname -r").stdout.strip().startswith("5.14.0")
 
-    def test_radio_client_installed(self, dut):
+    def test_python_version(self, dut):
         with dut.shell() as shell:
-          assert shell.run("which radio-client").stdout.strip() == "/usr/bin/radio-client"
+          assert shell.run("python --version").stdout.strip() == "Python 3.9.21"
 ----
 
 Let's explore the script line by line.
@@ -204,10 +205,11 @@ Let's explore the script line by line.
 [source,python]
 ----
 from jumpstarter_testing import JumpstarterTest
+from subprocess import run
 import pytest
 ----
 
-The first part are the import statements, saying that we would be using the `JumpstarterTest` helper from the `jumpstarter_testing` package, as well as the `pytest` package.
+The first part are the import statements, saying that we would be using the `JumpstarterTest` helper from the `jumpstarter_testing` package, `run` function from the `subprocess` package, as well as the `pytest` package.
 
 .setup
 [source,python]
@@ -216,7 +218,7 @@ class TestRHIVOS(JumpstarterTest):
     @pytest.fixture(autouse=True, scope="session")
     def prepare(self, dut):
         dut.power.off()
-        dut.flasher.flash("simple.qcow2")
+        run(["./scripts/flash-prebuilt"])
         dut.power.on()
 ----
 
@@ -229,18 +231,18 @@ TIP: In testing, a fixture provides a defined, reliable and consistent context f
 ----
     def test_kernel_version(self, dut):
         with dut.shell() as shell:
-          assert shell.run("uname -r").stdout.strip().startswith("6.11.4")
+          assert shell.run("uname -r").stdout.strip().startswith("5.14.0")
 
-    def test_radio_client_installed(self, dut):
+    def test_python_version(self, dut):
         with dut.shell() as shell:
-          assert shell.run("which radio-client").stdout.strip() == "/usr/bin/radio-client"
+          assert shell.run("python --version").stdout.strip() == "Python 3.9.21"
 ----
 
-And finally, the test cases, here we only have two test cases, one is `test_kernel_version`, which executes the `uname` command and checks if the kernel version matches our desired version of `6.11.4`, another is `test_radio_client_installed`, which checks if `radio-client` is properly installed in the image at our desired location.
+And finally, the test cases, here we only have two test cases, one is `test_kernel_version`, which executes the `uname` command and checks if the kernel version matches our desired version of `5.14.0`, another is `test_python_version`, which checks if `python` version matches our desired version of `3.9.21`.
 
 To lease another Exporter and execute our test cased on it, run:
 
-[source,bash]
+[,console]
 ----
-jmp shell --selector type=virtual -- pytest basic_test.py
+$ jmp shell --selector type=virtual -- pytest basic_test.py
 ----
