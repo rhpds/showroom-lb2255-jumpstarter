@@ -4,7 +4,7 @@ At the core of Jumpstarter is the *Exporter*, a program that exposes *hardware i
 
 Exporters use *Drivers* to abstract *hardware interfaces* into *software interfaces*, providing a unified abstraction for controlling your hardware. Drivers are written in *Python* to make use of the vast ecosystem of existing Python packages. While Jumpstarter comes with Drivers for many basic interfaces, custom Drivers can also be developed for specialized hardware/interfaces or to provide domain-specific abstractions for your use case.
 
-=== List Available Drivers
+== List Available Drivers
 To list the Drivers available in your Jumpstarter installation, run the following command:
 
 [,console]
@@ -17,7 +17,7 @@ $ jmp driver list
 Some driver packages provide mock drivers, usually with a `Mock` prefix. While mock drivers do not provide access to physical or virtual hardware, they are useful for testing or demonstration.
 ====
 
-=== Writing an Exporter Config
+== Writing an Exporter Config
 
 Exporters can be configured with a YAML config file. Jumpstarter uses a Kubernetes-style YAML syntax for writing configs.
 
