@@ -65,8 +65,7 @@ When done with testing, press `q` to quit the client.
 [#appmodify]
 == Modify the application 
 
-If you are confident with programing in C++, feel free to make some changes to the `radio-stations.cpp` source file. 
-You can add songs or stations, and repeat the build-test cycle.
+Next, we will modify the application to add a new radio station and several new songs, and repeat the build-test cycle.
 
 === Create a new branch
 
