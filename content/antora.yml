@@ -17,3 +17,5 @@ asciidoc:
     page-links:
     - url: https://redhat.com
       text: Red Hat
+    - url: https://jumpstarter.dev
+      text: Jumpstarter
