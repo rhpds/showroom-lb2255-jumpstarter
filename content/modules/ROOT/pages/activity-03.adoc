@@ -17,7 +17,7 @@ we should go to the gitlab interface and select the `develop` branch. Click on t
 
 We can get to the GitLab interface by clicking on the View source of our component in the Red Hat Developer Hub dashboard:
 
-{rhdh_url}/catalog/default/component/{username}-jumpstarter-lab[window=_blank]
+https://backstage-backstage.{openshift_cluster_ingress_domain}/catalog/default/component/{user}-jumpstarter-lab[window=_blank]
 
 once there, click on the *View source* link:
 
@@ -46,8 +46,8 @@ If we go to the CI tab in our component in backstage, or just the links in the G
 
 image::act3/05-pipeline-details-backstage.png[]
 
-{rhdh_url}/catalog/default/component/{username}-jumpstarter-lab[window=_blank]
 
+https://backstage-backstage.{openshift_cluster_ingress_domain}/catalog/default/component/{user}-jumpstarter-lab[window=_blank]
 
 '''
 
