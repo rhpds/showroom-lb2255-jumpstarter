@@ -4,7 +4,19 @@ Not only can Jumpstarter help automated hardware testing in CI pipelines, as you
 
 Jumpstarter manages remote access to exporters using **Leases** which provide a specific **Client** access to an **Exporter** for a specified period of time. When a lease is created, the **Jumpstarter Service** will attempt to find a matching Exporter using the specified label selectors. Once a lease is acquired, the Client can start a session within that lease to access the hardware remotely.
 
-Your Dev Space is already configured with credentials to access a Jumpstarter Service running in the same cluster with multiple Exporters available to lease. To list the available  Exporters, run:
+Your Dev Space is already configured with credentials to access a Jumpstarter Service running in the same cluster with multiple Exporters available to lease.
+
+'''
+
+image::app/new-terminal.png[]
+
+First let's create a terminal window by clicking the *+* button.
+
+image::app/new-terminal-created.png[]
+
+You should see a new terminal like this. The following commands should be executed in this newly created terminal.
+
+To list the available Exporters, run:
 
 [,console]
 ----
