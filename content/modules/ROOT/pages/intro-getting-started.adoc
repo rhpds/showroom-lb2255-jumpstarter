@@ -28,7 +28,7 @@ Username:
 
 [source,text,subs="+attributes"]
 ----
-{username}
+{user}
 ----
 
 Password:
@@ -104,7 +104,7 @@ Username:
 
 [source,text,subs="+attributes"]
 ----
-{username}
+{user}
 ----
 
 Password:
