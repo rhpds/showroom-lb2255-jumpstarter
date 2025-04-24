@@ -68,14 +68,15 @@ Looking in detail, this pipeline performs the following steps, some in parallel:
 - `s3-upload`: Uploads the built image to an *S3 bucket* for interactive, we will use this on the next.
 
 
+Once the pipeline is finished, we can see the results reported back to GitLab.
 
-'''
+image::act3/07-mr-ready.png[]
 
 == Release deployment pipeline
 
-After successful testing, create a "release" by merging the ⁠develop branch into the ⁠main branch. This triggers the deployment pipeline that:
+Once everything went well, we can merge the merge-request to main, this will trigger the *release* pipeline, which is defined in `.tekton/tasks/pr-build-release.yaml`.
 
-- Builds the production-ready RHIVOS image optimized for your specific hardware platform
+- Builds the production-ready RHIVOS image optimized for your specific hardware platform (see NOTEs below)
 - Uses Jumpstarter to flash the image directly to the physical hardware
 - Uses Jumpstarter to run the defined test cases on the physical hardware
 
@@ -83,6 +84,10 @@ NOTE: The release pipeline focuses on hardware testing rather than virtual testi
       this way you can validate the code on hardware before merging it to the main branch.
 
 NOTE: Due to the limited availability of physical hardware in this lab, we will only show this on screen, but the participant pipelines will still test on virtual hardware.
+
+Merging into main can be done by clicking on the *Merge* button in the merge request page:
+
+image::act3/08-merge-mr.png[]
 
 == Next
 
