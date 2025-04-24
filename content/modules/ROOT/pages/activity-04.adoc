@@ -184,18 +184,18 @@ from subprocess import run
 import pytest
 
 class TestRHIVOS(JumpstarterTest):
-    @pytest.fixture(autouse=True, scope="session")
-    def prepare(self, dut):
-        dut.power.off()
+    @pytest.fixture(autouse=True, scope="class")
+    def prepare(self, client):
+        client.power.off()
         run(["./scripts/flash-prebuilt"])
-        dut.power.on()
+        client.power.on()
 
-    def test_kernel_version(self, dut):
-        with dut.shell() as shell:
+    def test_kernel_version(self, client):
+        with client.qemu.shell() as shell:
           assert shell.run("uname -r").stdout.strip().startswith("5.14.0")
 
-    def test_python_version(self, dut):
-        with dut.shell() as shell:
+    def test_python_version(self, client):
+        with client.qemu.shell() as shell:
           assert shell.run("python --version").stdout.strip() == "Python 3.9.21"
 ----
 
@@ -215,26 +215,26 @@ The first part are the import statements, saying that we would be using the `Jum
 [source,python]
 ----
 class TestRHIVOS(JumpstarterTest):
-    @pytest.fixture(autouse=True, scope="session")
-    def prepare(self, dut):
-        dut.power.off()
+    @pytest.fixture(autouse=True, scope="class")
+    def prepare(self, client):
+        client.power.off()
         run(["./scripts/flash-prebuilt"])
-        dut.power.on()
+        client.power.on()
 ----
 
-The second part is how we set up the device under test for the remainder of the tests. So we base our test `TestRHIVOS` on the `JumpstarterTest` helper class, which provides the required logics for connecting to our Exporter. Then we have a `prepare` fixture that is auto used, which means it would be automatically executed before the test cases, and session scoped, which means it would only be executed once per test session, since we don't have to reflash our device under test in-between test cases.
+The second part is how we set up the device under test for the remainder of the tests. So we base our test `TestRHIVOS` on the `JumpstarterTest` helper class, which provides the required logics for connecting to our Exporter. Then we have a `prepare` fixture that is auto used, which means it would be automatically executed before the test cases, and class scoped, which means it would only be executed once per test class, since we don't have to reflash our device under test in-between test cases.
 
 TIP: In testing, a fixture provides a defined, reliable and consistent context for the tests. This could include environment (for example a database configured with known parameters) or content (such as a dataset), and in our case, a device with a given disk image flashed and booted up.
 
 .cases
 [source,python]
 ----
-    def test_kernel_version(self, dut):
-        with dut.shell() as shell:
+    def test_kernel_version(self, client):
+        with client.qemu.shell() as shell:
           assert shell.run("uname -r").stdout.strip().startswith("5.14.0")
 
-    def test_python_version(self, dut):
-        with dut.shell() as shell:
+    def test_python_version(self, client):
+        with client.qemu.shell() as shell:
           assert shell.run("python --version").stdout.strip() == "Python 3.9.21"
 ----
 
