@@ -182,6 +182,7 @@ An example pytest script using Jumpstarter would look like this:
 from jumpstarter_testing import JumpstarterTest
 from subprocess import run
 import pytest
+import time
 
 class TestRHIVOS(JumpstarterTest):
     @pytest.fixture(autouse=True, scope="class")
@@ -189,14 +190,15 @@ class TestRHIVOS(JumpstarterTest):
         client.power.off()
         run(["./scripts/flash-prebuilt"])
         client.power.on()
+        time.sleep(10)
 
     def test_kernel_version(self, client):
         with client.qemu.shell() as shell:
           assert shell.run("uname -r").stdout.strip().startswith("5.14.0")
 
-    def test_python_version(self, client):
+    def test_kernel_architecture(self, client):
         with client.qemu.shell() as shell:
-          assert shell.run("python --version").stdout.strip() == "Python 3.9.21"
+          assert shell.run("uname -m").stdout.strip() == "aarch64"
 ----
 
 Let's explore the script line by line.
@@ -207,9 +209,10 @@ Let's explore the script line by line.
 from jumpstarter_testing import JumpstarterTest
 from subprocess import run
 import pytest
+import time
 ----
 
-The first part are the import statements, saying that we would be using the `JumpstarterTest` helper from the `jumpstarter_testing` package, `run` function from the `subprocess` package, as well as the `pytest` package.
+The first part are the import statements, saying that we would be using the `JumpstarterTest` helper from the `jumpstarter_testing` package, `run` function from the `subprocess` package, as well as the `pytest` and `time` package.
 
 .setup
 [source,python]
@@ -220,6 +223,7 @@ class TestRHIVOS(JumpstarterTest):
         client.power.off()
         run(["./scripts/flash-prebuilt"])
         client.power.on()
+        time.sleep(10)
 ----
 
 The second part is how we set up the device under test for the remainder of the tests. So we base our test `TestRHIVOS` on the `JumpstarterTest` helper class, which provides the required logics for connecting to our Exporter. Then we have a `prepare` fixture that is auto used, which means it would be automatically executed before the test cases, and class scoped, which means it would only be executed once per test class, since we don't have to reflash our device under test in-between test cases.
@@ -233,12 +237,12 @@ TIP: In testing, a fixture provides a defined, reliable and consistent context f
         with client.qemu.shell() as shell:
           assert shell.run("uname -r").stdout.strip().startswith("5.14.0")
 
-    def test_python_version(self, client):
+    def test_kernel_architecture(self, client):
         with client.qemu.shell() as shell:
-          assert shell.run("python --version").stdout.strip() == "Python 3.9.21"
+          assert shell.run("uname -m").stdout.strip() == "aarch64"
 ----
 
-And finally, the test cases, here we only have two test cases, one is `test_kernel_version`, which executes the `uname` command and checks if the kernel version matches our desired version of `5.14.0`, another is `test_python_version`, which checks if `python` version matches our desired version of `3.9.21`.
+And finally, the test cases, here we only have two test cases, one is `test_kernel_version`, which executes the `uname` command and checks if the kernel version matches our desired version of `5.14.0`, another is `test_kernel_architecture`, which checks if the virtual device is indeed of arm architecture.
 
 To lease another Exporter and execute our test cased on it, run:
 
