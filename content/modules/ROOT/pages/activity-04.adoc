@@ -1,4 +1,4 @@
-= Working with Jumpstarter interactively
+= Working with Jumpstarter
 
 Not only can Jumpstarter help automated hardware testing in CI pipelines, as your project grows, Jumpstarter's remote access capabilities enable your team to share limited hardware devices across geographically distributed teams in a secure, controlled, and efficient manner.
 

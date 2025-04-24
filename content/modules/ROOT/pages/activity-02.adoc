@@ -1,6 +1,6 @@
 = Application Development
 
-== Introduction
+== Overview
 In this module we will learn how to develop, build, and test a simple automotive application using Red Hat OpenShift Dev Spaces.
 
 The source repo contains a set of applications that demonstrate how typical automotive applications use SOME/IP communicate, 
@@ -8,42 +8,32 @@ these apps work both natively and in a container. For the purpose of this lab, w
 This is a service that emulates a radio, regularly publishing information about the current track, station, and volume level. 
 This service accepts requests to turn on/off, change channel, and adjust the volume over SOME/IP.
 
+[#appbuild]
+== Build the application
 
-== Build the applications
-
-We can easily build, test, and publish our application using the cmake build system in our Dev Space.
+We can easily build, test, and publish our application using the cmake build system in our DevWorkspace.
 
 image::app/00-build.png[]
 
-Click *build* button at the bottom left of the window.
-
+Click the *build* button at the bottom left of the window.
 
 image::app/01-kit.png[]
 
 Choose to build with the GCC toolkit.
 
-.The build process
-****
-The demo application is built using the *cmake* build system. The build process involves creating a "build" directory, and calling cmake to generate the Makefile,
+NOTE: The demo application is built using the *cmake* build system. The build process involves creating a "build" directory, and calling cmake to generate the Makefile,
 then make will be called to compile the source code into multiple executable files. The cmake vscode plugin automatically detects the source code and
 performs those steps on your behalf, but you can also do it manually if you want to.
-****
 
 
-== Test the applications
+[#apptest]
+== Test the application
 
 image::app/02-build-finish.png[]
 
-After finishing building (the line *Build finished with exit code 0* shows up in the *OUTPUT*), click the triangular button at the bottom 
-left of the window to run our application.
-
-'''
+After finishing building, *click the triangular button* at the bottom left of the window to run the application. Choose to run *radio-service*.
 
 image::app/03-run.png[]
-
-Choose to run *radio-service*.
-
-'''
 
 When the radio service is running, you will see log lines like
 
@@ -52,125 +42,83 @@ When the radio service is running, you will see log lines like
 RADIO: Playing song "Upper Echelon" by Travi$ Scott feat. 2 Chainz & T.I. (on Radio Los Santos) 50% volume
 ----
 
-showing up in the terminal. Next, we can start the `radio-client` to interact the running `radio-service`. First, split the terminal by 
-clicking book like button on the right middle of the screen.
+showing up in the terminal. 
 
-'''
+Next, we can start the `radio-client` to interact with the running `radio-service`. First, split the terminal by clicking book like button on the right middle of the screen.
 
 image::app/05-split.png[]
 
-You will see the terminal being split into two halves, with the radio service running on the left, and bash shell on the right.
-
-'''
+You will see the terminal being split into two halves, with the `radio-service` running on the left, and a bash shell on the right.
 
 image::app/06-run-client.png[]
 
-Start *radio-client* by clicking the right half of the terminal, type `./radio-client` then press `Enter`.
-
-'''
+Start *radio-client* by clicking the right half of the terminal and type `./radio-client`, then press `Enter`.
 
 image::app/07-client-running.png[]
 
-In the radio client, press `+` or `-` to adjust the volume, `<SPACE>` to switch stations, and `<ESC>` to pause or resume the radio. 
+In the `radio-client`, press `+` or `-` to adjust the volume, `<SPACE>` to switch stations, and `<ESC>` to pause or resume the radio. 
 Notice the changes in the printed status messages in response to your requests.
 
 When done with testing, press `q` to quit the client.
 
 
+[#appmodify]
 == Modify the application 
 
 If you are confident with programing in C++, feel free to make some changes to the `radio-stations.cpp` source file. 
-You can add songs or stations, and repeat the build test cycle.
+You can add songs or stations, and repeat the build-test cycle.
 
-.Example modification
-[%collapsible]
-====
-image::app/08-src.png[]
-
-Click `src` in the file explorer to open the src folder.
-
-'''
-
-image::app/09-stations.png[]
-
-Click `radio-stations.cpp` to open the source file containing the radio stations and songs.
-
-'''
-
-image::app/10-songs-before.png[]
-
-At the top of the file, remove the two annotated lines.
-
-'''
-
-image::app/11-songs-after.png[]
-
-The remaining lines should look like this after editing.
-
-'''
-
-image::app/12-stations-before.png[]
-
-Scroll down to the bottom of the file, remote the two annotated lines.
-
-'''
-
-image::app/13-stations-after.png[]
-
-The remaining lines should look like this after editing.
-
-'''
-
-After finishing editing, click on the radio-service terminal and push `CTRL+C` to stop the execution, then
-click the triangular button at the bottom left of the window to rerun `radio-service`, and
-start `radio-client` again on the right half of the terminal. Try switching stations by pressing `<SPACE>`,
-and find the newly added *Red Hat Summit Radio* station.
-====
-
-
-== Publish Applications
-
-Now that we've finished developing and testing our code, we can publish it to our code repository.
+=== Create a new branch
 
 image::app/14-branch.png[]
 
 Bring up the branch selector by clicking the button saying `main` at the bottom left of the screen.
 
-'''
-
 image::app/15-branch-create.png[]
 
-In the input box, put `develop`, then click *Create new branch*.
-
-'''
+In the input box, enter `develop`, then click *Create new branch*.
 
 image::app/16-branch-created.png[]
 
 Make sure the button on the bottom left of the screen now says `develop`, the name of the newly created branch, 
 click the annotated button on the left to open the source control tab.
 
-'''
+=== Modify the code
 
-image::app/17-commit.png[]
+image::app/08-src.png[]
 
-In the input box, put `add new radio station` as the commit message, click *Commit*.
+Click `src` in the file explorer to open the src folder.
 
-'''
+image::app/09-stations.png[]
 
-image::app/18-push.png[]
+Click `radio-stations.cpp` to open the source file containing the radio stations and songs.
 
-Click the cloud like button to push the new changes to our code repository.
+image::app/10-songs-before.png[]
 
-'''
+At the top of the file, remove the two annotated lines.
 
-Once the changes are pushed to the code repository, a *Red Hat OpenShift Pipelines* task is triggered to automatically build the application and bundle it into a container.
+image::app/11-songs-after.png[]
 
-TIP: We're using a container as it's the best way to package an application and all of its dependencies into a single unit. 
-This makes it simple to distribute to physical or virtual  hardware for testing.
+The remaining lines should look like this after editing.
 
-To check the progress of the build, see {app_build_pipeline}
+image::app/12-stations-before.png[]
+
+Scroll down to the bottom of the file, remote the two annotated lines.
+
+image::app/13-stations-after.png[]
+
+The remaining lines should look like this after editing.
+
+After finishing editing, click on the radio-service terminal and push `CTRL+C` to stop the execution, then
+click the triangular button at the bottom left of the window to rerun `radio-service`, and
+start `radio-client` again on the right half of the terminal. 
+
+TIP: Try switching stations by pressing `<SPACE>`, and find the newly added *Red Hat Summit Radio* station.
 
 == Next
 
-In the next activity, we will build a *Red Hat In-Vehicle OS* image with our application embedded to prepare for end-to-end testing in both 
-virtualized and physical hardware environments with *Jumpstarter*.
+Now that we've completed the "local" development workflow, we'll explore some Jumpstarter capabilities including:
+
+- Interacting with Jumpstarter Exporters from the command line
+- Writing custom test cases for your specific application requirements
+- Flashing the application to a target device

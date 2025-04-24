@@ -9,8 +9,8 @@ asciidoc:
     lab_name: "Jumpstarter + Red Hat In-Vehicle OS Lab"
     rhdh_url: "https://backstage-backstage.apps.cluster-cn92g.cn92g.sandbox3928.opentlc.com"
     guid: my-guid
-    user: user6
-    password: pkbxsJmV
+    user: user1
+    password: 4swc4xtp
     app_build_pipeline: "https://example.com/app-build"
     os_build_pipeline: "https://example.com/os-build"
     release-version: master
