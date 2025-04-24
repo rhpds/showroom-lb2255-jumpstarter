@@ -25,6 +25,8 @@
 ** xref:activity-04.adoc#jmpexporterlease[Interact with an Exporter]
 ** xref:activity-04.adoc#jmptestingpytest[Testing with Pytest]
 
-* xref:activity-05.adoc[Additional Topics]
+* xref:additional.adoc[Additional Topics]
+** xref:additional-01.adoc#jmpconfig[Configuring Exporters]
+** xref:additional-01.adoc#jmplocal[Exporters for local access]
 
 * xref:cheatsheet.adoc[]

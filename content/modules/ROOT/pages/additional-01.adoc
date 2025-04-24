@@ -1,6 +1,5 @@
-= Additional Topics
-
-== Configuring Jumpstarter Exporter
+[#jmpconfig]
+= Configuring Jumpstarter Exporter
 
 At the core of Jumpstarter is the *Exporter*, a program that exposes *hardware interfaces* on your *Device Under Test (DUT)* to a local or remote *Client*. Exporter typically run on a "host" system directly connected to your hardware through various test harnesses (think USB to UART adapters or JTAG connectors).
 
@@ -81,6 +80,7 @@ Drivers classes are specified using the fully-qualified Python type in the `type
 
 To see what config options are available on each Driver, check https://docs.jumpstarter.dev/main/api-reference/drivers/index.html[Jumpstarter Driver API Reference]
 
+[#jmplocal]
 == Running Jumpstarter Exporter For Local Access
 
 In the last section, we've already configured our *Exporter* with various *Drivers*, we can now run it and interact with the *Drivers* with Jumpstarter *Client*. To start the exporter for local access, run the follow command:
