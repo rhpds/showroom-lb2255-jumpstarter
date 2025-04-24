@@ -3,7 +3,7 @@
 For your convenience, this page contains access information to all systems in your lab environment.
 
 == Lab Login
-Click link:{console_url}[here,window=_blank] to access your Lab Environment
+Click https://backstage-backstage.{openshift_cluster_ingress_domain}[here,window=_blank] to access your Lab Environment
 
 [.no-copy-label]
 .Username
@@ -23,5 +23,5 @@ Click link:{console_url}[here,window=_blank] to access your Lab Environment
 
 [source,sh,role=execute,subs=attributes+]
 ----
-https://backstage-backstage.apps.cluster-{guid}.{guid}.sandbox3928.opentlc.com
+https://backstage-backstage.{openshift_cluster_ingress_domain}
 ----
