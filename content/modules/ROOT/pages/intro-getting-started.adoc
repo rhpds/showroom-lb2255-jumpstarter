@@ -16,7 +16,7 @@ First, let's ensure we are logged into the *Red Hat Developer Hub*.
 
 You can access the login page using this link: 
 
-{rhdh_url}
+https://backstage-backstage.{openshift_cluster_ingress_domain}
 
 image::setup/00-sign-in-backstage.png[]
 

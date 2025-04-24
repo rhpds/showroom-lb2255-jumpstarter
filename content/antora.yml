@@ -7,7 +7,6 @@ nav:
 asciidoc:
   attributes:
     lab_name: "Jumpstarter + Red Hat In-Vehicle OS Lab"
-    rhdh_url: "https://backstage-backstage.apps.cluster-cn92g.cn92g.sandbox3928.opentlc.com"
     guid: my-guid
     user: user1
     password: 4swc4xtp
