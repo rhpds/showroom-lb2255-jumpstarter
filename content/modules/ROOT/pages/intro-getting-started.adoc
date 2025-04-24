@@ -1,32 +1,20 @@
-= Project creation
+= Getting Started
 
 == Overview
+Start your project in the Red Hat Developer Hub portal:
 
-Begin your development journey in the https://developers.redhat.com/rhdh/overview[Red Hat Developer Hub] portal:
+- Browse through the template catalog and select one tailored for automotive software development
+- Fill in your project's configuration details and initial parameters
+- Launch your ready-to-code environment in Red Hat OpenShift Dev Spaces
 
-- Browse and select an appropriate software template for your automotive application
-- Provide necessary configuration parameters and initial setup information
-- Access the https://developers.redhat.com/products/openshift-dev-spaces/overview[Red Hat OpenShift Dev Spaces] environment
+Behind the scenes, Red Hat Developer Hub automatically structures your project and provisions all supporting infrastructure through OpenShift GitOps - letting you focus on coding, not setup.
 
-The Red Hat Developer Hub portal automatically creates your project structure and provisions all supporting infrastructure through OpenShift GitOps.
-
-We will leverage *Red Hat Developer Hub* as our central developer portal, providing:
-
-- *Template-driven* project creation for instant productivity
-- Curated software catalogs and component libraries
-- Centralized documentation and development resources
-- Automated CI/CD pipeline configuration
-
-Our development will take place within *Red Hat OpenShift Dev Spaces*, offering:
-
-- Consistent, cloud-based development environments
-- Pre-configured workspace templates tailored to automotive development
-- Browser-based IDE with full development capabilities
-- Seamless integration with Red Hat OpenShift container platform
-
+[#devhub]
 == Access Red Hat Developer Hub
 
-First, let's ensure we are logged into the *Red Hat Developer Hub*. You can access the login page using this link: 
+First, let's ensure we are logged into the *Red Hat Developer Hub*.
+
+You can access the login page using this link: 
 
 {rhdh_url}
 
@@ -56,10 +44,12 @@ image::setup/02-access-gitlab.png[]
 
 WARNING: Authorize Keycloak to access GitLab
 
+Once authenticated, you'll have full access to the Red Hat Developer Hub portal where you can browse templates, create projects, and access your development environments.
+The portal serves as your central starting point for all automotive software development activities, providing access to templates, documentation, and your OpenShift Dev Spaces workspaces.
 
+
+[#project]
 == Project creation
-
-Once you are logged in, you will be redirected to the Red Hat Developer Hub dashboard. 
 
 Next, we will create a pre-configured development environment using the Jumpstarter template provided for this lab.
 
@@ -67,9 +57,11 @@ image::setup/03-backstage-dashboard.png[]
 
 WARNING: Click the *Create* button on the side bar
 
+=== Select a template
+
 image::setup/04-backstage-create.png[]
 
-WARNING: Choose to use the *LB2255 - Jumpstarter* template
+WARNING: Use the *LB2255 - Jumpstarter* template
 
 image::setup/05-backstage-create-info.png[]
 
@@ -79,17 +71,20 @@ image::setup/06-backstage-create-review.png[]
 
 TIP: On the *Review* page, click *Create*
 
-image::setup/07-backstage-create-finish.png[]
-
 The source code repo and development environment will be created in a few seconds, and you will be greeted with the completion page.
+
+image::setup/07-backstage-create-finish.png[]
 
 TIP: Click *Open Component in catalog* to see what's inside the environment
 
+=== Component catalog
+
 image::setup/08-backstage-component.png[]
 
-TIP: On the *jumpstarter-lab* service dashboard, click *DevSpace jumpstarter-lab* to launch the Red Hat OpenShift Dev Space created in the previous step.
+TIP: On the *jumpstarter-lab* dashboard, click *DevSpace jumpstarter-lab* to launch the Red Hat OpenShift Dev Space instance.
 
 
+[#devspaces]
 == Access Red Hat OpenShift Dev Spaces
 
 As we did when accessing the Red Hat Developer Hub, we will need to log in to the Red Hat OpenShift Dev Spaces 
@@ -97,11 +92,11 @@ and authorize the application to access Red Hat OpenShift.
 
 image::setup/09-log-in-devspace.png[]
 
-WARNING: Choose to *Log in with OpenShift*
+WARNING: Choose *Log in with OpenShift*
 
 image::setup/10-login-devspace-rhsso.png[]
 
-WARNING: On the *OpenShift* login page, choose to login with *rhsso*.
+WARNING: On the OpenShift login page, choose to login with *rhsso*.
 
 You’ll be prompted to log in with your credentials:
 
@@ -138,17 +133,18 @@ image::setup/15-devspace-starting.png[]
 NOTE: The creation of the *DevWorkspace* instance can take a few minutes, please be patient !
 
 
+[#workspace]
 == Prepare the workspace
 
 Once the Dev Workspace is created, you will be redirected to a *VS Code like* development environment.
 
 image::setup/16-devspace-extensions.png[]
 
-WARNING: When prompted *"Do you trust the authors of the files in this workspace?"*, click *Trust Workspace & Install*
+WARNING: When prompted "Do you trust the authors of the files in this workspace?", click *Trust Workspace & Install*
 
 image::setup/17-devspace-trust.png[]
 
-WARNING: When prompted *"Do you trust the authors of the files in this workspace?"*, click *Yes, I trust the authors*
+WARNING: When prompted "Do you trust the authors of the files in this workspace?", click *Yes, I trust the authors*
 
 image::setup/18-devspace-reload.png[]
 
@@ -156,6 +152,7 @@ TIP: On the bottom right of the screen is a popup asking to reload Visual Studio
 
 Now you should see a familiar *VS Code* development environment in your browser. 
 Take a moment to explore the created development environment, it should contain everything you need to complete this lab.
+
 
 == Next
 

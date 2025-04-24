@@ -9,15 +9,13 @@
 ** xref:intro-jmp.adoc#jmp_development[Development environment]
 ** xref:intro-jmp.adoc#jmp_operation_mode[Operation modes]
 
-* xref:intro-wf.adoc[Getting started]
-** xref:intro-wf.adoc#project_creation[Project creation]
-** xref:intro-wf.adoc#application_development[Development]
-** xref:intro-wf.adoc#application_testing[Testing]
-** xref:intro-wf.adoc#application_validation[Validation]
+* xref:intro-getting-started.adoc[Getting started]
+** xref:intro-getting-started.adoc#devhub[Access Developer Hub]
+** xref:intro-getting-started.adoc#project[Project creation]
+** xref:intro-getting-started.adoc#devspaces[Access the workspace]
+** xref:intro-getting-started.adoc#workspace[Get ready for development]
 
-* xref:activity-01.adoc[Activity 1: Project creation]
-
-* xref:activity-02.adoc[Activity 2: Application Development]
+* xref:activity-02.adoc[Application Development]
 
 * xref:activity-03.adoc[Activity 3: Testing and Validation] 
 
