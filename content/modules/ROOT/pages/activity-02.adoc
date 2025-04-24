@@ -67,21 +67,6 @@ When done with testing, press `q` to quit the client.
 
 Next, we will modify the application to add a new radio station and several new songs, and repeat the build-test cycle.
 
-=== Create a new branch
-
-image::app/14-branch.png[]
-
-Bring up the branch selector by clicking the button saying `main` at the bottom left of the screen.
-
-image::app/15-branch-create.png[]
-
-In the input box, enter `develop`, then click *Create new branch*.
-
-image::app/16-branch-created.png[]
-
-Make sure the button on the bottom left of the screen now says `develop`, the name of the newly created branch, 
-click the annotated button on the left to open the source control tab.
-
 === Modify the code
 
 image::app/08-src.png[]
@@ -107,6 +92,8 @@ Scroll down to the bottom of the file, remote the two annotated lines.
 image::app/13-stations-after.png[]
 
 The remaining lines should look like this after editing.
+
+=== Test Modified Code
 
 After finishing editing, click on the radio-service terminal and push `CTRL+C` to stop the execution, then
 click the triangular button at the bottom left of the window to rerun `radio-service`, and
