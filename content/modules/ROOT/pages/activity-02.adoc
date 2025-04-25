@@ -15,11 +15,11 @@ We can easily build, test, and publish our application using the cmake build sys
 
 image::app/00-build.png[]
 
-Click the *build* button at the bottom left of the window.
+WARNING: Click the *build* button at the bottom left of the window.
 
 image::app/01-kit.png[]
 
-Choose to build with the GCC toolkit.
+WARNING: Choose to build with the GCC toolkit.
 
 NOTE: The demo application is built using the *cmake* build system. The build process involves creating a "build" directory, and calling cmake to generate the Makefile,
 then make will be called to compile the source code into multiple executable files. The cmake vscode plugin automatically detects the source code and
@@ -31,10 +31,12 @@ performs those steps on your behalf, but you can also do it manually if you want
 
 image::app/02-build-finish.png[]
 
-After finishing building, *click the triangular button* at the bottom left of the window to run the application. Choose to run *radio-service*.
+WARNING: After finishing building, *click the triangular button* at the bottom left of the window to run the application. Choose to run *radio-service*.
 
 image::app/03-run.png[]
 
+[TIP]
+====
 When the radio service is running, you will see log lines like
 
 [source,sh]
@@ -43,27 +45,26 @@ RADIO: Playing song "Upper Echelon" by Travi$ Scott feat. 2 Chainz & T.I. (on Ra
 ----
 
 showing up in the terminal. 
-
-'''
+====
 
 Next, we can start the `radio-client` to interact with the running `radio-service`. 
 
-First, split the terminal by clicking book like button on the right middle of the screen.
+WARNING: First, split the terminal by clicking book like button on the right middle of the screen.
 
 image::app/05-split.png[]
 
-You will see the terminal being split into two halves, with the `radio-service` running on the left, and a bash shell on the right.
+NOTE: You will see the terminal being split into two halves, with the `radio-service` running on the left, and a bash shell on the right.
 
 image::app/06-run-client.png[]
 
-Start *radio-client* by clicking the right half of the terminal and type `./radio-client`, then press `Enter`.
+WARNING: Start *radio-client* by clicking the right half of the terminal and type `./radio-client`, then press `Enter`.
 
 image::app/07-client-running.png[]
 
-NOTE: In the `radio-client`, press `+` or `-` to adjust the volume, `<SPACE>` to switch stations, and `<ESC>` to pause or resume the radio. 
+TIP: In the `radio-client`, press `+` or `-` to adjust the volume, `<SPACE>` to switch stations, and `<ESC>` to pause or resume the radio. 
 Notice the changes in the printed status messages in response to your requests.
 
-TIP: When done with testing, press `q` to quit the client.
+WARNING: When done with testing, press `q` to quit the client.
 
 
 [#appmodify]
@@ -75,33 +76,36 @@ Next, we will modify the application to add a new radio station and several new 
 
 image::app/08-src.png[]
 
-Click `src` in the file explorer to open the src folder.
+WARNING: Click `src` in the file explorer to open the src folder.
 
 image::app/09-stations.png[]
 
-Click `radio-stations.cpp` to open the source file containing the radio stations and songs.
+WARNING: Click `radio-stations.cpp` to open the source file containing the radio stations and songs.
 
 image::app/10-songs-before.png[]
 
-At the top of the file, remove the two annotated lines.
+WARNING: At the top of the file, remove the two annotated lines.
 
 image::app/11-songs-after.png[]
 
-The remaining lines should look like this after editing.
+TIP: The remaining lines should look like this after editing.
 
 image::app/12-stations-before.png[]
 
-Scroll down to the bottom of the file, remote the two annotated lines.
+WARNING: Scroll down to the bottom of the file, remove the two annotated lines.
 
 image::app/13-stations-after.png[]
 
-The remaining lines should look like this after editing.
+TIP: The remaining lines should look like this after editing.
 
 === Test modified code
 
+[WARNING]
+====
 After finishing editing, click on the radio-service terminal and push `CTRL+C` to stop the execution, then
 click the triangular button at the bottom left of the window to rerun `radio-service`, and
 start `radio-client` again on the right half of the terminal. 
+====
 
 TIP: Try switching stations by pressing `<SPACE>`, and find the newly added *Red Hat Summit Radio* station.
 
