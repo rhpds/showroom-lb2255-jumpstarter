@@ -37,7 +37,7 @@ image::app/03-run.png[]
 
 When the radio service is running, you will see log lines like
 
-[,console]
+[source,sh]
 ----
 RADIO: Playing song "Upper Echelon" by Travi$ Scott feat. 2 Chainz & T.I. (on Radio Los Santos) 50% volume
 ----

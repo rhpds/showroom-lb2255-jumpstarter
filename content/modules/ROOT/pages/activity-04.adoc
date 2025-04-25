@@ -18,9 +18,9 @@ image::app/new-terminal-created.png[]
 
 To list the available Exporters, run:
 
-[source,sh,role=execute,subs=attributes+]
+[source,sh,role=execute]
 ----
-$ jmp get exporters
+jmp get exporters
 ----
 
 Each Exporter has a set of labels, these labels can be used to select the a specific group of exporters when requesting a lease. For example, you could specify a label for the architecture and then select the correct device with an `arch=aarch64`.
@@ -30,9 +30,9 @@ Each Exporter has a set of labels, these labels can be used to select the a spec
 
 To lease an Exporter with the Jumpstarter CLI, run:
 
-[source,sh,role=execute,subs=attributes+]
+[source,sh,role=execute]
 ----
-$ jmp shell --selector type=virtual
+jmp shell --selector type=virtual
 ----
 
 NOTE: This `jmp shell` command uses the default client config file located at `~/.config/jumpstarter/clients/lab.yaml`. The default client will then use the `--selector` parameter to find an exporter that matches the label `type=virtual`.
@@ -43,14 +43,14 @@ When you lease an Exporter, you get exclusive access to the hardware interfaces 
 
 To see the list of hardware interfaces exposed on the Exporter we've leased, run the `j` command without parameters:
 
-[,console]
+[source,sh,role=execute]
 ----
-jumpstarter ⚡remote ➤ j
+j
 ----
 
 You should see an output like this:
 
-[source,text]
+[source,sh]
 ----
 Usage: j [OPTIONS] COMMAND [ARGS]...
 
@@ -94,30 +94,30 @@ export:
 
 Before booting our virtual device, we need to flash it with an operating system image.
 
-[source,sh,role=execute,subs=attributes+]
+[source,sh,role=execute]
 ----
-jumpstarter ⚡remote ➤ ./scripts/flash-prebuilt
+./scripts/flash-prebuilt
 ----
 
 NOTE: the `./scripts/flash-prebuilt` script flashes a prebuilt RHIVOS image to the virtual device. We will build a custom image in a later exercise.
 
 After flashing, to boot the device and view the boot messages via the serial console, run:
 
-[,console]
+[source,sh,role=execute]
 ----
-jumpstarter ⚡remote ➤ j power on && j console start-console
+j power on && j console start-console
 ----
 
 You should be dropped into a serial console with the boot messages showing up. Once the image has finished booting, you will be presented with a login prompt (`localhost login:`). You can login with the following credentials:
 
 .Username
-[source,sh,role=execute,subs=attributes+]
+[source,sh,role=execute]
 ----
 root
 ----
 
 .Password
-[source,sh,role=execute,subs=attributes+]
+[source,sh,role=execute]
 ----
 password
 ----
@@ -126,9 +126,9 @@ TIP: Notice that your shell prompt have been changed to `[root@localhost ~]#`, t
 
 After logging into the system, you can check the system architecture using `uname`:
 
-[source,sh,role=execute,subs=attributes+]
+[source,sh,role=execute]
 ----
-$ uname -m
+uname -m
 ----
 
 It should print `aarch64` meaning that this is a arm based virtual device.
@@ -143,22 +143,22 @@ Sometimes your tests cannot be executed directly on the target device or the Exp
 
 To forward a remote service port such as the `ssh` to a local port, run the following command from within your remote Jumpstarter shell session:
 
-[source,sh,role=execute,subs=attributes+]
+[source,sh,role=execute]
 ----
-$ j qemu ssh forward-tcp 9000 &
+j qemu ssh forward-tcp 9000 &
 ----
 
 This command will forward the remote `ssh` port (port 22) preconfigured in the exporter config to `localhost:9000` on your local machine. Once port forwarding is started, you can run `ssh` client from your local environment and execute commands on the virtual device remotely, e.g. listing all the files under the root directory:
 
-[source,sh,role=execute,subs=attributes+]
+[source,sh,role=execute]
 ----
-$ ssh -p 9000 -o StrictHostKeyChecking=no root@localhost ls /
+ssh -p 9000 -o StrictHostKeyChecking=no root@localhost ls /
 ----
 
 When prompted for password, enter:
 
 .Password
-[source,sh,role=execute,subs=attributes+]
+[source,sh,role=execute]
 ----
 password
 ----
@@ -177,7 +177,7 @@ TIP: You can use any testing framework with Jumpstarter, not only pytest. But we
 An example pytest script using Jumpstarter would look like this:
 
 .basic_test.py
-[source,python]
+[source,python,role=copypaste]
 ----
 from jumpstarter_testing import JumpstarterTest
 from subprocess import run
@@ -246,9 +246,9 @@ And finally, the test cases, here we only have two test cases, one is `test_kern
 
 To lease another Exporter and execute our test cased on it, run:
 
-[source,sh,role=execute,subs=attributes+]
+[source,sh,role=execute]
 ----
-$ jmp shell --selector type=virtual -- pytest basic_test.py
+jmp shell --selector type=virtual -- pytest basic_test.py
 ----
 
 == Next

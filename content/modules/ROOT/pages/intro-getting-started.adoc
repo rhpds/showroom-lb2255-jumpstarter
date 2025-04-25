@@ -40,16 +40,14 @@ WARNING: Choose the option to *Sign in with GitLab*.
 
 You’ll be prompted to log in with your credentials:
 
-Username:
-
-[source,text,subs="+attributes"]
+.Username
+[source,sh,role=copypaste,subs="+attributes"]
 ----
 {user}
 ----
 
-Password:
-
-[source,text,subs="+attributes"]
+.Password
+[source,sh,role=copypaste,subs="+attributes"]
 ----
 {password}
 ----
@@ -116,16 +114,14 @@ WARNING: On the OpenShift login page, choose to login with *rhsso*.
 
 You’ll be prompted to log in with your credentials:
 
-Username:
-
-[source,text,subs="+attributes"]
+.Username
+[source,sh,role=copypaste,subs="+attributes"]
 ----
 {user}
 ----
 
-Password:
-
-[source,text,subs="+attributes"]
+.Password
+[source,sh,role=copypaste,subs="+attributes"]
 ----
 {password}
 ----

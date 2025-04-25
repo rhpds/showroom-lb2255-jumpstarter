@@ -7,9 +7,9 @@ Exporters use *Drivers* to abstract *hardware interfaces* into *software interfa
 == List Available Drivers
 To list the Drivers available in your Jumpstarter installation, run the following command:
 
-[,console]
+[source,sh,role=execute]
 ----
-$ jmp driver list
+jmp driver list
 ----
 
 [TIP]
@@ -84,16 +84,16 @@ To see what config options are available on each Driver, check https://docs.jump
 
 In the last section, we've already configured our *Exporter* with various *Drivers*, we can now run it and interact with the *Drivers* with Jumpstarter *Client*. To start the exporter for local access, run the follow command:
 
-[,console]
+[source,sh,role=execute]
 ----
-$ jmp shell --exporter-config ./demo-exporter.yaml
+jmp shell --exporter-config ./demo-exporter.yaml
 ----
 
 TIP: Notice that your shell prompt have been changed to `jumpstarter ⚡local ➤`, this is to remind you that you are inside a local Jumpstarter shell session.
 
 Inside a Jumpstarter shell session, the environment variable `$JUMPSTARTER_HOST` is set, pointing to a unix domain socket which the Exporter is listening on. Jumpstarter *Client* would read this environment variable, connect to the *Exporter*, and send requests to control the hardware interfaces, e.g. turning the power switch on.
 
-[,console]
+[source,sh,role=execute]
 ----
 echo $JUMPSTARTER_HOST
 ----
@@ -104,14 +104,14 @@ The most straightforward way to interact with Jumpstarter Exporters is to use th
 
 Run the `j` command without any arguments to see its usage:
 
-[,console]
+[source,sh,role=execute]
 ----
-$ j
+j
 ----
 
 With the exporter config defined in `exporter-demo.yaml`, we should see an output like this:
 
-[source,text]
+[source,sh]
 ----
 Usage: j [OPTIONS] COMMAND [ARGS]...
 
@@ -130,14 +130,14 @@ TIP: The name of the subcommands matches the name we gave to the Drivers in the 
 
 Run `j power` command to see its usage:
 
-[,console]
+[source,sh,role=execute]
 ----
-$ j power
+j power
 ----
 
 With the `MockPower` Driver, we should see an output like this:
 
-[source,text]
+[source,sh]
 ----
 Usage: j power [OPTIONS] COMMAND [ARGS]...
 
@@ -156,10 +156,10 @@ This means the `MockPower` Driver provides three methods, power on, power off, o
 
 Try turning the power of the device under test on and off
 
-[,console]
+[source,sh,role=execute]
 ----
-$ j power on
-$ j power off
+j power on
+j power off
 ----
 
 TIP: Nothing actually happens because we are using a mock power driver, but have we configured it with a real power driver, e.g. a USB power relay, you would see the device under test being turned on and off.
@@ -171,7 +171,7 @@ Another way to interact with Jumpstarter Exporters is to use the Jumpstarter Pyt
 To use the Python API, let's write a simple Python script:
 
 .power-control.py
-[source,python]
+[source,python,role=copypatste]
 ----
 from jumpstarter.common.utils import env
 
@@ -182,7 +182,7 @@ with env() as dut:
 
 The `env` helper method reads the `$JUMPSTARTER_HOST` environment variable, connects to the Exporters, asks the Exporter for a list of all the configured Drivers, and then constructs a magic object mirroring the tree of Drivers. And then you can call the methods on the magic object to control the hardware interfaces, just as what we've done with the `j` command. To see what methods are available in the Python API of each Driver, check https://docs.jumpstarter.dev/main/api-reference/drivers/index.html[Jumpstarter Driver API Reference]
 
-[,console]
+[source,sh,role=execute]
 ----
-$ python power-control.py
+python power-control.py
 ----
