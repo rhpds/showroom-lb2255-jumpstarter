@@ -80,6 +80,32 @@ Drivers classes are specified using the fully-qualified Python type in the `type
 To see what config options are available on each Driver, check https://docs.jumpstarter.dev/main/api-reference/drivers/index.html[Jumpstarter Driver API Reference]
 
 
+WARNING: create a new file `demo-exporter-yaml` in the root directory of the project, with the following content.
+
+.demo-exporter.yaml
+[source,yaml,role=copypaste]
+----
+apiVersion: jumpstarter.dev/v1alpha1
+kind: ExporterConfig
+metadata:
+  namespace: default
+  name: demo
+endpoint: ""
+token: ""
+export:
+  power:
+    # provides power management: power on/off/cycle
+    type: jumpstarter_driver_power.driver.MockPower
+  console:
+    # provides serial console access
+    type: jumpstarter_driver_pyserial.driver.PySerial
+    config:
+      url: "loop://"
+  flasher:
+    # provides storage access: like flashing a disk image into a sdcard
+    type: jumpstarter_driver_opendal.driver.MockFlasher
+----
+
 == Running Jumpstarter Exporter For Local Access
 
 In the last section, we've already configured our *Exporter* with various *Drivers*, we can now run it and interact with the *Drivers* with Jumpstarter *Client*. To start the exporter for local access, run the follow command:
