@@ -1,7 +1,7 @@
 ---
 site:
   title: |
-    LB2255 - Jumpstarter: An open source framework for hardware-in-the-loop testing in modern DevSecOps pipelines
+    LB2255: Jumpstarter + Red Hat In-Vehicle OS Lab
   url: https://redhat-scholars.github.io/course-template
   start_page: modules::index.adoc
 

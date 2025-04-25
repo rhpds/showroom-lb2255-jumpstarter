@@ -1,5 +1,6 @@
 = Red Hat Automotive Development Platform
 
+== Overview
 https://developers.redhat.com/rhdh/overview[Red Hat Developer Hub] sits at the core of the Red Hat Automotive Development Platform (RHADP), 
 creating an integrated ecosystem for software-defined vehicle development. Think of it as your central command center where you and your team can:
 
@@ -51,9 +52,9 @@ giving you confidence that your code will perform as expected in real vehicles.
 
 Key Components:
 
-- OpenShift Pipelines and OpenShift GitOps for continuous integration and deployment
+- https://docs.redhat.com/en/documentation/openshift_container_platform/4.18/html/pipelines/index[OpenShift Pipelines] and https://docs.redhat.com/en/documentation/openshift_container_platform/4.18/html/gitops/index[OpenShift GitOps] for continuous integration and deployment
 - https://pipelinesascode.com/[Pipelines as Code] for defining your CI/CD workflows as code
-- OpenShift Dev Spaces for consistent, cloud-based development environments
+- https://docs.redhat.com/en/documentation/red_hat_openshift_dev_spaces/3.20[OpenShift Dev Spaces] for consistent, cloud-based development environments
 - https://jumpstarter.dev/[Jumpstarter] for automated testing across virtual and physical hardware
 
 [#hiltesting]

@@ -1,5 +1,6 @@
 = Jumpstarter
 
+== Overview
 Automated testing with physical hardware (Hardware-in-the-Loop or HiL) and virtual devices has been established for years in industries such as 
 automotive and manufacturing. However, these tools are often expensive and inaccessible to hobbyists and open source projects.
 
@@ -106,4 +107,5 @@ The distributed mode is ideal when:
 
 == Next
 
-Now let's have a look at a typical workflow for developing and testing automotive software
+Since we now have a basic understanding of the Red Had Automotive Development Platform 
+and how Jumpstarter works, let's dive into the lab activities!

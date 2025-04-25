@@ -1,13 +1,27 @@
 = Getting Started
 
 == Overview
-Start your project in the Red Hat Developer Hub portal:
+Start your development workflow in the Red Hat Developer Hub portal:
 
 - Browse through the template catalog and select one tailored for automotive software development
 - Fill in your project's configuration details and initial parameters
 - Launch your ready-to-code environment in Red Hat OpenShift Dev Spaces
 
-Behind the scenes, Red Hat Developer Hub automatically structures your project and provisions all supporting infrastructure through OpenShift GitOps - letting you focus on coding, not setup.
+Behind the scenes, Red Hat Developer Hub automatically structures your project and provides all the supporting infrastructure 
+through OpenShift GitOps - so you can focus on coding, not setup.
+
+
+== Conventions used in this lab
+
+Some of the activities in this lab require you to perform certain actions in the various user interfaces or to type commands in a terminal window.
+To highlight the different activities and their importance, we use the following conventions:
+
+WARNING: This is a step that is critical for the success of this lab.
+
+NOTE: This is information that you should know, but it is not critical for the success of this lab.
+
+TIP: This is a tip that will help you complete the lab.
+
 
 [#devhub]
 == Access Red Hat Developer Hub
@@ -17,6 +31,8 @@ First, let's ensure we are logged into the *Red Hat Developer Hub*.
 You can access the login page using this link:
 
 https://backstage-backstage.{openshift_cluster_ingress_domain}[window=_blank]
+
+TIP: All login information is available via the side bar item, "Cheatsheet"
 
 image::setup/00-sign-in-backstage.png[]
 
@@ -65,23 +81,23 @@ WARNING: Use the *LB2255 - Jumpstarter* template
 
 image::setup/05-backstage-create-info.png[]
 
-TIP: When asked to *Provide Project Information*, leave the default values and click *Review*
+WARNING: When asked to provide project information, leave the default values and click *Review*
 
 image::setup/06-backstage-create-review.png[]
 
-TIP: On the *Review* page, click *Create*
+WARNING: On the Review page, click *Create*
 
 The source code repo and development environment will be created in a few seconds, and you will be greeted with the completion page.
 
 image::setup/07-backstage-create-finish.png[]
 
-TIP: Click *Open Component in catalog* to see what's inside the environment
+WARNING: Click *Open Component in catalog* to access your new development environment
 
 === Component catalog
 
 image::setup/08-backstage-component.png[]
 
-TIP: On the *jumpstarter-lab* dashboard, click *DevSpace jumpstarter-lab* to launch the Red Hat OpenShift Dev Space instance.
+WARNING: On the dashboard, click *DevSpace jumpstarter-lab* to launch the Red Hat OpenShift Dev Space instance.
 
 
 [#devspaces]
@@ -148,7 +164,7 @@ WARNING: If prompted "Do you trust the authors of the files in this workspace?",
 
 image::setup/18-devspace-popup.png[]
 
-TIP: On the bottom right of the screen you may see some popup notifications, you can safely ignore them.
+TIP: On the bottom right of the screen you may see some popup notifications, you can safely dismiss them.
 
 Now you should see a familiar *VS Code* development environment in your browser. 
 Take a moment to explore the created development environment, it should contain everything you need to complete this lab.
