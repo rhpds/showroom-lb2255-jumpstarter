@@ -6,6 +6,7 @@ nav:
 
 asciidoc:
   attributes:
+    openshift_cluster_ingress_domain: apps.cluster-p9c6m.p9c6m.sandbox5028.opentlc.com
     lab_name: "Jumpstarter + Red Hat In-Vehicle OS Lab"
     release-version: master
     page-pagination: true
