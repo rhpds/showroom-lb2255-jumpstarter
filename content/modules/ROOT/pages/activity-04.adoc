@@ -163,8 +163,6 @@ When prompted for password, enter:
 password
 ----
 
-To stop the port forwarding, simply exit the shell with `Ctrl+D`.
-
 Now we are finished with manual testing, exit the Jumpstarter shell session by pressing `Ctrl+D` again.
 
 [#jmptestingpytest]
