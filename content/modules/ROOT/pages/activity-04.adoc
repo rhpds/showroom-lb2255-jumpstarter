@@ -43,6 +43,11 @@ When you lease an Exporter, you get exclusive access to the hardware interfaces 
 
 To see the list of hardware interfaces exposed on the Exporter we've leased, run the `j` command without parameters:
 
+[source,sh]
+----
+jumpstarter ⚡remote ➤ j
+----
+
 [source,sh,role=execute]
 ----
 j
@@ -111,13 +116,15 @@ j power on && j console start-console
 You should be dropped into a serial console with the boot messages showing up. Once the image has finished booting, you will be presented with a login prompt (`localhost login:`). You can login with the following credentials:
 
 .Username
-[source,sh,role=execute]
+[.no-copy-label]
+[source,text,role=execute,subs=attributes+]
 ----
 root
 ----
 
 .Password
-[source,sh,role=execute]
+[.no-copy-label]
+[source,text,role=execute,subs=attributes+]
 ----
 password
 ----
@@ -133,7 +140,7 @@ uname -m
 
 It should print `aarch64` meaning that this is a arm based virtual device.
 
-Then quit the serial console by pressing `Ctrl+B` three times.
+Then quit the serial console by *pressing `Ctrl+B` three times*.
 
 TIP: Your shell prompt should be restored to `jumpstarter ⚡remote ➤`, this is to remind you that you are back inside a remote Jumpstarter shell session, not the serial console of the virtual device.
 
@@ -152,18 +159,19 @@ This command will forward the remote `ssh` port (port 22) preconfigured in the e
 
 [source,sh,role=execute]
 ----
-ssh -p 9000 -o StrictHostKeyChecking=no root@localhost ls /
+ssh -p 9000 -o StrictHostKeyChecking=no  \
+            -o UserKnownHostsFile=/dev/null \
+            root@localhost cat /proc/cpuinfo
 ----
 
 When prompted for password, enter:
 
 .Password
-[source,sh,role=execute]
+[.no-copy-label]
+[source,text,role=execute,subs=attributes+]
 ----
 password
 ----
-
-Now we are finished with manual testing, exit the Jumpstarter shell session by pressing `Ctrl+D` again.
 
 [#jmptestingpytest]
 == Testing on remote exporter with Pytest
@@ -174,30 +182,40 @@ TIP: You can use any testing framework with Jumpstarter, not only pytest. But we
 
 An example pytest script using Jumpstarter would look like this:
 
-.basic_test.py
-[source,python,role=copypaste]
+.test/test_on_hardware.py
+[source,python]
 ----
-from jumpstarter_testing import JumpstarterTest
-from subprocess import run
+import logging
+import sys
+
 import pytest
-import time
 
-class TestRHIVOS(JumpstarterTest):
-    @pytest.fixture(autouse=True, scope="class")
-    def prepare(self, client):
-        client.power.off()
-        run(["./scripts/flash-prebuilt"])
-        client.power.on()
+from jumpstarter_testing.pytest import JumpstarterTest
+
+
+log = logging.getLogger(__name__)
+
+
+class TestRHIVOSOnHardware(JumpstarterTest):
+    selector = "type=virtual"
+
+    def test_boot(self, client):
+        """Test the boot process of the device."""
+        log.info("Testing boot process")
+        client.power.cycle()
         with client.console.pexpect() as console:
+            # uncomment this if you want to see the console in action while testing
+            # console.logfile_read = sys.stdout.buffer
             console.expect_exact("login:", timeout=120)
-
-    def test_kernel_version(self, client):
-        with client.qemu.shell() as shell:
-          assert shell.run("uname -r").stdout.strip().startswith("5.14.0")
-
-    def test_kernel_architecture(self, client):
-        with client.qemu.shell() as shell:
-          assert shell.run("uname -m").stdout.strip() == "aarch64"
+            console.sendline("root")
+            console.expect_exact("Password:", timeout=10)
+            console.sendline("password")
+            console.expect_exact("]#", timeout=10)
+    def test_uname(self, client):
+        with client.console.pexpect() as console:
+            console.sendline("uname -a")
+            console.expect_exact("]#", timeout=10)
+            print(console.before.decode())
 ----
 
 Let's explore the script line by line.
@@ -205,53 +223,116 @@ Let's explore the script line by line.
 .import
 [source,python]
 ----
-from jumpstarter_testing import JumpstarterTest
-from subprocess import run
+import logging
+import sys
+
 import pytest
-import time
+
+from jumpstarter_testing.pytest import JumpstarterTest
 ----
 
-The first part are the import statements, saying that we would be using the `JumpstarterTest` helper from the `jumpstarter_testing` package, `run` function from the `subprocess` package, as well as the `pytest` and `time` package.
+The first part are the import statements, saying that we would be using the
+`JumpstarterTest` helper from the `jumpstarter_testing` packages, as well as
+`pytest`, `sys` and `logging` packages.
 
 .setup
 [source,python]
 ----
-class TestRHIVOS(JumpstarterTest):
-    @pytest.fixture(autouse=True, scope="class")
-    def prepare(self, client):
-        client.power.off()
-        run(["./scripts/flash-prebuilt"])
-        client.power.on()
-        with client.console.pexpect() as console:
-            console.expect_exact("login:", timeout=120)
+class TestRHIVOSOnHardware(JumpstarterTest):
+    selector = "type=virtual"
 ----
 
-The second part is how we set up the device under test for the remainder of the tests. So we base our test `TestRHIVOS` on the `JumpstarterTest` helper class, which provides the required logics for connecting to our Exporter. Then we have a `prepare` fixture that is auto used, which means it would be automatically executed before the test cases, and class scoped, which means it would only be executed once per test class, since we don't have to reflash our device under test in-between test cases.
+The second part is the setup of our test class, we define a class `TestRHIVOSOnHardware`
+that inherits from `JumpstarterTest`, which provides us with the required logics for
+connecting to our Exporter. We also define a `selector` class variable, which is used
+to select the Exporter we want to lease by default.
+In this case, we are selecting the `type=virtual`, if we are running pytest under a jumpstarter
+shell this will be ignored.
 
-TIP: In testing, a fixture provides a defined, reliable and consistent context for the tests. This could include environment (for example a database configured with known parameters) or content (such as a dataset), and in our case, a device with a given disk image flashed and booted up.
-
-.cases
+.test-boot
 [source,python]
 ----
-    def test_kernel_version(self, client):
-        with client.qemu.shell() as shell:
-          assert shell.run("uname -r").stdout.strip().startswith("5.14.0")
-
-    def test_kernel_architecture(self, client):
-        with client.qemu.shell() as shell:
-          assert shell.run("uname -m").stdout.strip() == "aarch64"
+    def test_boot(self, client):
+        """Test the boot process of the device."""
+        log.info("Testing boot process")
+        client.power.cycle()
+        with client.console.pexpect() as console:
+            # uncomment this if you want to see the console in action while testing
+            # console.logfile_read = sys.stdout.buffer
+            console.expect_exact("login:", timeout=120)
+            console.sendline("root")
+            console.expect_exact("Password:", timeout=10)
+            console.sendline("password")
+            console.expect_exact("]#", timeout=10)
 ----
 
-And finally, the test cases, here we only have two test cases, one is `test_kernel_version`, which executes the `uname` command and checks if the kernel version matches our desired version of `5.14.0`, another is `test_kernel_architecture`, which checks if the virtual device is indeed of arm architecture.
+This is the first test case, `test_boot`, which tests the boot process of the device,
+it first cycles the power of the device, then it connects to the console and waits for
+the login prompt, then sends the username and password to login to the device.
+After logging in, it waits for the shell prompt to show up, indicating that the login
+was successful.
 
-To lease another Exporter and execute our test cased on it, run:
+.test-uname
+[source,python]
+----
+    def test_uname(self, client):
+        with client.console.pexpect() as console:
+            console.sendline("uname -a")
+            console.expect_exact("]#", timeout=10)
+            print(console.before.decode())
+----
 
+The second test case `test_uname` sends the `uname -a` command to the console and
+waits for the shell prompt to show up, then prints the output of the command.
+
+Now let's run the test script using pytest to see it in action. The testing scripts are
+prepopulated in the `tests` directory of the project.
+
+image::act4/test-sources.png[]
+
+We should still be inside the remote Jumpstarter shell session from the previous steps:
+[,console]
+----
+jumpstarter ⚡remote ➤
+----
+
+TIP: If you are not inside the remote Jumpstarter shell session, you should run `jmp shell --selector type=virtual` to lease a new Exporter. and then run the `./scripts/flash-prebuilt` command to flash the image again.
+
+You can simply run the test script using pytest:
 [source,sh,role=execute]
 ----
-jmp shell --selector type=virtual -- pytest basic_test.py
+pytest
 ----
 
-== Next
+You should see the test results like this:
 
-Now that we have a basic understanding of how to use Jumpstarter to test our virtual devices, 
-let's move on to the next exercise and create our own custom OS image for the device.
+[,console]
+----
+jumpstarter-lab ⚡remote ➤ pytest
+========================================================================= test session starts =========================================================================
+platform linux -- Python 3.12.9, pytest-8.3.5, pluggy-1.5.0
+rootdir: /projects/jumpstarter-lab
+configfile: pytest.ini
+plugins: anyio-4.9.0, asyncio-0.26.0, cov-6.1.1
+asyncio: mode=Mode.STRICT, asyncio_default_fixture_loop_scope=function, asyncio_default_test_loop_scope=function
+collected 5 items
+
+tests/test_on_hardware.py::TestRHIVOSOnHardware::test_boot
+---------------------------------------------------------------------------- live log call ----------------------------------------------------------------------------
+INFO     test_on_hardware:test_on_hardware.py:17 Testing boot process
+INFO     PowerClient:client.py:19 Starting power cycle sequence
+INFO     PowerClient:client.py:21 Waiting 2 seconds...
+INFO     PowerClient:client.py:24 Power cycle sequence complete
+PASSED
+tests/test_on_hardware.py::TestRHIVOSOnHardware::test_uname uname -a
+Linux demo 5.14.0-578.527.el9iv.aarch64 #1 SMP PREEMPT_RT Thu Apr 10 15:56:34 UTC 2025 aarch64 aarch64 aarch64 GNU/Linux
+[root@demo ~
+PASSED
+tests/test_on_hardware.py::TestRHIVOSOnHardware::test_podman_images SKIPPED (will test this once we build our app)
+tests/test_on_hardware.py::TestRHIVOSOnHardware::test_radio_service SKIPPED (will test this once we build our app)
+tests/test_on_hardware.py::TestRHIVOSOnHardware::test_radio_service_interaction SKIPPED (will test this once we build our app)
+
+==================================================================== 2 passed, 3 skipped in 18.82s ====================================================================
+----
+
+NOTE: You will notice that some of the tests are skipped, this is because we haven't built our application yet. We will come back to this later.
