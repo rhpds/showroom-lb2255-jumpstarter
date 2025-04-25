@@ -6,19 +6,19 @@ Jumpstarter manages remote access to exporters using **Leases** which provide a 
 
 Your Dev Space is already configured with credentials to access a Jumpstarter Service running in the same cluster with multiple Exporters available to lease.
 
-'''
+== List the Exporters
+
+WARNING: First let's create a terminal window by clicking the *+* button.
 
 image::app/new-terminal.png[]
 
-First let's create a terminal window by clicking the *+* button.
+You should see a new terminal like this. The following commands should be executed in this newly created terminal.
 
 image::app/new-terminal-created.png[]
 
-You should see a new terminal like this. The following commands should be executed in this newly created terminal.
-
 To list the available Exporters, run:
 
-[,console]
+[source,sh,role=execute,subs=attributes+]
 ----
 $ jmp get exporters
 ----
@@ -30,7 +30,7 @@ Each Exporter has a set of labels, these labels can be used to select the a spec
 
 To lease an Exporter with the Jumpstarter CLI, run:
 
-[,console]
+[source,sh,role=execute,subs=attributes+]
 ----
 $ jmp shell --selector type=virtual
 ----
@@ -94,12 +94,12 @@ export:
 
 Before booting our virtual device, we need to flash it with an operating system image.
 
-[,console]
+[source,sh,role=execute,subs=attributes+]
 ----
 jumpstarter ⚡remote ➤ ./scripts/flash-prebuilt
 ----
 
-NOTE: the `./scripts/flash-prebuilt` helper script flashes a prebuilt RHIVOS image to the virtual device.
+NOTE: the `./scripts/flash-prebuilt` script flashes a prebuilt RHIVOS image to the virtual device. We will build a custom image in a later exercise.
 
 After flashing, to boot the device and view the boot messages via the serial console, run:
 
@@ -111,13 +111,13 @@ jumpstarter ⚡remote ➤ j power on && j console start-console
 You should be dropped into a serial console with the boot messages showing up. Once the image has finished booting, you will be presented with a login prompt (`localhost login:`). You can login with the following credentials:
 
 .Username
-[source,text]
+[source,sh,role=execute,subs=attributes+]
 ----
 root
 ----
 
 .Password
-[source,text]
+[source,sh,role=execute,subs=attributes+]
 ----
 password
 ----
@@ -126,7 +126,7 @@ TIP: Notice that your shell prompt have been changed to `[root@localhost ~]#`, t
 
 After logging into the system, you can check the system architecture using `uname`:
 
-[,console]
+[source,sh,role=execute,subs=attributes+]
 ----
 $ uname -m
 ----
@@ -143,14 +143,14 @@ Sometimes your tests cannot be executed directly on the target device or the Exp
 
 To forward a remote service port such as the `ssh` to a local port, run the following command from within your remote Jumpstarter shell session:
 
-[,console]
+[source,sh,role=execute,subs=attributes+]
 ----
 $ j qemu ssh forward-tcp 9000 &
 ----
 
 This command will forward the remote `ssh` port (port 22) preconfigured in the exporter config to `localhost:9000` on your local machine. Once port forwarding is started, you can run `ssh` client from your local environment and execute commands on the virtual device remotely, e.g. listing all the files under the root directory:
 
-[,console]
+[source,sh,role=execute,subs=attributes+]
 ----
 $ ssh -p 9000 -o StrictHostKeyChecking=no root@localhost ls /
 ----
@@ -158,7 +158,7 @@ $ ssh -p 9000 -o StrictHostKeyChecking=no root@localhost ls /
 When prompted for password, enter:
 
 .Password
-[source,text]
+[source,sh,role=execute,subs=attributes+]
 ----
 password
 ----
@@ -246,7 +246,12 @@ And finally, the test cases, here we only have two test cases, one is `test_kern
 
 To lease another Exporter and execute our test cased on it, run:
 
-[,console]
+[source,sh,role=execute,subs=attributes+]
 ----
 $ jmp shell --selector type=virtual -- pytest basic_test.py
 ----
+
+== Next
+
+Now that we have a basic understanding of how to use Jumpstarter to test our virtual devices, 
+let's move on to the next exercise and create our own custom OS image for the device.
