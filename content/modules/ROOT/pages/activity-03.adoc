@@ -18,6 +18,9 @@ virtualized hardware environments using Jumpstarter.
 
 NOTE: This activity builds upon our previous work, where we modified the application code.
 
+[#test-app]
+== Enable tests of the app
+
 
 [#container]
 == Container image build

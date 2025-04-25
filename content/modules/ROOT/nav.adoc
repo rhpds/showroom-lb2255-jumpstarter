@@ -25,6 +25,7 @@
 ** xref:activity-04.adoc#jmptestingpytest[Testing with Pytest]
 
 * xref:activity-03.adoc[Testing and Validation] 
+** xref:activity-03.adoc#test-app[Enable tests of the app]
 ** xref:activity-03.adoc#container[Container image build]
 ** xref:activity-03.adoc#merge[Create a Merge Request]
 ** xref:activity-03.adoc#release[Release deployment pipeline]
