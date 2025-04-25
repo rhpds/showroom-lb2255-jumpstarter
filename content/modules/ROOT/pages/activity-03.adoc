@@ -43,7 +43,7 @@ WARNING: In the input box, put `"add new radio station"` as the commit message, 
 
 image::app/18-push.png[]
 
-WARNING: Click the cloud like button to push the new changes to the code repository.
+WARNING: Click the *Sync Changes* button to push the new changes to the code repository.
 
 Once the changes are pushed to the code repository, a Red Hat OpenShift Pipelines task is triggered to automatically build the application and bundle it into a container.
 
