@@ -133,6 +133,6 @@ image::act3/08-merge-mr.png[]
 
 Now that we've completed the development workflow, we'll explore advanced Jumpstarter capabilities including:
 
-- Manual interaction with hardware for development and troubleshooting
-- Writing custom test cases for your specific application requirements
+- Configuring Jumpstaterter Exporter for custom hardware
+- Recap the development workflow
 
