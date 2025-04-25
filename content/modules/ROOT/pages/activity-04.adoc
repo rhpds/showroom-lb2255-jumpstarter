@@ -43,11 +43,6 @@ When you lease an Exporter, you get exclusive access to the hardware interfaces 
 
 To see the list of hardware interfaces exposed on the Exporter we've leased, run the `j` command without parameters:
 
-[source,sh]
-----
-jumpstarter ⚡remote ➤ j
-----
-
 [source,sh,role=execute]
 ----
 j
