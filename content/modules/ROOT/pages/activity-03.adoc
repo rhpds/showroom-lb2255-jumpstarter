@@ -21,6 +21,15 @@ NOTE: This activity builds upon our previous work, where we modified the applica
 [#test-app]
 == Enable tests of the app
 
+Before publishing our changes to the app, we need to enable the tests of the app.
+
+image::app/14-enable-test.png[]
+
+WARNING: Open `tests/test_on_hardware.py` from the file explorer, and remove the three annotated lines.
+
+image::app/14-enable-test-done.png[]
+
+WARNING: The lines should look like this when done.
 
 [#container]
 == Container image build
