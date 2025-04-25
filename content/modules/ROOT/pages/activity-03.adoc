@@ -31,6 +31,48 @@ image::app/14-enable-test-done.png[]
 
 WARNING: The lines should look like this when done.
 
+[source,python]
+----
+    def test_podman_images(self, client):
+        with client.console.pexpect() as console:
+            console.sendline("podman images")
+            console.expect_exact("]#", timeout=10)
+            assert "localhost/app" in console.before.decode()
+----
+
+The first test is to check if the container image of the apps is present.
+
+[source,python]
+----
+    def test_radio_service(self, client):
+        with client.console.pexpect() as console:
+            console.sendline("systemctl status --no-pager radio.service")
+            console.expect_exact("]#", timeout=10)
+----
+
+The second test is to check if the radio app is running as a system service.
+
+[source,python]
+----
+    def test_radio_service_interaction(self, client):
+        with client.console.pexpect() as console:
+            console.sendline("podman exec -i systemd-radio radio-client")
+            console.expect_exact("Connecting to radio service", timeout=10)
+
+            # test changing volume
+            console.sendline("+" * 10)
+            console.expect_exact("Volume:  [#####################]", timeout=10)
+            console.sendline("-" * 10)
+            console.expect_exact("Volume:  [                     ]", timeout=10)
+            console.sendline("+" * 5)
+            console.expect_exact("Volume:  [##########           ]", timeout=10)
+
+            console.sendline("q")
+            console.expect_exact("]#", timeout=10)
+----
+
+The third test is to interact with the radio service, and see if we can change volume.
+
 [#container]
 == Container image build
 
