@@ -44,7 +44,11 @@ RADIO: Playing song "Upper Echelon" by Travi$ Scott feat. 2 Chainz & T.I. (on Ra
 
 showing up in the terminal. 
 
-Next, we can start the `radio-client` to interact with the running `radio-service`. First, split the terminal by clicking book like button on the right middle of the screen.
+'''
+
+Next, we can start the `radio-client` to interact with the running `radio-service`. 
+
+First, split the terminal by clicking book like button on the right middle of the screen.
 
 image::app/05-split.png[]
 
@@ -56,10 +60,10 @@ Start *radio-client* by clicking the right half of the terminal and type `./radi
 
 image::app/07-client-running.png[]
 
-In the `radio-client`, press `+` or `-` to adjust the volume, `<SPACE>` to switch stations, and `<ESC>` to pause or resume the radio. 
+NOTE: In the `radio-client`, press `+` or `-` to adjust the volume, `<SPACE>` to switch stations, and `<ESC>` to pause or resume the radio. 
 Notice the changes in the printed status messages in response to your requests.
 
-When done with testing, press `q` to quit the client.
+TIP: When done with testing, press `q` to quit the client.
 
 
 [#appmodify]
@@ -93,7 +97,7 @@ image::app/13-stations-after.png[]
 
 The remaining lines should look like this after editing.
 
-=== Test Modified Code
+=== Test modified code
 
 After finishing editing, click on the radio-service terminal and push `CTRL+C` to stop the execution, then
 click the triangular button at the bottom left of the window to rerun `radio-service`, and
