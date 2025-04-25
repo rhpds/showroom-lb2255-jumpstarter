@@ -188,7 +188,8 @@ class TestRHIVOS(JumpstarterTest):
         client.power.off()
         run(["./scripts/flash-prebuilt"])
         client.power.on()
-        time.sleep(10)
+        with client.console.pexpect() as console:
+            console.expect_exact("login:", timeout=120)
 
     def test_kernel_version(self, client):
         with client.qemu.shell() as shell:
@@ -221,7 +222,8 @@ class TestRHIVOS(JumpstarterTest):
         client.power.off()
         run(["./scripts/flash-prebuilt"])
         client.power.on()
-        time.sleep(10)
+        with client.console.pexpect() as console:
+            console.expect_exact("login:", timeout=120)
 ----
 
 The second part is how we set up the device under test for the remainder of the tests. So we base our test `TestRHIVOS` on the `JumpstarterTest` helper class, which provides the required logics for connecting to our Exporter. Then we have a `prepare` fixture that is auto used, which means it would be automatically executed before the test cases, and class scoped, which means it would only be executed once per test class, since we don't have to reflash our device under test in-between test cases.
