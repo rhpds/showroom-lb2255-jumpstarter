@@ -150,7 +150,7 @@ To forward a remote service port such as the `ssh` to a local port, run the foll
 j qemu ssh forward-tcp 9000 &
 ----
 
-This command will forward the remote `ssh` port (port 22) preconfigured in the exporter config to `localhost:9000` on your local machine. Once port forwarding is started, you can run `ssh` client from your local environment and execute commands on the virtual device remotely, e.g. listing all the files under the root directory:
+This command will forward the remote `ssh` port (port 22) preconfigured in the exporter config to `localhost:9000` on your local machine. Once port forwarding is started, you can run `ssh` client from your local environment and execute commands on the virtual device remotely, e.g. check cpu info:
 
 [source,sh,role=execute]
 ----
