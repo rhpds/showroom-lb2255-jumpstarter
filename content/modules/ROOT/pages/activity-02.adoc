@@ -15,11 +15,11 @@ We can easily build, test, and publish our application using the cmake build sys
 
 image::app/00-build.png[]
 
-WARNING: Click the *build* button at the bottom left of the window.
+IMPORTANT: Click the *build* button at the bottom left of the window.
 
 image::app/01-kit.png[]
 
-WARNING: Choose to build with the GCC toolkit.
+IMPORTANT: Choose to build with the GCC toolkit.
 
 NOTE: The demo application is built using the *cmake* build system. The build process involves creating a "build" directory, and calling cmake to generate the Makefile,
 then make will be called to compile the source code into multiple executable files. The cmake vscode plugin automatically detects the source code and
@@ -31,7 +31,7 @@ performs those steps on your behalf, but you can also do it manually if you want
 
 image::app/02-build-finish.png[]
 
-WARNING: After finishing building, *click the triangular button* at the bottom left of the window to run the application. Choose to run *radio-service*.
+IMPORTANT: After finishing building, *click the triangular button* at the bottom left of the window to run the application. Choose to run *radio-service*.
 
 image::app/03-run.png[]
 
@@ -49,7 +49,7 @@ showing up in the terminal.
 
 Next, we can start the `radio-client` to interact with the running `radio-service`. 
 
-WARNING: First, split the terminal by clicking book like button on the right middle of the screen.
+IMPORTANT: First, split the terminal by clicking book like button on the right middle of the screen.
 
 image::app/05-split.png[]
 
@@ -57,14 +57,14 @@ NOTE: You will see the terminal being split into two halves, with the `radio-ser
 
 image::app/06-run-client.png[]
 
-WARNING: Start *radio-client* by clicking the right half of the terminal and type `./radio-client`, then press `Enter`.
+IMPORTANT: Start *radio-client* by clicking the right half of the terminal and type `./radio-client`, then press `Enter`.
 
 image::app/07-client-running.png[]
 
 TIP: In the `radio-client`, press `+` or `-` to adjust the volume, `<SPACE>` to switch stations, and `<ESC>` to pause or resume the radio. 
 Notice the changes in the printed status messages in response to your requests.
 
-WARNING: When done with testing, press `q` to quit the client.
+IMPORTANT: When done with testing, press `q` to quit the client.
 
 
 [#appmodify]
@@ -76,15 +76,15 @@ Next, we will modify the application to add a new radio station and several new 
 
 image::app/08-src.png[]
 
-WARNING: Click `src` in the file explorer to open the src folder.
+IMPORTANT: Click `src` in the file explorer to open the src folder.
 
 image::app/09-stations.png[]
 
-WARNING: Click `radio-stations.cpp` to open the source file containing the radio stations and songs.
+IMPORTANT: Click `radio-stations.cpp` to open the source file containing the radio stations and songs.
 
 image::app/10-songs-before.png[]
 
-WARNING: At the top of the file, remove the two annotated lines.
+IMPORTANT: At the top of the file, remove the two annotated lines.
 
 image::app/11-songs-after.png[]
 
@@ -92,7 +92,7 @@ TIP: The remaining lines should look like this after editing.
 
 image::app/12-stations-before.png[]
 
-WARNING: Scroll down to the bottom of the file, remove the two annotated lines.
+IMPORTANT: Scroll down to the bottom of the file, remove the two annotated lines.
 
 image::app/13-stations-after.png[]
 

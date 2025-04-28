@@ -8,7 +8,7 @@ Your Dev Space is already configured with credentials to access a Jumpstarter Se
 
 == List the Exporters
 
-WARNING: First let's create a terminal window by clicking the *+* button.
+IMPORTANT: First let's create a terminal window by clicking the *+* button.
 
 image::app/new-terminal.png[]
 

@@ -16,7 +16,7 @@ through OpenShift GitOps - so you can focus on coding, not setup.
 Some of the activities in this lab require you to perform certain actions in the various user interfaces or to type commands in a terminal window.
 To highlight the different activities and their importance, we use the following conventions:
 
-WARNING: This is a step that is critical for the success of this lab.
+IMPORTANT: This is a step that is critical for the success of this lab.
 
 NOTE: This is information that you should know, but it is not critical for the success of this lab.
 
@@ -36,7 +36,7 @@ TIP: All login information is available via the side bar item, "Cheatsheet"
 
 image::setup/00-sign-in-backstage.png[]
 
-WARNING: Choose the option to *Sign in with GitLab*.
+IMPORTANT: Choose the option to *Sign in with GitLab*.
 
 You’ll be prompted to log in with your credentials:
 
@@ -56,7 +56,7 @@ You’ll be prompted to log in with your credentials:
 
 image::setup/02-access-gitlab.png[]
 
-WARNING: Authorize Keycloak to access GitLab
+IMPORTANT: Authorize Keycloak to access GitLab
 
 Once authenticated, you'll have full access to the Red Hat Developer Hub portal where you can browse templates, create projects, and access your development environments.
 The portal serves as your central starting point for all automotive software development activities, providing access to templates, documentation, and your OpenShift Dev Spaces workspaces.
@@ -69,33 +69,33 @@ Next, we will create a pre-configured development environment using the Jumpstar
 
 image::setup/03-backstage-dashboard.png[]
 
-WARNING: Click the *Create* button on the side bar
+IMPORTANT: Click the *Create* button on the side bar
 
 === Select a template
 
 image::setup/04-backstage-create.png[]
 
-WARNING: Use the *LB2255 - Jumpstarter* template
+IMPORTANT: Use the *LB2255 - Jumpstarter* template
 
 image::setup/05-backstage-create-info.png[]
 
-WARNING: When asked to provide project information, leave the default values and click *Review*
+IMPORTANT: When asked to provide project information, leave the default values and click *Review*
 
 image::setup/06-backstage-create-review.png[]
 
-WARNING: On the Review page, click *Create*
+IMPORTANT: On the Review page, click *Create*
 
 The source code repo and development environment will be created in a few seconds, and you will be greeted with the completion page.
 
 image::setup/07-backstage-create-finish.png[]
 
-WARNING: Click *Open Component in catalog* to access your new development environment
+IMPORTANT: Click *Open Component in catalog* to access your new development environment
 
 === Component catalog
 
 image::setup/08-backstage-component.png[]
 
-WARNING: On the dashboard, click *DevSpace jumpstarter-lab* to launch the Red Hat OpenShift Dev Space instance.
+IMPORTANT: On the dashboard, click *DevSpace jumpstarter-lab* to launch the Red Hat OpenShift Dev Space instance.
 
 
 [#devspaces]
@@ -106,11 +106,11 @@ and authorize the application to access Red Hat OpenShift.
 
 image::setup/09-log-in-devspace.png[]
 
-WARNING: Choose *Log in with OpenShift*
+IMPORTANT: Choose *Log in with OpenShift*
 
 image::setup/10-login-devspace-rhsso.png[]
 
-WARNING: On the OpenShift login page, choose to login with *rhsso*.
+IMPORTANT: On the OpenShift login page, choose to login with *rhsso*.
 
 You’ll be prompted to log in with your credentials:
 
@@ -130,15 +130,15 @@ You’ll be prompted to log in with your credentials:
 
 image::setup/12-login-devspace-openshift.png[]
 
-WARNING: When asked to authorize access to your account, click *Allow selected permissions*
+IMPORTANT: When asked to authorize access to your account, click *Allow selected permissions*
 
 image::setup/13-devspace-create.png[]
 
-WARNING: When asked "Do you trust the author of this repository?", click *Continue*.
+IMPORTANT: When asked "Do you trust the author of this repository?", click *Continue*.
 
 image::setup/14-devspace-gitlab-access.png[]
 
-WARNING: When asked to authorize *devspaces* to access your account on GitLab, click *Authorize devspaces*
+IMPORTANT: When asked to authorize *devspaces* to access your account on GitLab, click *Authorize devspaces*
 
 image::setup/15-devspace-starting.png[]
 
@@ -150,13 +150,9 @@ NOTE: The creation of the *DevWorkspace* instance can take a few minutes, please
 
 Once the Dev Workspace is created, you will be redirected to a *VS Code like* development environment.
 
-image::setup/16-devspace-extensions.png[]
-
-WARNING: If prompted "Do you trust the authors of the files in this workspace?", click *Trust Workspace & Install*
-
 image::setup/17-devspace-trust.png[]
 
-WARNING: If prompted "Do you trust the authors of the files in this workspace?", click *Yes, I trust the authors*
+IMPORTANT: If prompted "Do you trust the authors of the files in this workspace?", click *Yes, I trust the authors*
 
 image::setup/18-devspace-popup.png[]
 

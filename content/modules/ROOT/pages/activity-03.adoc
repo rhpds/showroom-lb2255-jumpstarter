@@ -25,11 +25,11 @@ Before publishing our changes to the app, we need to enable the tests of the app
 
 image::app/14-enable-test.png[]
 
-WARNING: Open `tests/test_on_hardware.py` from the file explorer, and remove the three annotated lines.
+IMPORTANT: Open `tests/test_on_hardware.py` from the file explorer, and remove the three annotated lines.
 
 image::app/14-enable-test-done.png[]
 
-WARNING: The lines should look like this when done.
+IMPORTANT: The lines should look like this when done.
 
 [source,python]
 ----
@@ -80,11 +80,11 @@ In order to build the container image, we will create a *pull request* against t
 
 image::app/14-branch.png[]
 
-WARNING: Bring up the branch selector by clicking the button saying `main` at the bottom left of the screen.
+IMPORTANT: Bring up the branch selector by clicking the button saying `main` at the bottom left of the screen.
 
 image::app/15-branch-create.png[]
 
-WARNING: In the input box, put `develop`, then click *Create new branch*.
+IMPORTANT: In the input box, put `develop`, then click *Create new branch*.
 
 image::app/16-branch-created.png[]
 
@@ -93,11 +93,11 @@ then click the annotated button on the left to open the source control tab.
 
 image::app/17-commit.png[]
 
-WARNING: In the input box, put `"add new radio station"` as the commit message, then click *Commit*.
+IMPORTANT: In the input box, put `"add new radio station"` as the commit message, then click *Commit*.
 
 image::app/18-push.png[]
 
-WARNING: Click the *Publish Branch* button to push the new changes to the code repository.
+IMPORTANT: Click the *Publish Branch* button to push the new changes to the code repository.
 
 Once the changes are pushed to the code repository, a Red Hat OpenShift Pipelines task is triggered to automatically build the application and bundle it into a container.
 
@@ -118,7 +118,7 @@ You can get to the GitLab interface by clicking on *View source* on the Red Hat 
 
 image::act3/01-go-to-gitlab.png[]
 
-WARNING: In GitLab, select the `develop` branch and click on the *Merge Request* button,
+IMPORTANT: In GitLab, select the `develop` branch and click on the *Merge Request* button,
 
 image::act3/02-create-mr.png[]
 
@@ -126,7 +126,7 @@ NOTE: Merge requests are a way to propose changes to the codebase. They allow fo
 
 image::act3/03-create-mr-2.png[]
 
-WARNING: To create a merge request, click on the *Create Merge Request* button
+IMPORTANT: To create a merge request, click on the *Create Merge Request* button
 
 By creating a merge request, a different pipeline will be triggered, in this case, the one defined in `.tekton/tasks/pr-build-test.yaml`.
 

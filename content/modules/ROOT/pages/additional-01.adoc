@@ -80,7 +80,7 @@ Drivers classes are specified using the fully-qualified Python type in the `type
 To see what config options are available on each Driver, check https://docs.jumpstarter.dev/main/api-reference/drivers/index.html[Jumpstarter Driver API Reference]
 
 
-WARNING: create a new file `demo-exporter.yaml` in the root directory of the project, with the following content.
+IMPORTANT: create a new file `demo-exporter.yaml` in the root directory of the project, with the following content.
 
 .demo-exporter.yaml
 [source,yaml,role=copypaste]
