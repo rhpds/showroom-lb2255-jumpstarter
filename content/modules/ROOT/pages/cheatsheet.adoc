@@ -3,7 +3,6 @@
 For your convenience, this page contains access information to all systems in your lab environment.
 
 == Lab Login
-Click https://backstage-backstage.{openshift_cluster_ingress_domain}[here,window=_blank] to access your Lab Environment
 
 [.no-copy-label]
 .Username
@@ -19,9 +18,25 @@ Click https://backstage-backstage.{openshift_cluster_ingress_domain}[here,window
 {password}
 ----
 
-== Red Hat Developer Hub
+== Red Hat Developer Hub https://backstage-backstage.{openshift_cluster_ingress_domain}['link',window=_blank]
 
 [source,sh,role=execute,subs=attributes+]
 ----
 https://backstage-backstage.{openshift_cluster_ingress_domain}
+----
+
+
+== Red Hat Dev Spaces https://devspaces.{openshift_cluster_ingress_domain}['link',window=_blank]
+
+[source,sh,role=execute,subs=attributes+]
+----
+https://devspaces.{openshift_cluster_ingress_domain}
+----
+
+
+== GitLab https://gitlab-gitlab.{openshift_cluster_ingress_domain}['link',window=_blank]
+
+[source,sh,role=execute,subs=attributes+]
+----
+https://gitlab-gitlab.{openshift_cluster_ingress_domain}
 ----

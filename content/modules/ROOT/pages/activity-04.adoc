@@ -26,7 +26,7 @@ jmp get exporters
 Each Exporter has a set of labels, these labels can be used to select the a specific group of exporters when requesting a lease. For example, you could specify a label for the architecture and then select the correct device with an `arch=aarch64`.
 
 [#jmpexporterlease]
-== Lease and interact with a remote exporter
+== Leases and remote Exporters
 
 To lease an Exporter with the Jumpstarter CLI, run:
 
@@ -139,9 +139,12 @@ Then quit the serial console by *pressing `Ctrl+B` three times*.
 
 TIP: Your shell prompt should be restored to `jumpstarter ⚡remote ➤`, this is to remind you that you are back inside a remote Jumpstarter shell session, not the serial console of the virtual device.
 
-=== Bridging the gap
 
-Sometimes your tests cannot be executed directly on the target device or the Exporter host. For example, you may need to use a proprietary GUI client or service to control your application. To support these use cases, Jumpstarter implements port forwarding, which allows you to interact with services running inside the target device from your local machine as if they are running locally.
+=== Port forwarding and remote acccess
+
+Sometimes your tests cannot be executed directly on the target device or the Exporter host.
+
+For example, you may need to use a proprietary GUI client or service to control your application. To support these use cases, Jumpstarter implements port forwarding, which allows you to interact with services running inside the target device from your local machine as if they are running locally.
 
 To forward a remote service port such as the `ssh` to a local port, run the following command from within your remote Jumpstarter shell session:
 
@@ -169,11 +172,13 @@ password
 ----
 
 [#jmptestingpytest]
-== Testing on remote exporter with Pytest
+== Testing with Pytest
 
 While connecting to a Jumpstarter Exporter remotely to execute our tests is already a huge step forward from the traditional ways of hardware testing, by combining the Jumpstater Python API with the pytest unit test framework, we can further improve our test process to be more automated and reliable.
 
 TIP: You can use any testing framework with Jumpstarter, not only pytest. But we recommend pytest due to its simplicity and popularity.
+
+=== Writing tests
 
 An example pytest script using Jumpstarter would look like this:
 
@@ -239,8 +244,9 @@ class TestRHIVOSOnHardware(JumpstarterTest):
 
 The second part is the setup of our test class, we define a class `TestRHIVOSOnHardware`
 that inherits from `JumpstarterTest`, which provides us with the required logics for
-connecting to our Exporter. We also define a `selector` class variable, which is used
-to select the Exporter we want to lease by default.
+connecting to our Exporter. 
+
+We also define a `selector` class variable, which is used to select the Exporter we want to lease by default.
 In this case, we are selecting the `type=virtual`, if we are running pytest under a jumpstarter
 shell this will be ignored.
 
@@ -264,6 +270,7 @@ shell this will be ignored.
 This is the first test case, `test_boot`, which tests the boot process of the device,
 it first cycles the power of the device, then it connects to the console and waits for
 the login prompt, then sends the username and password to login to the device.
+
 After logging in, it waits for the shell prompt to show up, indicating that the login
 was successful.
 
@@ -280,8 +287,10 @@ was successful.
 The second test case `test_uname` sends the `uname -a` command to the console and
 waits for the shell prompt to show up, then prints the output of the command.
 
-Now let's run the test script using pytest to see it in action. The testing scripts are
-prepopulated in the `tests` directory of the project.
+=== Running tests
+
+Now let's run the test script using pytest to see it in action. The test scripts are
+located in the `tests` directory of the project.
 
 image::act4/test-sources.png[]
 

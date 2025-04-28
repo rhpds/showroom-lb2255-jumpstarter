@@ -57,14 +57,19 @@ NOTE: You will see the terminal being split into two halves, with the `radio-ser
 
 image::app/06-run-client.png[]
 
-IMPORTANT: Start *radio-client* by clicking the right half of the terminal and type `./radio-client`, then press `Enter`.
+IMPORTANT: Start *radio-client* by clicking the right half of the terminal and type the following command, then press `Enter`.
+
+[source,sh,role=execute]
+----
+./radio-client
+----
 
 image::app/07-client-running.png[]
 
 TIP: In the `radio-client`, press `+` or `-` to adjust the volume, `<SPACE>` to switch stations, and `<ESC>` to pause or resume the radio. 
 Notice the changes in the printed status messages in response to your requests.
 
-IMPORTANT: When done with testing, press `q` to quit the client.
+IMPORTANT: When done with testing, press `q` to quit the radio-client application.
 
 
 [#appmodify]
