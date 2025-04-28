@@ -20,6 +20,16 @@ ui:
     - path: .nojekyll
     - path: ui.yml
       contents: "static_files: [ .nojekyll ]"
+    - path: css/medium-zoom.css
+      contents: ./supplemental-ui/css/medium-zoom.css
+    - path: js/medium-zoom.config.js
+      contents: ./supplemental-ui/js/medium-zoom.config.js
+    - path: js/vendor/medium-zoom.min.js
+      contents: ./supplemental-ui/js/vendor/medium-zoom.min.js
+    - path: partials/footer-scripts.hbs
+      contents: ./supplemental-ui/partials/footer-scripts.hbs
+    - path: partials/head-styles.hbs
+      contents: ./supplemental-ui/partials/head-styles.hbs
 
 runtime:
   cache_dir: ./.cache/antora
