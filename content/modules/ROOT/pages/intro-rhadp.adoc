@@ -5,7 +5,7 @@ https://developers.redhat.com/rhdh/overview[Red Hat Developer Hub] sits at the c
 creating an integrated ecosystem for software-defined vehicle development. Think of it as your central command center where you and your team can:
 
 - Access pre-configured tools and standardized workflows without the usual setup headaches
-- Leverage automated testing processes that maintain compliance with automotive safety standards
+- Leverage automated testing processes for faster turn-around times in development and testing
 - Use familiar Linux-based tools that feel like home to developers 
 
 The platform's cloud integration isn't just buzzword compliance—it gives you genuinely scalable testing environments and supports rapid 

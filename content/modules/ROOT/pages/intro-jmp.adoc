@@ -107,5 +107,5 @@ The distributed mode is ideal when:
 
 == Next
 
-Since we now have a basic understanding of the Red Had Automotive Development Platform 
+Since we now have a basic understanding of the Red Hat Automotive Development Platform 
 and how Jumpstarter works, let's dive into the lab activities!

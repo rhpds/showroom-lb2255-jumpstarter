@@ -108,7 +108,9 @@ After flashing, to boot the device and view the boot messages via the serial con
 j power on && j console start-console
 ----
 
-You should be dropped into a serial console with the boot messages showing up. Once the image has finished booting, you will be presented with a login prompt (`localhost login:`). You can login with the following credentials:
+You should be dropped into a serial console with the boot messages showing up. Once the image has finished booting, you will be presented with a login prompt `demo login:`. 
+
+You can login with the following credentials:
 
 .Username
 [.no-copy-label]
@@ -124,7 +126,7 @@ root
 password
 ----
 
-TIP: Notice that your shell prompt have been changed to `[root@localhost ~]#`, this is to remind you that you are inside the serial console of the virtual device.
+TIP: Notice that your shell prompt have been changed to `[root@localhost ~]`. This is to remind you that you are inside the serial console of the virtual device.
 
 After logging into the system, you can check the system architecture using `uname`:
 
@@ -140,7 +142,7 @@ Then quit the serial console by *pressing `Ctrl+B` three times*.
 TIP: Your shell prompt should be restored to `jumpstarter ⚡remote ➤`, this is to remind you that you are back inside a remote Jumpstarter shell session, not the serial console of the virtual device.
 
 
-=== Port forwarding and remote acccess
+=== Port forwarding and remote access
 
 Sometimes your tests cannot be executed directly on the target device or the Exporter host.
 
@@ -158,8 +160,8 @@ This command will forward the remote `ssh` port (port 22) preconfigured in the e
 [source,sh,role=execute]
 ----
 ssh -p 9000 -o StrictHostKeyChecking=no  \
-            -o UserKnownHostsFile=/dev/null \
-            root@localhost cat /proc/cpuinfo
+  -o UserKnownHostsFile=/dev/null \
+  root@localhost cat /proc/cpuinfo
 ----
 
 When prompted for password, enter:

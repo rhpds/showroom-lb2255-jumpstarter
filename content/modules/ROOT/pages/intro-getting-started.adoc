@@ -23,6 +23,17 @@ NOTE: This is information that you should know, but it is not critical for the s
 TIP: This is a tip that will help you complete the lab.
 
 
+== Tips for working with the lab environment
+
+TIP: All login information is available via the side bar item, "Cheatsheet"
+
+TIP: Clicking into a screen shot will enlarge it. Clicking it again will return it to its original size.
+
+TIP: In Red Hat OpenShift Dev Spaces, you do not need to save your work. Changes are automatically saved.
+
+WARNING: In Red Hat OpenShift Dev Spaces, do *NOT* use Ctrl-W to close an editor. This will only close the entire browser window!
+
+
 [#devhub]
 == Access Red Hat Developer Hub
 
@@ -31,8 +42,6 @@ First, let's ensure we are logged into the *Red Hat Developer Hub*.
 You can access the login page using this link:
 
 https://backstage-backstage.{openshift_cluster_ingress_domain}[window=_blank]
-
-TIP: All login information is available via the side bar item, "Cheatsheet"
 
 image::setup/00-sign-in-backstage.png[]
 
