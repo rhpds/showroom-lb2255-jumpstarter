@@ -64,7 +64,7 @@ image::setup/04-backstage-create.png[]
 
 IMPORTANT: When asked to provide project information, leave the default values and click *Review*
 
-WARNING: Stick with the default project name, otherwise you will encounter errors when some links in the showroom documentation.
+WARNING: Stick with the default project name, otherwise you will encounter errors accessing links in the showroom documentation.
 
 image::setup/05-backstage-create-info.png[]
 
