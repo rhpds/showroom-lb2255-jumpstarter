@@ -13,10 +13,10 @@ in https://developers.redhat.com/rhdh/overview[Red Hat Developer Hub] and how to
 custom https://www.redhat.com/en/blog/new-standard-red-hat-vehicle-operating-system-modern-and-future-vehicles[Red Hat In-Vehicle OS (RHIVOS)] image with 
 containerized automotive application embedded. 
 
-You will also learn how to use https://jumpstarter.dev/[Jumpstarter] for cloud-native hardware-in-the-loop (HIL) testing 
-of automotive ECUs and edge devices, and how it integrates with https://developers.redhat.com/products/openshift-dev-spaces/overview[Red Hat OpenShift Dev Spaces] 
-and https://www.redhat.com/en/technologies/cloud-computing/openshift/pipelines[Red Hat OpenShift Pipelines] to enable DevSecOps practices, 
-including automation, continuous integration, and infrastructure as code.
+Additionally, you’ll explore https://jumpstarter.dev/[Jumpstarter] for cloud-native HIL testing of ECUs and edge devices. 
+You'll learn how it integrates with https://developers.redhat.com/products/openshift-dev-spaces/overview[Red Hat OpenShift Dev Spaces]  and 
+https://www.redhat.com/en/technologies/cloud-computing/openshift/pipelines[Red Hat OpenShift Pipelines] to enable DevSecOps practices, 
+such as automation, continuous integration, and infrastructure as code.
 
 == Lab activities and objectives
 

@@ -4,12 +4,9 @@
 ** xref:intro-rhadp.adoc#hiltesting[Virtual and Hardware-in-the-Loop Testing]
 
 * xref:intro-jmp.adoc[]
-** xref:intro-jmp.adoc#jmp_components[Core components]
-** xref:intro-jmp.adoc#jmp_relationships[Key components relationships]
-** xref:intro-jmp.adoc#jmp_development[Development environment]
-** xref:intro-jmp.adoc#jmp_operation_mode[Operation modes]
 
-* xref:intro-getting-started.adoc[Getting started]
+* Getting started
+** xref:tips.adoc[Before you start]
 ** xref:intro-getting-started.adoc#devhub[Access Developer Hub]
 ** xref:intro-getting-started.adoc#project[Project creation]
 ** xref:intro-getting-started.adoc#devspaces[Access the workspace]
@@ -30,8 +27,6 @@
 ** xref:activity-03.adoc#merge[Create a Merge Request]
 ** xref:activity-03.adoc#release[Release deployment pipeline]
 
-* Additional Topics
-** xref:additional-01.adoc[Configuring Jumpstarter Exporter]
-** xref:additional-02.adoc[Developer Workflow]
+* xref:wrapup.adoc[Conclusion]
 
 * xref:cheatsheet.adoc[]

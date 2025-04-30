@@ -3,33 +3,36 @@
 == Overview
 
 While Red Hat OpenShift Dev Spaces provides a consistent environment for developing, building, and testing automotive applications, comprehensive validation 
-requires testing on virtual or physical hardware. 
-
-This additional testing ensures:
+requires testing on virtual or physical hardware. This additional testing ensures:
 
 - System stability
 - Allows for performance optimization
 - Compatibility across target platforms
 
-Before building a production-ready RHIVOS image, we must verify our application functions correctly in a cloud environment. 
-
-After that, we will build a RHIVOS image with our modified application embedded, preparing it for end-to-end testing in
+Before building a production-ready RHIVOS image, you should verify our application functions correctly in a cloud environment. 
+After that, you can build a RHIVOS image with the modified application embedded, preparing it for end-to-end testing in
 virtualized hardware environments using Jumpstarter.
 
-NOTE: This activity builds upon our previous work, where we modified the application code.
+NOTE: This activity builds upon the previous activity, where you modified the application code.
 
 [#test-app]
 == Enable tests of the app
 
-Before publishing our changes to the app, we need to enable the tests of the app.
+Before committing your changes to the source code repository, you need to enable some tests cases 
+that will be run against the application later in the pipeline.
+
+IMPORTANT: Open `tests/test_on_hardware.py` and remove the three code annotations.
 
 image::app/14-enable-test.png[]
 
-IMPORTANT: Open `tests/test_on_hardware.py` from the file explorer, and remove the three annotated lines.
+The code should look like this when you are done:
 
 image::app/14-enable-test-done.png[]
 
-IMPORTANT: The lines should look like this when done.
+Before removing the code annotations, the test cases only covered the RHIVOS image, verifying that it is booting correctly.
+The additional test cases test the radio application itself.
+
+The first test is to check if the container image of the apps is present:
 
 [source,python]
 ----
@@ -40,7 +43,7 @@ IMPORTANT: The lines should look like this when done.
             assert "localhost/app" in console.before.decode()
 ----
 
-The first test is to check if the container image of the apps is present.
+The second test is to check if the radio app is running as a system service:
 
 [source,python]
 ----
@@ -50,7 +53,7 @@ The first test is to check if the container image of the apps is present.
             console.expect_exact("]#", timeout=10)
 ----
 
-The second test is to check if the radio app is running as a system service.
+The third test is to interact with the radio service, and see if it can change the volume.
 
 [source,python]
 ----
@@ -71,50 +74,49 @@ The second test is to check if the radio app is running as a system service.
             console.expect_exact("]#", timeout=10)
 ----
 
-The third test is to interact with the radio service, and see if we can change volume.
-
 [#container]
 == Container image build
 
-In order to build the container image, we will create a *pull request* against the `main` branch.
-
-image::app/14-branch.png[]
+Now that all the changes are done, you can commit the changes to the source code repository.
+You will first need to create a new branch and commit the changes. Then, you will create a *pull request* against the `main` branch.
 
 IMPORTANT: Bring up the branch selector by clicking the button saying `main` at the bottom left of the screen.
 
-image::app/15-branch-create.png[]
+image::app/14-branch.png[]
 
 IMPORTANT: In the input box, put `develop`, then click *Create new branch*.
 
-image::app/16-branch-created.png[]
+image::app/15-branch-create.png[]
 
-TIP: Make sure the button on the bottom left of the screen now says `develop`, the name of the newly created branch, 
+WARNING: Make sure the button on the bottom left of the screen now says `develop`, the name of the newly created branch, 
 then click the annotated button on the left to open the source control tab.
 
-image::app/17-commit.png[]
+image::app/16-branch-created.png[]
 
 IMPORTANT: In the input box, put `"add new radio station"` as the commit message, then click *Commit*.
 
-image::app/18-push.png[]
+image::app/17-commit.png[]
 
 IMPORTANT: Click the *Publish Branch* button to push the new changes to the code repository.
 
-Once the changes are pushed to the code repository, a Red Hat OpenShift Pipelines task is triggered to automatically build the application and bundle it into a container.
+image::app/18-push.png[]
 
-TIP: We are using a container as it is the best way to package an application and all of its dependencies into a single unit. 
-This makes it simple to distribute to physical or virtual hardware for testing.
+Once the changes are pushed to the code repository, a Red Hat OpenShift Pipelines pipelinerun is triggered. This builds the application and creates a new container image.
 
-To check the progress of the build, see https://backstage-backstage.{openshift_cluster_ingress_domain}/catalog/default/component/{user}-jumpstarter-lab/ci[here,window=_blank]
+To check the progress of the pipeline, switch to the
+https://backstage-backstage.{openshift_cluster_ingress_domain}/catalog/default/component/{user}-jumpstarter-lab/ci[Red Hat Developer Hub dashboard,window=_blank].
 
-NOTE: The container image is pushed to the container registry, Red Hat Quay, and also deployed to the OpenShift cluster, for further testing.
+The resulting container image is pushed to the enterprise container registry, https://www.redhat.com/en/technologies/cloud-computing/quay[Red Hat Quay].
+
+It is also deployed to its own namespace on the OpenShift cluster. As a developer, you could now do further testing or debugging, without having to rebuild the RIVOS image.
 
 
 [#merge]
 == Create a Merge Request
 
-Now that we have the container image, we can start the process of building the RHIVOS image. The build is triggered by a `merge request`, so we need to create one.
+Now that you have a container image, you can start the process of building the RHIVOS image. The build process is triggered by creating a `merge request` in GitLab.
 
-You can get to the GitLab interface by clicking on *View source* on the Red Hat Developer Hub dashboard.
+Switch to the https://backstage-backstage.{openshift_cluster_ingress_domain}/catalog/default/component/{user}-jumpstarter-lab/[Red Hat Developer Hub dashboard,window=_blank] and click on the *View source* button to navigate to the GitLab interface.
 
 image::act3/01-go-to-gitlab.png[]
 
@@ -122,55 +124,58 @@ IMPORTANT: In GitLab, select the `develop` branch and click on the *Merge Reques
 
 image::act3/02-create-mr.png[]
 
-NOTE: Merge requests are a way to propose changes to the codebase. They allow for code review, discussion, and **automated testing** before merging changes into the main branch.
+Merge requests are a great way to propose changes to the codebase. They allow for 
 
-image::act3/03-create-mr-2.png[]
+- code reviews
+- discussion on changes
+- and automated testing 
+
+before merging changes into the main branch.
 
 IMPORTANT: To create a merge request, click on the *Create Merge Request* button
 
-By creating a merge request, a different pipeline will be triggered, in this case, the one defined in `.tekton/tasks/pr-build-test.yaml`.
+image::act3/03-create-mr-2.png[]
+
+Creating a merge request triggers a pipelin that builds and tests the RHIVOS image. It is defined in `.tekton/tasks/pr-build-test.yaml`.
 
 image::act3/04-mr-pipeline-running.png[]
 
-TIP: If you go to the CI tab in the Red Hat Developer Hub dashboard, you can see the pipelines running.
+If you switch back to the https://backstage-backstage.{openshift_cluster_ingress_domain}/catalog/default/component/{user}-jumpstarter-lab/ci[Red Hat Developer Hub dashboard,window=_blank], you can see the pipeline running.
 
 image::act3/05-pipeline-details-backstage.png[]
 
-
-https://backstage-backstage.{openshift_cluster_ingress_domain}/catalog/default/component/{user}-jumpstarter-lab/ci[window=_blank]
-
 image::act3/06-pipeline-details.png[]
 
-Looking in detail, this pipeline performs the following steps:
+Looking at the pipeline in detail, it performs the following tasks:
 
-- `fetch-repository`: Clones the repository and checks out the *develop* branch from our merge request.
+- `fetch-repository`: Clones the repository and checks out the *develop* branch.
 - `prepare-jumpstarter-config`: Prepares the Jumpstarter configuration files for authenticating to the Jumpstarter service.
-- `build-container`: Builds and pushes the container image for our application using the *Containerfile* located in the *src* directory.
+- `build-container`: Builds and pushes the container image with your application.
 - `tag-container`: Tags the container image as *latest*.
-- `prepare-build`: Validates the RHIVOS automotime image builder definition in *.aib-ci.yaml* and prepares the build environment.
-- `automotive-image-builder`: Builds the RHIVOS image using the *automotive-image-builder tool*, which is a part of the Red Hat In-Vehicle OS (RHIVOS) project.
-- `create-jumpstarter-lease`: Requests and waits for a Jumpstarter exporter lease, the leased device (or virtual device) will be used for testing in the following tasks.
-- `flash-with-jumpstarter`: Flashes the RHIVOS image to the leased device using Jumpstarter.
-- `test-with-jumpstarter`: Runs the defined test cases in the *tests* directory of our project on the flashed device.
-- `release`: Finishes the lease and releases the device back to Jumpstarter.
-- `s3-upload`: Uploads the built image to an *S3 bucket* for interactive, we will use this on the next.
+- `prepare-build`: Configures the automotime image builder, based on the *.aib-ci.yaml* configuration file.
+- `automotive-image-builder`: Builds the RHIVOS image using the *automotive-image-builder* tool, which is a part of the Red Hat In-Vehicle OS (RHIVOS) project.
+- `create-jumpstarter-lease`: Requests and waits for a Jumpstarter exporter lease. The leased device (or virtual device) will be used for testing in the following tasks.
+- `flash-with-jumpstarter`: Flashes the RHIVOS image to the leased device.
+- `test-with-jumpstarter`: Runs the defined test cases in the *tests* directory of the project.
+- `release`: Ends the lease and releases the device back to pool of available devices.
+- `s3-upload`: Uploads the RHIVOS image to an *S3 bucket* for interactive use.
 
-
-Once the pipeline is finished, we can see the results reported back to GitLab.
+Once the pipeline is finished, you can see the results reported back to GitLab:
 
 image::act3/07-mr-ready.png[]
+
 
 [#release]
 == Release deployment pipeline
 
-Once the test pipeline has finished, we can start the release pipeline, assuming all the tests have passed.
+Once the test pipeline has finished, you can start the release workflow, assuming that all the tests have passed.
 
-To trigger the release pipeline, we need to merge the changes on branch `develop` into the main branch. 
-Merging the two branches will trigger the release pipeline, which is defined in `.tekton/tasks/pr-build-release.yaml`. 
+To start the release workflow, you have to merge the changes on branch `develop` into the branch `main`. 
+This triggers the release pipeline, which is defined in `.tekton/tasks/pr-build-release.yaml`. 
 
-The release pipeline is similar to the test pipeline, but it focuses on releasing the OS image to hardware:
+The release pipeline is similar to the test pipeline, but it focuses on releasing the OS image to actual hardware:
 
-- It builds the production-ready RHIVOS image optimized for a specific hardware platform (see NOTEs below)
+- It builds the production-ready RHIVOS image optimized for a specific hardware platform (see NOTES below)
 - Uses Jumpstarter to flash the image directly to the physical hardware
 - Uses Jumpstarter to run the defined test cases on the physical hardware
 
@@ -179,14 +184,11 @@ NOTE: The release pipeline focuses on hardware testing rather than virtual testi
 
 NOTE: Due to the limited availability of physical hardware in this lab, we will only show this on screen, but the participant pipelines will still test on virtual hardware.
 
-Merging into main can be done by clicking on the *Merge* button in the merge request page:
+Merging into `main` can be done by clicking on the *Merge* button in the merge request page:
 
 image::act3/08-merge-mr.png[]
 
 == Next
 
-Now that we've completed the development workflow, we'll explore advanced Jumpstarter capabilities including:
-
-- Configuring Jumpstaterter Exporter for custom hardware
-- Recap the development workflow
+Now that you completed the development workflow, let's recap what you have learned !
 

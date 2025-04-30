@@ -82,4 +82,4 @@ validation, allowing your HIL tests to become a natural extension of your contin
 
 == Next
 
-In the next section, we'll dive deeper into Jumpstarter and its role in the automotive software development lifecycle.
+In the next section you will learn more about Jumpstarter and its role in the automotive software development lifecycle.

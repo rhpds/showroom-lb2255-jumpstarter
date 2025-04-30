@@ -1,10 +1,14 @@
 = Working with Jumpstarter
 
-Not only can Jumpstarter help automated hardware testing in CI pipelines, as your project grows, Jumpstarter's remote access capabilities enable your team to share limited hardware devices across geographically distributed teams in a secure, controlled, and efficient manner.
+Not only can Jumpstarter help automate hardware testing in CI pipelines, but as your project grows, Jumpstarter's remote access capabilities
+allows your team to share limited hardware devices across geographically dispersed teams in a secure, controlled and efficient manner.
 
-Jumpstarter manages remote access to exporters using **Leases** which provide a specific **Client** access to an **Exporter** for a specified period of time. When a lease is created, the **Jumpstarter Service** will attempt to find a matching Exporter using the specified label selectors. Once a lease is acquired, the Client can start a session within that lease to access the hardware remotely.
+Jumpstarter manages remote access to Exporters using **Leases**, which give a client access to an Exporter, for a specified period of time. 
 
-Your Dev Space is already configured with credentials to access a Jumpstarter Service running in the same cluster with multiple Exporters available to lease.
+When a Lease is created, the Jumpstarter Service attempts to find a matching Exporter using a label selector. Once a Lease has been aquired, 
+the client can start a session within that Lease to access the hardware remotely.
+
+NOTE: Your Dev Space is already configured with credentials to access a Jumpstarter Service running on the same cluster, with multiple Exporters available for lease.
 
 == List the Exporters
 
@@ -12,36 +16,36 @@ IMPORTANT: First let's create a terminal window by clicking the *+* button.
 
 image::app/new-terminal.png[]
 
-You should see a new terminal like this. The following commands should be executed in this newly created terminal.
-
-image::app/new-terminal-created.png[]
-
-To list the available Exporters, run:
+The following commands should be executed in this newly created terminal. To list the available Exporters, run:
 
 [source,sh,role=execute]
 ----
 jmp get exporters
 ----
 
-Each Exporter has a set of labels, these labels can be used to select the a specific group of exporters when requesting a lease. For example, you could specify a label for the architecture and then select the correct device with an `arch=aarch64`.
+Each exporter can be configured with a set of labels that can be used to select a particular group of Exporters when requesting a lease.
+For example, Exporters can be configured with a label named `arch` that indicates their architecture, and then you can select 
+a device of a particular architecture by using this label, e.g. `arch=aarch64`.
 
 [#jmpexporterlease]
 == Leases and remote Exporters
 
-To lease an Exporter with the Jumpstarter CLI, run:
+A Lease is a way to access an Exporter. To selecte an Exporter of `type=virtual` and create a Lease, run the following command:
 
 [source,sh,role=execute]
 ----
 jmp shell --selector type=virtual
 ----
 
-NOTE: This `jmp shell` command uses the default client config file located at `~/.config/jumpstarter/clients/lab.yaml`. The default client will then use the `--selector` parameter to find an exporter that matches the label `type=virtual`.
+The command uses the default config file located at `~/.config/jumpstarter/clients/lab.yaml`. 
 
-TIP: Notice that your shell prompt have been changed to `jumpstarter ⚡remote ➤`, this is to remind you that you are inside a remote Jumpstarter shell session.
+The default client uses the `--selector` parameter to find an Exporter that matches the label `type=virtual`.
+
+TIP: Notice that your shell prompt changed to `jumpstarter ⚡remote ➤`. This is to remind you that you are inside a remote Jumpstarter shell session.
 
 When you lease an Exporter, you get exclusive access to the hardware interfaces connected to the Exporter for the duration of the lease.
 
-To see the list of hardware interfaces exposed on the Exporter we've leased, run the `j` command without parameters:
+To see the list of hardware interfaces exposed on the Exporter you have leased, run the `j` command without parameters:
 
 [source,sh,role=execute]
 ----
@@ -66,51 +70,34 @@ Commands:
   qemu     Generic composite device
 ----
 
-As this remote exporter is connected to our virtual QEMU hardware, we can use these subcommands to interact with that virtual device. We can control the power using the `power` subcommand, flash a new image with the `flasher`, or access the serial console using `console`. A physical device using a similar interface could be interacted with in the same manner.
+As the remote Exporter is connected to a `virtual QEMU device`, you can use the above subcommands to interact with the device: 
 
-[TIP]
-====
-Notice that the same top-level commands `console`, `flasher`, and `power` are also available under the `qemu` subcommand. This is because they are aliases to the same commands under `qemu` for easier access. The `ref` field in the Exporter config allows us to define aliases to other nested drivers.
+- control the power with the `power` subcommand
+- flash a new image with the `flasher` command
+- access the serial console with `console`
 
-.exporter config
-[source,yaml]
-----
-# ...
-export:
-  console:
-    ref: qemu.console
-  flasher:
-    ref: qemu.flasher
-  power:
-    ref: qemu.power
-  qemu:
-    type: jumpstarter_driver_qemu.driver.Qemu
-    config:
-      # ...
-----
-====
+A physical device with a similar interface could be interacted with in the same way.
 
+'''
 === First boot
 
-Before booting our virtual device, we need to flash it with an operating system image.
+Before booting your virtual device, you have to flash it with an operating system image:
 
 [source,sh,role=execute]
 ----
 ./scripts/flash-prebuilt
 ----
 
-NOTE: the `./scripts/flash-prebuilt` script flashes a prebuilt RHIVOS image to the virtual device. We will build a custom image in a later exercise.
+NOTE: The script flashes a prebuilt RHIVOS image to the virtual device. You will build a custom image in a later exercise.
 
-After flashing, to boot the device and view the boot messages via the serial console, run:
+After flashing, you can boot the device and view the boot messages via the serial console:
 
 [source,sh,role=execute]
 ----
 j power on && j console start-console
 ----
 
-You should be dropped into a serial console with the boot messages showing up. Once the image has finished booting, you will be presented with a login prompt `demo login:`. 
-
-You can login with the following credentials:
+Once the image has finished booting, you will be presented with a login prompt. Login with the following credentials:
 
 .Username
 [.no-copy-label]
@@ -126,7 +113,7 @@ root
 password
 ----
 
-TIP: Notice that your shell prompt have been changed to `[root@localhost ~]`. This is to remind you that you are inside the serial console of the virtual device.
+TIP: Your shell prompt will changed to `[root@localhost ~]`. This is to remind you that you are inside the serial console of the virtual device.
 
 After logging into the system, you can check the system architecture using `uname`:
 
@@ -135,27 +122,30 @@ After logging into the system, you can check the system architecture using `unam
 uname -m
 ----
 
-It should print `aarch64` meaning that this is a arm based virtual device.
+It should print `aarch64`, meaning that this is a ARM based virtual device.
 
-Then quit the serial console by *pressing `Ctrl+B` three times*.
+IMPORTANT: Quit the serial console by *pressing `Ctrl+B` three times*.
 
-TIP: Your shell prompt should be restored to `jumpstarter ⚡remote ➤`, this is to remind you that you are back inside a remote Jumpstarter shell session, not the serial console of the virtual device.
+Your shell prompt will be restored to `jumpstarter ⚡remote ➤`.
 
-
+'''
 === Port forwarding and remote access
 
 Sometimes your tests cannot be executed directly on the target device or the Exporter host.
+To support these use cases, Jumpstarter implements port forwarding, which allows you to interact 
+with services running on the target device from your local machine.
 
-For example, you may need to use a proprietary GUI client or service to control your application. To support these use cases, Jumpstarter implements port forwarding, which allows you to interact with services running inside the target device from your local machine as if they are running locally.
-
-To forward a remote service port such as the `ssh` to a local port, run the following command from within your remote Jumpstarter shell session:
+To forward a remote service port such as the `ssh` to a local port, run the following command:
 
 [source,sh,role=execute]
 ----
 j qemu ssh forward-tcp 9000 &
 ----
 
-This command will forward the remote `ssh` port (port 22) preconfigured in the exporter config to `localhost:9000` on your local machine. Once port forwarding is started, you can run `ssh` client from your local environment and execute commands on the virtual device remotely, e.g. check cpu info:
+This command will forward the remote `ssh` port (port 22) preconfigured in the exporter config to `localhost:9000` on your local machine. 
+
+Once port forwarding is started, you can run an `ssh` client from your local environment and execute commands on the 
+virtual device remotely, e.g. check cpu info:
 
 [source,sh,role=execute]
 ----
@@ -164,7 +154,7 @@ ssh -p 9000 -o StrictHostKeyChecking=no  \
   root@localhost cat /proc/cpuinfo
 ----
 
-When prompted for password, enter:
+When prompted for a password, enter:
 
 .Password
 [.no-copy-label]
@@ -173,16 +163,18 @@ When prompted for password, enter:
 password
 ----
 
+
 [#jmptestingpytest]
 == Testing with Pytest
 
-While connecting to a Jumpstarter Exporter remotely to execute our tests is already a huge step forward from the traditional ways of hardware testing, by combining the Jumpstater Python API with the pytest unit test framework, we can further improve our test process to be more automated and reliable.
+While remotely connecting to a Jumpstarter Exporter to run tests is a huge step forward from traditional 
+methods of hardware testing, we can further improve our test procedures to be automated, repeatable, and reliable.
 
-TIP: You can use any testing framework with Jumpstarter, not only pytest. But we recommend pytest due to its simplicity and popularity.
+You can use any testing framework with Jumpstarter, not only *Pytest*, but we recommend it due to its simplicity and popularity.
 
 === Writing tests
 
-An example pytest script using Jumpstarter would look like this:
+An example pytest script, that uses the Jumpstarter API looks like this:
 
 .test/test_on_hardware.py
 [source,python]
@@ -233,9 +225,9 @@ import pytest
 from jumpstarter_testing.pytest import JumpstarterTest
 ----
 
-The first part are the import statements, saying that we would be using the
-`JumpstarterTest` helper from the `jumpstarter_testing` packages, as well as
-`pytest`, `sys` and `logging` packages.
+The first part of the script imports standard Python packages, as well as
+`pytest` and the `JumpstarterTest` helper from the `jumpstarter_testing` packages.
+
 
 .setup
 [source,python]
@@ -244,13 +236,10 @@ class TestRHIVOSOnHardware(JumpstarterTest):
     selector = "type=virtual"
 ----
 
-The second part is the setup of our test class, we define a class `TestRHIVOSOnHardware`
-that inherits from `JumpstarterTest`, which provides us with the required logics for
-connecting to our Exporter. 
+The actual test happens in class `TestRHIVOSOnHardware`, which is a subclass of `JumpstarterTest`.
+The `JumpstarterTest` class provides the required logics for connecting to an Exporter.
+To select which Exporter and device the test should run on, the `selector` class variable is used.
 
-We also define a `selector` class variable, which is used to select the Exporter we want to lease by default.
-In this case, we are selecting the `type=virtual`, if we are running pytest under a jumpstarter
-shell this will be ignored.
 
 .test-boot
 [source,python]
@@ -269,9 +258,10 @@ shell this will be ignored.
             console.expect_exact("]#", timeout=10)
 ----
 
-This is the first test case, `test_boot`, which tests the boot process of the device,
-it first cycles the power of the device, then it connects to the console and waits for
-the login prompt, then sends the username and password to login to the device.
+This is the first test case, which tests the boot process of the device.
+
+It first cycles the power of the device, then it connects to the console and waits for
+the login prompt, then sends the username and password to log in to the device.
 
 After logging in, it waits for the shell prompt to show up, indicating that the login
 was successful.
@@ -286,31 +276,35 @@ was successful.
             print(console.before.decode())
 ----
 
-The second test case `test_uname` sends the `uname -a` command to the console and
+The second test case sends the `uname -a` command to the console and
 waits for the shell prompt to show up, then prints the output of the command.
 
+NOTE: The above test is basically the same steps you performed in the previous section "First boot".
+
+'''
 === Running tests
 
-Now let's run the test script using pytest to see it in action. The test scripts are
-located in the `tests` directory of the project.
+Now you can run the test script using pytest. The test scripts are located in the `tests` directory of the project.
 
 image::act4/test-sources.png[]
 
-We should still be inside the remote Jumpstarter shell session from the previous steps:
+You should still be in the remote Jumpstarter shell session:
+
 [,console]
 ----
 jumpstarter ⚡remote ➤
 ----
 
-TIP: If you are not inside the remote Jumpstarter shell session, you should run `jmp shell --selector type=virtual` to lease a new Exporter. and then run the `./scripts/flash-prebuilt` command to flash the image again.
+TIP: If you are *NOT* inside the remote Jumpstarter shell session, run `jmp shell --selector type=virtual` to lease a new Exporter. Then run the `./scripts/flash-prebuilt` to flash the device again.
 
-You can simply run the test script using pytest:
+Run the test script using pytest:
+
 [source,sh,role=execute]
 ----
 pytest
 ----
 
-You should see the test results like this:
+You should see the test results:
 
 [,console]
 ----
@@ -341,4 +335,6 @@ tests/test_on_hardware.py::TestRHIVOSOnHardware::test_radio_service_interaction 
 ==================================================================== 2 passed, 3 skipped in 18.82s ====================================================================
 ----
 
-NOTE: You will notice that some of the tests are skipped, this is because we haven't built our application yet. We will come back to this later.
+== Next
+
+You will notice that some of the tests are skipped, this is because we have not built our RHIVOS image yet. This will be covered in the next section.

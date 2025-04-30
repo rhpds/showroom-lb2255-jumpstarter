@@ -1,0 +1,8 @@
+= Conclution
+
+During the workshop, you have learned how to:
+
+- how to use a "Software Factory" for the development of automotive software, including hardware-in-the-loop (HIL) testing.
+- how to use a cloud based development environment and CI/CD pipelines to test software on physical hardware.
+- how to build a custom Red Hat In-Vehicle OS (RHIVOS) image and use "Jumpstarter" to deploy it onto an automotive development board.
+

@@ -1,111 +1,64 @@
 = Jumpstarter
 
 == Overview
-Automated testing with physical hardware (Hardware-in-the-Loop or HiL) and virtual devices has been established for years in industries such as 
-automotive and manufacturing. However, these tools are often expensive and inaccessible to hobbyists and open source projects.
 
-Jumpstarter provides powerful testing tools that leverage https://www.cncf.io/[Cloud Native] principles, modern CI/CD technologies, and open standards for 
-the next generation of edge devices, whether physical or emulated.
+Jumpstarter is an open source framework that brings enterprise-grade testing
+capabilities to everyone. While established industries like automotive and
+manufacturing have long used HiL testing, these tools have typically been
+expensive proprietary systems. Jumpstarter democratizes this technology through
+a free, cloud native approach that works with both physical hardware and virtual
+devices.
 
+At its core, Jumpstarter uses a client/server architecture where a single client
+can control multiple devices under test. Its modular design supports both local
+development (devices connected directly to your machine) and distributed testing
+environments (devices accessed remotely through a central controller). All
+communication happens over gRPC, providing a consistent interface regardless of
+deployment model.
 
-For a detailed technical overview of the architecture, see the https://docs.jumpstarter.dev/architecture.html[Jumpstarter architecture] documentation.
+Built on Python, Jumpstarter integrates easily with existing development
+workflows and runs almost anywhere. It works with common testing tools like
+https://docs.pytest.org/en/stable/[pytest,window=_blank], shell scripts, Makefiles, and
+typical CI/CD systems. Beyond testing, it can function as a virtual KVM
+(Keyboard, Video, Mouse) switch, enabling remote access to physical devices for
+development.
+
 
 [#jmp_components]
 == Core components
 
-Jumpstarter consists of the following core components:
+Jumpstarter architecture is based on the following key components:
 
-- https://docs.jumpstarter.dev/introduction/clients.html[Clients] - Python library and CLI tools that allow you to
-  interact with your devices
-- https://docs.jumpstarter.dev/introduction/drivers.html[Drivers] - Modular interfaces that define how to interact with
-  specific hardware or virtual interfaces
-- https://docs.jumpstarter.dev/introduction/adapters.html[Adapters] - Components that transform driver connections into
-  different forms or interfaces for specific use cases
-- https://docs.jumpstarter.dev/introduction/exporters.html[Exporters] - Services that expose device interfaces using
-  drivers
-- https://docs.jumpstarter.dev/introduction/service.html[Service] - Kubernetes-based controller that manages device
-  access
+- **Device Under Test (DUT)** - Hardware or virtual device being tested
+- **Drivers** - Interfaces for DUT communication
+- **Adapters** - Convert driver connections into various formats
+- **Exporters** - Expose device interfaces over network via gRPC
+- **Clients** - Libraries and CLI tools for device interaction
+- **Service** - Kubernetes controller for resource management
 
-[#jmp_relationships]
-== Key component relationships
+Component interactions include:
 
-The relationship between these components is important to understand:
+- **DUT and Drivers** - Drivers provide standardized interfaces to DUT's
+  hardware connections
+- **Drivers and Adapters** - Adapters transform driver connections for
+  specialized use cases
+- **Drivers/Adapters and Exporters** - Exporters manage drivers/adapters and
+  expose them via gRPC
+- **Exporters and Clients** - Clients connect to exporters to control devices
+- **Clients/Exporters and Service** - Service manages access control and
+  resource allocation in distributed mode
 
-- **Drivers and Adapters**: Drivers establish and manage the basic connections to hardware or virtual interfaces, while adapters transform these 
-connections into different forms without modifying the underlying driver. This separation creates a flexible architecture where 
-drivers focus on core functionality and adapters enhance usability for specific scenarios.
+Together, these components form a comprehensive testing framework that bridges
+the gap between development and deployment environments.
 
-- **Exporters and Drivers**: Exporters use drivers to expose device interfaces to clients. The exporter loads driver implementations 
-based on configuration and makes them available over the network.
+== Official Jumpstarter resources
 
-- **Clients and Exporters**: Clients connect to exporters to access and control the devices. In local mode, this happens directly, 
-while in distributed mode, this is managed by the central controller.
+This section provides an overview of the basic Jumpstarter concepts. More detailed documentation and resources are 
+available on the https://jumpstarter.dev/index.html[official Jumpstarter documentation site,window=_blank].
 
-Together, these components form a layered architecture that separates concerns and allows for a flexible, extensible testing system.
-
-[#jmp_development]
-== Development environment
-
-Since Jumpstarter's core components are written in Python, they can run almost
-anywhere. This means that you can set up a test lab with physical hardware or
-emulated devices (using tools like QEMU), while still using the same Linux-based
-CI systems you currently host in the cloud.
-
-Jumpstarter integrates seamlessly with the existing ecosystem of Python testing
-tools such as https://docs.pytest.org/en/stable/[pytest]. You can also use the
-Jumpstarter CLI directly from shell scripts and Makefiles allowing you to write
-simple automation scripts easily.
-
-In addition to testing, Jumpstarter can also act as a KVM (Keyboard, Video,
-Mouse) switch - a hardware device that allows multiple computers to share a
-single set of input/output devices. Similarly, Jumpstarter enables developers to
-remotely access and control both physical and virtual devices for ad-hoc
-development whether they are sitting at the next desk or working remotely.
-
-[#jmp_operation_modes]
-== Operation modes
-
-Jumpstarter can be used in either a *local-only* or *distributed* environment
-depending on your development needs.
-
-=== Local-Only mode
-
-When using Jumpstarter locally, you can develop drivers, write automated tests,
-and control your devices directly from your development machine without
-additional infrastructure.
-
-The *local-only mode* is useful when:
-
-- Working with hardware on your desk or virtual devices that you have unlimited
-  access to
-- Developing and testing drivers for new hardware or emulated environments
-- Creating initial test automation scripts
-- Using QEMU or other virtualization tools to emulate target devices
-
-For details on how this mode works, see the https://docs.jumpstarter.dev/architecture.html#local-mode[Running Tests
-Locally] section in the architecture
-documentation.
-
-=== Distributed mode
-
-As your project grows, Jumpstarter helps you collaborate across teams, implement
-CI/CD pipelines, and automate common tasks such as firmware updates.
-
-The *distributed mode* leverages https://kubernetes.io/[Kubernetes] to support
-the management of multiple devices (physical or virtual) directly from your
-existing cluster. This allows for seamless integration with many existing Cloud
-Native technologies such as https://tekton.dev[Tekton], https://argoproj.github.io/cd/[ArgoCD], and
-https://prometheus.io/docs/introduction/overview/[Prometheus].
-
-The distributed mode is ideal when:
-
-- Multiple teams need access to shared hardware or virtual device resources
-- Continuous integration requires scheduled tests on physical or emulated
-  devices
-- Test environments are distributed across multiple locations
-- Devices (physical or virtual) need to be managed remotely
+You can also find all the https://github.com/jumpstarter-dev/jumpstarter[source code,window=_blank] for Jumpstarter on GitHub.
 
 == Next
 
-Since we now have a basic understanding of the Red Hat Automotive Development Platform 
+Now that you have a basic understanding of the Red Hat Automotive Development Platform
 and how Jumpstarter works, let's dive into the lab activities!

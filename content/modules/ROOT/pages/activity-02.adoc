@@ -1,27 +1,29 @@
 = Application Development
 
 == Overview
-In this module we will learn how to develop, build, and test a simple automotive application using Red Hat OpenShift Dev Spaces.
+In this module you will learn how to develop, build, and test a simple automotive application using Red Hat OpenShift Dev Spaces and OpenShift Pipelines.
 
-The source repo contains a set of applications that demonstrate how typical automotive applications use SOME/IP communicate, 
-these apps work both natively and in a container. For the purpose of this lab, we would be focusing on the `radio-service` application. 
-This is a service that emulates a radio, regularly publishing information about the current track, station, and volume level. 
-This service accepts requests to turn on/off, change channel, and adjust the volume over SOME/IP.
+The sample application is a simple `radio-service` that emulates a radio, regularly publishing information about the current track, the radio station, and volume level. 
+The `radio-client` application connects to the radio service and request to turn it on or off, to change the radio station, and adjust the volume.
+
+It demonstrate how typical automotive applications use https://some-ip.com/[SOME/IP,window=_blank] to communicate. The application is written in C++ and uses the https://cmake.org/[CMake,window=_blank] build system.
+
 
 [#appbuild]
 == Build the application
 
-We can easily build, test, and publish our application using the cmake build system in our DevWorkspace.
-
-image::app/00-build.png[]
+In a first step, you will build and test the application inside Red Hat OpenShift Dev Spaces.
 
 IMPORTANT: Click the *build* button at the bottom left of the window.
 
-image::app/01-kit.png[]
+image::app/00-build.png[]
 
 IMPORTANT: Choose to build with the GCC toolkit.
 
-NOTE: The demo application is built using the *cmake* build system. The build process involves creating a "build" directory, and calling cmake to generate the Makefile,
+image::app/01-kit.png[]
+
+
+NOTE: The applications are built using the *cmake* build system. The build process involves creating a "build" directory, and calling cmake to generate the Makefile,
 then make will be called to compile the source code into multiple executable files. The cmake vscode plugin automatically detects the source code and
 performs those steps on your behalf, but you can also do it manually if you want to.
 
@@ -29,45 +31,50 @@ performs those steps on your behalf, but you can also do it manually if you want
 [#apptest]
 == Test the application
 
+Once the application is built, you can test it.
+
+IMPORTANT: Click the *triangular button* at the bottom left of the window to run the application. Choose to run *radio-service*.
+
 image::app/02-build-finish.png[]
 
-IMPORTANT: After finishing building, *click the triangular button* at the bottom left of the window to run the application. Choose to run *radio-service*.
 
 image::app/03-run.png[]
 
-[TIP]
-====
-When the radio service is running, you will see log lines like
+
+Once the `radio-service` is running, you will see output like the following in the terminal:
 
 [source,sh]
 ----
 RADIO: Playing song "Upper Echelon" by Travi$ Scott feat. 2 Chainz & T.I. (on Radio Los Santos) 50% volume
 ----
 
-showing up in the terminal. 
-====
 
-Next, we can start the `radio-client` to interact with the running `radio-service`. 
+Now start the `radio-client` to interact with the running `radio-service`. 
 
-IMPORTANT: First, split the terminal by clicking book like button on the right middle of the screen.
+IMPORTANT: First, split the terminal by clicking the split button on the right middle of the screen.
 
 image::app/05-split.png[]
 
-NOTE: You will see the terminal being split into two halves, with the `radio-service` running on the left, and a bash shell on the right.
+You will see the terminal being split into two halves, with the `radio-service` running on the left, and a new shell to the right.
 
-image::app/06-run-client.png[]
-
-IMPORTANT: Start *radio-client* by clicking the right half of the terminal and type the following command, then press `Enter`.
+Start *radio-client* by clicking the right half of the terminal and type the following command, then press `Enter`.
 
 [source,sh,role=execute]
 ----
 ./radio-client
 ----
 
+image::app/06-run-client.png[]
+
 image::app/07-client-running.png[]
 
-TIP: In the `radio-client`, press `+` or `-` to adjust the volume, `<SPACE>` to switch stations, and `<ESC>` to pause or resume the radio. 
-Notice the changes in the printed status messages in response to your requests.
+In the `radio-client`, press 
+
+- `+` or `-` to adjust the volume
+- `<SPACE>` to switch stations
+- `<ESC>` to pause or resume the radio. 
+
+Observe the output in the `radio-service` terminal.
 
 IMPORTANT: When done with testing, press `q` to quit the radio-client application.
 
@@ -75,49 +82,36 @@ IMPORTANT: When done with testing, press `q` to quit the radio-client applicatio
 [#appmodify]
 == Modify the application 
 
-Next, we will modify the application to add a new radio station and several new songs, and repeat the build-test cycle.
-
-=== Modify the code
-
-image::app/08-src.png[]
+Next, you will modify the application to add a new radio station and several new songs, and then repeat the build-test cycle.
 
 IMPORTANT: Click `src` in the file explorer to open the src folder.
 
-image::app/09-stations.png[]
+image::app/08-src.png[]
 
 IMPORTANT: Click `radio-stations.cpp` to open the source file containing the radio stations and songs.
 
+image::app/09-stations.png[]
+
+IMPORTANT: At the top of the file, remove the two commented lines.
+
 image::app/10-songs-before.png[]
 
-IMPORTANT: At the top of the file, remove the two annotated lines.
-
-image::app/11-songs-after.png[]
-
-TIP: The remaining lines should look like this after editing.
+IMPORTANT: Scroll down to the bottom of the file, remove the two commented lines.
 
 image::app/12-stations-before.png[]
 
-IMPORTANT: Scroll down to the bottom of the file, remove the two annotated lines.
 
-image::app/13-stations-after.png[]
+After finishing editing, click into the `radio-service` terminal and enter `CTRL+C` to stop the running radio-service application.
 
-TIP: The remaining lines should look like this after editing.
-
-=== Test modified code
-
-[WARNING]
-====
-After finishing editing, click on the radio-service terminal and push `CTRL+C` to stop the execution, then
-click the triangular button at the bottom left of the window to rerun `radio-service`, and
-start `radio-client` again on the right half of the terminal. 
-====
+Re-build and re-start the application by clicking the *triangular button* at the bottom left of the window, 
+then re-start `radio-client` again on the right half of the terminal. 
 
 TIP: Try switching stations by pressing `<SPACE>`, and find the newly added *Red Hat Summit Radio* station.
 
 == Next
 
-Now that we've completed the "local" development workflow, we'll explore some Jumpstarter capabilities including:
+Now that you completed the "local" development workflow, you can explore some Jumpstarter capabilities including:
 
 - Interacting with Jumpstarter Exporters from the command line
-- Writing custom test cases for your specific application requirements
+- Writing test cases for your application
 - Flashing the application to a target device
