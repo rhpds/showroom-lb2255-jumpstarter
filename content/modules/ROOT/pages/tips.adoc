@@ -19,4 +19,3 @@ TIP: Clicking into a screen shot will enlarge it. Clicking it again will return 
 TIP: In Red Hat OpenShift Dev Spaces, you do not need to save your work. Changes are automatically saved.
 
 WARNING: In Red Hat OpenShift Dev Spaces, do *NOT* use Ctrl-W to close an editor. This will only close the entire browser window!
-
