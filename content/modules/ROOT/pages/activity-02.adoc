@@ -6,7 +6,7 @@ In this module you will learn how to develop, build, and test a simple automotiv
 The sample application is a simple `radio-service` that emulates a radio, regularly publishing information about the current track, the radio station, and volume level. 
 The `radio-client` application connects to the radio service and request to turn it on or off, to change the radio station, and adjust the volume.
 
-It demonstrate how typical automotive applications use https://some-ip.com/[SOME/IP,window=_blank] to communicate. The application is written in C++ and uses the https://cmake.org/[CMake,window=_blank] build system.
+It demonstrates how typical automotive applications use https://some-ip.com/[SOME/IP,window=_blank] to communicate. The application is written in C++ and uses the https://cmake.org/[CMake,window=_blank] build system.
 
 
 [#appbuild]
