@@ -5,7 +5,7 @@ allows your team to share limited hardware devices across geographically dispers
 
 Jumpstarter manages remote access to Exporters using **Leases**, which give a client access to an Exporter, for a specified period of time. 
 
-When a Lease is created, the Jumpstarter Service attempts to find a matching Exporter using a label selector. Once a Lease has been aquired, 
+When a Lease is created, the Jumpstarter Service attempts to find a matching Exporter using a label selector. Once a Lease has been acquired,
 the client can start a session within that Lease to access the hardware remotely.
 
 NOTE: Your Dev Space is already configured with credentials to access a Jumpstarter Service running on the same cluster, with multiple Exporters available for lease.
@@ -30,7 +30,7 @@ a device of a particular architecture by using this label, e.g. `arch=aarch64`.
 [#jmpexporterlease]
 == Leases and remote Exporters
 
-A Lease is a way to access an Exporter. To selecte an Exporter of `type=virtual` and create a Lease, run the following command:
+A Lease is a way to access an Exporter. To select an Exporter of `type=virtual` and create a Lease, run the following command:
 
 [source,sh,role=execute]
 ----

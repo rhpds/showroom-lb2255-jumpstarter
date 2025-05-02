@@ -136,7 +136,7 @@ IMPORTANT: To create a merge request, click on the *Create Merge Request* button
 
 image::act3/03-create-mr-2.png[]
 
-Creating a merge request triggers a pipelin that builds and tests the RHIVOS image. It is defined in `.tekton/tasks/pr-build-test.yaml`.
+Creating a merge request triggers a pipeline that builds and tests the RHIVOS image. It is defined in `.tekton/tasks/pr-build-test.yaml`.
 
 image::act3/04-mr-pipeline-running.png[]
 
