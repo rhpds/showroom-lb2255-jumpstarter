@@ -11,7 +11,7 @@ This lab provides you with an integrated development environment that teaches yo
 development of automotive software. You will learn how to develop, build and test automotive software 
 in https://developers.redhat.com/rhdh/overview[Red Hat Developer Hub] and how to build a 
 custom https://www.redhat.com/en/blog/new-standard-red-hat-vehicle-operating-system-modern-and-future-vehicles[Red Hat In-Vehicle OS (RHIVOS)] image with 
-containerized automotive application embedded. 
+containerized a automotive application embedded. 
 
 Additionally, you’ll explore https://jumpstarter.dev/[Jumpstarter] for cloud-native HIL testing of ECUs and edge devices. 
 You'll learn how it integrates with https://developers.redhat.com/products/openshift-dev-spaces/overview[Red Hat OpenShift Dev Spaces]  and 
@@ -20,7 +20,7 @@ such as automation, continuous integration, and infrastructure as code.
 
 == Lab activities and objectives
 
-In this lab, we will follow a typical development workflow for automotive software:
+In this lab, you will follow a typical development workflow for automotive software:
 
 * Create a new application project from a Red Hat Developer Hub template
 * Develop and test the application in Red Hat Dev Spaces

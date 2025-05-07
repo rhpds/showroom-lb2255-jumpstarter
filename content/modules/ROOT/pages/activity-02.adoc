@@ -4,7 +4,7 @@
 In this module you will learn how to develop, build, and test a simple automotive application using Red Hat OpenShift Dev Spaces and OpenShift Pipelines.
 
 The sample application is a simple `radio-service` that emulates a radio, regularly publishing information about the current track, the radio station, and volume level. 
-The `radio-client` application connects to the radio service and request to turn it on or off, to change the radio station, and adjust the volume.
+The `radio-client` application connects to the radio service and requests to turn it on or off, to change the radio station, and adjust the volume.
 
 It demonstrates how typical automotive applications use https://some-ip.com/[SOME/IP,window=_blank] to communicate. The application is written in C++ and uses the https://cmake.org/[CMake,window=_blank] build system.
 
@@ -22,10 +22,7 @@ IMPORTANT: Choose to build with the GCC toolkit.
 
 image::app/01-kit.png[]
 
-
-NOTE: The applications are built using the *cmake* build system. The build process involves creating a "build" directory, and calling cmake to generate the Makefile,
-then make will be called to compile the source code into multiple executable files. The cmake vscode plugin automatically detects the source code and
-performs those steps on your behalf, but you can also do it manually if you want to.
+NOTE: The build process involves creating a "build" directory, and calling cmake to generate the Makefile. Then, make is called to compile the source code into multiple executable files.
 
 
 [#apptest]

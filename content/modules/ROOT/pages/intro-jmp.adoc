@@ -1,4 +1,4 @@
-= Jumpstarter
+= About the Jumpstarter framework
 
 == Overview
 
@@ -36,17 +36,17 @@ Jumpstarter architecture is based on the following key components:
 - **Clients** - Libraries and CLI tools for device interaction
 - **Service** - Kubernetes controller for resource management
 
-Component interactions include:
+Component interactions include the following:
 
 - **DUT and Drivers** - Drivers provide standardized interfaces to DUT's
-  hardware connections
+  hardware connections.
 - **Drivers and Adapters** - Adapters transform driver connections for
-  specialized use cases
+  specialized use cases.
 - **Drivers/Adapters and Exporters** - Exporters manage drivers/adapters and
-  expose them via gRPC
-- **Exporters and Clients** - Clients connect to exporters to control devices
+  expose them via gRPC.
+- **Exporters and Clients** - Clients connect to exporters to control devices.
 - **Clients/Exporters and Service** - Service manages access control and
-  resource allocation in distributed mode
+  resource allocation in distributed mode.
 
 Together, these components form a comprehensive testing framework that bridges
 the gap between development and deployment environments.
@@ -60,5 +60,4 @@ You can also find all the https://github.com/jumpstarter-dev/jumpstarter[source 
 
 == Next
 
-Now that you have a basic understanding of the Red Hat Automotive Development Platform
-and how Jumpstarter works, let's dive into the lab activities!
+Now that you have a basic understanding of the Red Hat Automotive Development Platform and how Jumpstarter works, you’re ready to dive into the lab activities.

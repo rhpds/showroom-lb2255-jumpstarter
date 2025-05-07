@@ -6,10 +6,10 @@ While Red Hat OpenShift Dev Spaces provides a consistent environment for develop
 requires testing on virtual or physical hardware. This additional testing ensures:
 
 - System stability
-- Allows for performance optimization
+- Performance optimization
 - Compatibility across target platforms
 
-Before building a production-ready RHIVOS image, you should verify our application functions correctly in a cloud environment. 
+Before building a production-ready RHIVOS image, you must verify that your application functions correctly in a cloud environment. 
 After that, you can build a RHIVOS image with the modified application embedded, preparing it for end-to-end testing in
 virtualized hardware environments using Jumpstarter.
 
@@ -18,7 +18,7 @@ NOTE: This activity builds upon the previous activity, where you modified the ap
 [#test-app]
 == Enable tests of the app
 
-Before committing your changes to the source code repository, you need to enable some tests cases 
+Before committing your changes to the source code repository, you need to enable some test cases 
 that will be run against the application later in the pipeline.
 
 IMPORTANT: Open `tests/test_on_hardware.py` and remove the three code annotations.
@@ -80,16 +80,17 @@ The third test is to interact with the radio service, and see if it can change t
 Now that all the changes are done, you can commit the changes to the source code repository.
 You will first need to create a new branch and commit the changes. Then, you will create a *pull request* against the `main` branch.
 
-IMPORTANT: Bring up the branch selector by clicking the button saying `main` at the bottom left of the screen.
+IMPORTANT: Open the branch selector menu by clicking the *main* button in the status bar footer at the bottom left of the screen.
 
 image::app/14-branch.png[]
 
-IMPORTANT: In the input box, put `develop`, then click *Create new branch*.
+IMPORTANT: In the input box, enter *develop*. Then, select *Create new branch*.
 
 image::app/15-branch-create.png[]
 
-WARNING: Make sure the button on the bottom left of the screen now says `develop`, the name of the newly created branch, 
-then click the annotated button on the left to open the source control tab.
+WARNING: Make sure the button on the bottom left of the screen now says *develop*, the name of the newly created branch.
+
+IMPORTANT: Click the *Source Control* button in the left sidebar to open the source control tab.
 
 image::app/16-branch-created.png[]
 
@@ -101,7 +102,7 @@ IMPORTANT: Click the *Publish Branch* button to push the new changes to the code
 
 image::app/18-push.png[]
 
-Once the changes are pushed to the code repository, a Red Hat OpenShift Pipelines pipelinerun is triggered. This builds the application and creates a new container image.
+After the changes are pushed to the code repository, a Red Hat OpenShift Pipelines pipeline run is triggered. This run builds the application and creates a new container image.
 
 To check the progress of the pipeline, switch to the
 https://backstage-backstage.{openshift_cluster_ingress_domain}/catalog/default/component/{user}-jumpstarter-lab/ci[Red Hat Developer Hub dashboard,window=_blank].
@@ -152,7 +153,7 @@ Looking at the pipeline in detail, it performs the following tasks:
 - `prepare-jumpstarter-config`: Prepares the Jumpstarter configuration files for authenticating to the Jumpstarter service.
 - `build-container`: Builds and pushes the container image with your application.
 - `tag-container`: Tags the container image as *latest*.
-- `prepare-build`: Configures the automotime image builder, based on the *.aib-ci.yaml* configuration file.
+- `prepare-build`: Configures the automotive image builder, based on the *.aib-ci.yaml* configuration file.
 - `automotive-image-builder`: Builds the RHIVOS image using the *automotive-image-builder* tool, which is a part of the Red Hat In-Vehicle OS (RHIVOS) project.
 - `create-jumpstarter-lease`: Requests and waits for a Jumpstarter exporter lease. The leased device (or virtual device) will be used for testing in the following tasks.
 - `flash-with-jumpstarter`: Flashes the RHIVOS image to the leased device.
@@ -170,7 +171,7 @@ image::act3/07-mr-ready.png[]
 
 Once the test pipeline has finished, you can start the release workflow, assuming that all the tests have passed.
 
-To start the release workflow, you have to merge the changes on branch `develop` into the branch `main`. 
+To start the release workflow, you must merge the changes on the *develop* branch into the *main* branch. 
 This triggers the release pipeline, which is defined in `.tekton/tasks/pr-build-release.yaml`. 
 
 The release pipeline is similar to the test pipeline, but it focuses on releasing the OS image to actual hardware:
@@ -179,16 +180,17 @@ The release pipeline is similar to the test pipeline, but it focuses on releasin
 - Uses Jumpstarter to flash the image directly to the physical hardware
 - Uses Jumpstarter to run the defined test cases on the physical hardware
 
-NOTE: The release pipeline focuses on hardware testing rather than virtual testing, assuming all validation has been completed in the development pipeline. *An good alternative* is to always use physical devices on merge requests if your lab has sufficient resources,
-      this way you can validate the code on hardware before merging it to the main branch.
+NOTE: The release pipeline focuses on hardware testing rather than virtual testing, assuming all validation has been completed in the development pipeline. 
 
-NOTE: Due to the limited availability of physical hardware in this lab, we will only show this on screen, but the participant pipelines will still test on virtual hardware.
+TIP: A good alternative is to always use physical devices on merge requests if your lab has sufficient resources. This way you can validate the code on hardware before merging it to the main branch.
 
-Merging into `main` can be done by clicking on the *Merge* button in the merge request page:
+NOTE: Due to the limited availability of physical hardware in this lab, we will only show this on screen.
+
+Merging into *main* can be done by clicking on the *Merge* button in the merge request page:
 
 image::act3/08-merge-mr.png[]
 
 == Next
 
-Now that you completed the development workflow, let's recap what you have learned !
+Now that you completed the development workflow, let’s recap what you have learned.
 

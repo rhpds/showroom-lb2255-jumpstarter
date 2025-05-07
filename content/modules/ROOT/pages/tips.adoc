@@ -14,7 +14,7 @@ TIP: This is a tip that will help you complete the lab.
 
 TIP: All login information is available via the side bar item, "Cheatsheet"
 
-TIP: Clicking into a screen shot will enlarge it. Clicking it again will return it to its original size.
+TIP: Clicking a screen shot enlarges it. Clicking it again returns it to its original size.
 
 TIP: In Red Hat OpenShift Dev Spaces, you do not need to save your work. Changes are automatically saved.
 

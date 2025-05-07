@@ -5,13 +5,13 @@
 
 Here is a quick overview of the first activities in this lab:
 
-- Start your development workflow in the Red Hat Developer Hub portal
-- Browse through the template catalog and select one tailored for automotive software development
-- Create a new project from the template
-- Launch your ready-to-code environment in Red Hat OpenShift Dev Spaces
+- Start your development workflow in the Red Hat Developer Hub portal.
+- Browse through the template catalog and select one tailored for automotive software development.
+- Create a new project from the template.
+- Launch your ready-to-code environment in Red Hat OpenShift Dev Spaces.
 
-Behind the scenes, Red Hat Developer Hub automatically structures your project and provides all the supporting infrastructure 
-through OpenShift GitOps - so you can focus on coding, not setup.
+Behind the scenes, Red Hat Developer Hub automatically structures your project and provides all the 
+supporting infrastructure through OpenShift GitOps so that you can focus on coding, not setup.
 
 
 == Access Red Hat Developer Hub
@@ -20,11 +20,11 @@ First you have to access the https://backstage-backstage.{openshift_cluster_ingr
 
 https://backstage-backstage.{openshift_cluster_ingress_domain}[window=_blank]
 
-IMPORTANT: Choose the option to *Sign in with GitLab*.
+IMPORTANT: Select the *GitLab* login option.
 
 image::setup/00-sign-in-backstage.png[]
 
-You will be prompted to log in with your credentials:
+When prompted, log in with the following credentials:
 
 .Username
 [source,sh,role=copypaste,subs="+attributes"]
@@ -40,7 +40,7 @@ You will be prompted to log in with your credentials:
 
 '''
 
-IMPORTANT: Authorize Keycloak to access GitLab
+IMPORTANT: Click *Authorize keycloak* to access GitLab:
 
 image::setup/02-access-gitlab.png[]
 
@@ -52,7 +52,7 @@ The portal serves as your single point of entry for all automotive software deve
 [#project]
 == Project creation
 
-Next, you will create a new project from a template.
+Next, create a new project from a template by following these steps.
 
 IMPORTANT: Click the *Create* button on the side bar
 
@@ -72,7 +72,7 @@ IMPORTANT: On the Review page, click *Create*
 
 image::setup/06-backstage-create-review.png[]
 
-The source code repo and development environment will be created in a few seconds, and you will be greeted with the completion page.
+The source code repo and development environment will be created in a few seconds, and the completion page opens.
 
 IMPORTANT: Click *Open Component in catalog* to access your new development environment
 
@@ -99,7 +99,7 @@ IMPORTANT: On the OpenShift login page, choose to login with *rhsso*.
 
 image::setup/10-login-devspace-rhsso.png[]
 
-You’ll be prompted to log in with your credentials:
+When prompted, log in with the following credentials:
 
 .Username
 [source,sh,role=copypaste,subs="+attributes"]
@@ -127,7 +127,7 @@ IMPORTANT: When asked to authorize *devspaces* to access your account on GitLab,
 
 image::setup/14-devspace-gitlab-access.png[]
 
-NOTE: The creation of the *DevWorkspace* instance can take a few minutes, please be patient !
+NOTE: The creation of the *DevWorkspace* instance can take a few minutes.
 
 image::setup/15-devspace-starting.png[]
 
@@ -135,7 +135,7 @@ image::setup/15-devspace-starting.png[]
 [#workspace]
 == Prepare the workspace
 
-Once the Dev Workspace is created, you will be redirected to a *VS Code like* development environment.
+After the Dev Workspace is created, you are redirected to the VS Code development environment.
 
 IMPORTANT: If prompted "Do you trust the authors of the files in this workspace?", click *Yes, I trust the authors*
 
