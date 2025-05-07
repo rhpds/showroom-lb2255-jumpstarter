@@ -78,7 +78,8 @@ The third test is to interact with the radio service, and see if it can change t
 == Container image build
 
 Now that all the changes are done, you can commit the changes to the source code repository.
-You will first need to create a new branch and commit the changes. Then, you will create a *pull request* against the `main` branch.
+
+You will first need to create a new branch and commit the changes. Then, you will create a *pull request* against the *main* branch.
 
 IMPORTANT: Open the branch selector menu by clicking the *main* button in the status bar footer at the bottom left of the screen.
 
@@ -115,13 +116,13 @@ It is also deployed to its own namespace on the OpenShift cluster. As a develope
 [#merge]
 == Create a Merge Request
 
-Now that you have a container image, you can start the process of building the RHIVOS image. The build process is triggered by creating a `merge request` in GitLab.
+Now that you have a container image, you can start the process of building the RHIVOS image. The build process is triggered by creating a *"Merge Request"* in GitLab.
 
 Switch to the https://backstage-backstage.{openshift_cluster_ingress_domain}/catalog/default/component/{user}-jumpstarter-lab/[Red Hat Developer Hub dashboard,window=_blank] and click on the *View source* button to navigate to the GitLab interface.
 
 image::act3/01-go-to-gitlab.png[]
 
-IMPORTANT: In GitLab, select the `develop` branch and click on the *Merge Request* button,
+IMPORTANT: In GitLab, select the `develop` branch and click on the *New* button,
 
 image::act3/02-create-mr.png[]
 

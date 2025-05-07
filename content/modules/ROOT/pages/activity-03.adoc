@@ -8,16 +8,14 @@ Jumpstarter manages remote access to Exporters using **Leases**, which give a cl
 When a Lease is created, the Jumpstarter Service attempts to find a matching Exporter using a label selector. Once a Lease has been acquired,
 the client can start a session within that Lease to access the hardware remotely.
 
-NOTE: Your Dev Space is already configured with credentials to access a Jumpstarter Service running on the cluster, with multiple Exporters available for lease.
+NOTE: Your workspace is already configured with credentials to access a Jumpstarter Service running on the cluster, with multiple Exporters available for lease.
 
 [#jmpexporterlease]
 == List the Exporters
 
-IMPORTANT: First let's create a terminal window by clicking the *+* button.
+The following commands should be executed in the open terminal window. 
 
-image::app/new-terminal.png[]
-
-The following commands should be executed in this newly created terminal. To list the available Exporters, run:
+To list the available Exporters, run:
 
 [source,sh,role=execute]
 ----
@@ -131,7 +129,7 @@ Your shell prompt will be restored to `jumpstarter ⚡remote ➤`.
 '''
 === Port forwarding and remote access
 
-NOTE: This section is optional and you can continue with section "Testing with Pytest".
+NOTE: This section is optional and you can continue with section "Testing with Pytest" if you want to skip it.
 
 Sometimes your tests cannot be executed directly on the target device or the Exporter host.
 To support these use cases, Jumpstarter implements port forwarding, which allows you to interact 

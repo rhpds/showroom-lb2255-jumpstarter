@@ -127,7 +127,7 @@ IMPORTANT: When asked to authorize *devspaces* to access your account on GitLab,
 
 image::setup/14-devspace-gitlab-access.png[]
 
-NOTE: The creation of the *DevWorkspace* instance can take a few minutes.
+NOTE: The creation of the *Workspace* can take a few minutes.
 
 image::setup/15-devspace-starting.png[]
 
@@ -135,7 +135,7 @@ image::setup/15-devspace-starting.png[]
 [#workspace]
 == Prepare the workspace
 
-After the Dev Workspace is created, you are redirected to the VS Code development environment.
+After the Workspace is created, you are redirected to the VS Code development environment.
 
 IMPORTANT: If prompted "Do you trust the authors of the files in this workspace?", click *Yes, I trust the authors*
 

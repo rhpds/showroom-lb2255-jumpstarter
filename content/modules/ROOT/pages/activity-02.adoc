@@ -81,7 +81,7 @@ IMPORTANT: When done with testing, press `q` to quit the radio-client applicatio
 
 Next, you will modify the application to add a new radio station and several new songs, and then repeat the build-test cycle.
 
-IMPORTANT: Click `src` in the file explorer to open the src folder.
+IMPORTANT: Click *src* in the file explorer to open the src folder.
 
 image::app/08-src.png[]
 
@@ -104,6 +104,25 @@ Re-build and re-start the application by clicking the *triangular button* at the
 then re-start `radio-client` again on the right half of the terminal. 
 
 TIP: Try switching stations by pressing `<SPACE>`, and find the newly added *Red Hat Summit Radio* station.
+
+== Clean up
+
+Before you continue, close one of the terminal windows.
+
+IMPORTANT: Click the *Trash can* icon on the lower right of the window to close one of the terminals.
+
+image::app/19-cleanup.png[]
+
+Clear all output in the remaining terminal window. Click in the terminal window and type the following command, then press `Enter`.
+
+[source,sh,role=execute]
+----
+clear
+----
+
+You should see a clean terminal window:
+
+image::app/20-clean.png[]
 
 == Next
 
