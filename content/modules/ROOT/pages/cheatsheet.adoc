@@ -40,3 +40,12 @@ https://devspaces.{openshift_cluster_ingress_domain}
 ----
 https://gitlab-gitlab.{openshift_cluster_ingress_domain}
 ----
+
+
+== Red Hat OpenShift https://console-openshift-console.{openshift_cluster_ingress_domain}['link',window=_blank]
+
+[source,sh,role=execute,subs=attributes+]
+----
+https://console-openshift-console.{openshift_cluster_ingress_domain}
+----
+
