@@ -10,6 +10,19 @@ the client can start a session within that Lease to access the hardware remotely
 
 NOTE: Your workspace is already configured with credentials to access a Jumpstarter Service running on the cluster, with multiple Exporters available for lease.
 
+== Preparing your workspace
+
+Interacting with Jumpstarter is done using the `jmp` command-line tool. Before you start, create a new terminal window.
+
+IMPORTANT: Select *Terminal -> New Terminal* from the left sidebar.
+
+image::app/21-terminal.png[]
+
+This will open a new terminal window.
+
+image::app/22-new-terminal.png[]
+
+
 [#jmpexporterlease]
 == List the Exporters
 

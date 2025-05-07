@@ -107,22 +107,15 @@ TIP: Try switching stations by pressing `<SPACE>`, and find the newly added *Red
 
 == Clean up
 
-Before you continue, close one of the terminal windows.
+Before you continue, close the terminal windows.
 
-IMPORTANT: Click the *Trash can* icon on the lower right of the window to close one of the terminals.
+IMPORTANT: Click the *Trash can* icons on the lower right of the window to close the terminals.
 
 image::app/19-cleanup.png[]
 
-Clear all output in the remaining terminal window. Click in the terminal window and type the following command, then press `Enter`.
+Now you should only see the code editor window.
 
-[source,sh,role=execute]
-----
-clear
-----
-
-You should see a clean terminal window:
-
-image::app/20-clean.png[]
+image::app/20-editor.png[]
 
 == Next
 
