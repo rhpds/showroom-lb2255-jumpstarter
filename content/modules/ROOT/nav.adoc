@@ -17,15 +17,15 @@
 ** xref:activity-02.adoc#apptest[Test the application]
 ** xref:activity-02.adoc#appmodify[Modify the application]
 
-* xref:activity-04.adoc[Working with Jumpstarter]
-** xref:activity-04.adoc#jmpexporterlease[Interact with an Exporter]
-** xref:activity-04.adoc#jmptestingpytest[Testing with Pytest]
+* xref:activity-03.adoc[Working with Jumpstarter]
+** xref:activity-03.adoc#jmpexporterlease[Interact with an Exporter]
+** xref:activity-03.adoc#jmptestingpytest[Testing with Pytest]
 
-* xref:activity-03.adoc[Testing and Validation] 
-** xref:activity-03.adoc#test-app[Enable tests of the app]
-** xref:activity-03.adoc#container[Container image build]
-** xref:activity-03.adoc#merge[Create a Merge Request]
-** xref:activity-03.adoc#release[Release deployment pipeline]
+* xref:activity-04.adoc[Testing and Validation] 
+** xref:activity-04.adoc#test-app[Enable tests of the app]
+** xref:activity-04.adoc#container[Container image build]
+** xref:activity-04.adoc#merge[Create a Merge Request]
+** xref:activity-04.adoc#release[Release deployment pipeline]
 
 * xref:wrapup.adoc[Conclusion]
 

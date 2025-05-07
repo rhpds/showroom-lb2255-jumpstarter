@@ -1,342 +1,196 @@
-= Working with Jumpstarter
+= Testing and Validation
 
-Not only can Jumpstarter help automate hardware testing in CI pipelines, but as your project grows, Jumpstarter's remote access capabilities
-allows your team to share limited hardware devices across geographically dispersed teams in a secure, controlled and efficient manner.
+== Overview
 
-Jumpstarter manages remote access to Exporters using **Leases**, which give a client access to an Exporter, for a specified period of time. 
+While Red Hat OpenShift Dev Spaces provides a consistent environment for developing, building, and testing automotive applications, comprehensive validation 
+requires testing on virtual or physical hardware. This additional testing ensures:
 
-When a Lease is created, the Jumpstarter Service attempts to find a matching Exporter using a label selector. Once a Lease has been acquired,
-the client can start a session within that Lease to access the hardware remotely.
+- System stability
+- Performance optimization
+- Compatibility across target platforms
 
-NOTE: Your Dev Space is already configured with credentials to access a Jumpstarter Service running on the cluster, with multiple Exporters available for lease.
+Before building a production-ready RHIVOS image, you must verify that your application functions correctly in a cloud environment. 
+After that, you can build a RHIVOS image with the modified application embedded, preparing it for end-to-end testing in
+virtualized hardware environments using Jumpstarter.
 
-[#jmpexporterlease]
-== List the Exporters
+NOTE: This activity builds upon the previous activity, where you modified the application code.
 
-IMPORTANT: First let's create a terminal window by clicking the *+* button.
+[#test-app]
+== Enable tests of the app
 
-image::app/new-terminal.png[]
+Before committing your changes to the source code repository, you need to enable some test cases 
+that will be run against the application later in the pipeline.
 
-The following commands should be executed in this newly created terminal. To list the available Exporters, run:
+IMPORTANT: Open `tests/test_on_hardware.py` and remove the three code annotations.
 
-[source,sh,role=execute]
-----
-jmp get exporters
-----
+image::app/14-enable-test.png[]
 
-Each exporter can be configured with a set of labels that can be used to select a particular group of Exporters when requesting a lease.
-For example, Exporters can be configured with a label named `arch` that indicates their architecture, and then you can select 
-a device of a particular architecture by using this label, e.g. `arch=aarch64`.
+The code should look like this when you are done:
 
-== Leases and remote Exporters
+image::app/14-enable-test-done.png[]
 
-A Lease is a way to access an Exporter. To select an Exporter of `type=virtual` and create a Lease, run the following command:
+Before removing the code annotations, the test cases only covered the RHIVOS image, verifying that it is booting correctly.
+The additional test cases test the radio application itself.
 
-[source,sh,role=execute]
-----
-jmp shell --selector type=virtual
-----
+The first test is to check if the container image of the apps is present:
 
-The `jmp` command uses the default config file located at `~/.config/jumpstarter/clients/lab.yaml`. 
-
-The default client uses the `--selector` parameter to find an Exporter that matches the label `type=virtual`.
-
-TIP: Notice that your shell prompt changed to `jumpstarter ⚡remote ➤`. This is to remind you that you are inside a remote Jumpstarter shell session.
-
-When you lease an Exporter, you get exclusive access to the hardware interfaces connected to the Exporter for the duration of the lease.
-
-To see the list of hardware interfaces exposed on the Exporter you have leased, run the `j` command without parameters:
-
-[source,sh,role=execute]
-----
-j
-----
-
-You should see an output like this:
-
-[source,sh]
-----
-Usage: j [OPTIONS] COMMAND [ARGS]...
-
-  Generic composite device
-
-Options:
-  --help  Show this message and exit.
-
-Commands:
-  console  Serial port client
-  flasher  Generic flasher interface
-  power    Generic power
-  qemu     Generic composite device
-----
-
-As the remote Exporter is connected to a `virtual QEMU device`, you can use the above subcommands to interact with the device: 
-
-- control the power with the `power` subcommand
-- flash a new image with the `flasher` command
-- access the serial console with `console`
-
-A physical device with a similar interface could be interacted with in the same way.
-
-'''
-=== First boot
-
-Before booting your virtual device, you have to flash it with an operating system image:
-
-[source,sh,role=execute]
-----
-./scripts/flash-prebuilt
-----
-
-NOTE: The script flashes a prebuilt RHIVOS image to the virtual device. You will build a custom image in a later exercise.
-
-After flashing, you can boot the device and view the boot messages via the serial console:
-
-[source,sh,role=execute]
-----
-j power on && j console start-console
-----
-
-Once the image has finished booting, you will be presented with a login prompt. Login with the following credentials:
-
-.Username
-[.no-copy-label]
-[source,text,role=execute,subs=attributes+]
-----
-root
-----
-
-.Password
-[.no-copy-label]
-[source,text,role=execute,subs=attributes+]
-----
-password
-----
-
-TIP: Your shell prompt will changed to `[root@localhost ~]`. This is to remind you that you are inside the serial console of the virtual device.
-
-After logging into the system, you can check the system architecture using `uname`:
-
-[source,sh,role=execute]
-----
-uname -m
-----
-
-It should print `aarch64`, meaning that this is a ARM based virtual device.
-
-IMPORTANT: Quit the serial console by *pressing `Ctrl+B` three times*.
-
-Your shell prompt will be restored to `jumpstarter ⚡remote ➤`.
-
-'''
-=== Port forwarding and remote access
-
-NOTE: This section is optional and you can continue with section "Testing with Pytest".
-
-Sometimes your tests cannot be executed directly on the target device or the Exporter host.
-To support these use cases, Jumpstarter implements port forwarding, which allows you to interact 
-with services running on the target device from your local machine.
-
-To forward a remote service port such as the `ssh` to a local port, run the following command:
-
-[source,sh,role=execute]
-----
-j qemu ssh forward-tcp 9000 &
-----
-
-This command will forward the remote `ssh` port (port 22) preconfigured in the exporter config to `localhost:9000` on your local machine. 
-
-Once port forwarding is started, you can run an `ssh` client from your local environment and execute commands on the 
-virtual device remotely, e.g. check cpu info:
-
-[source,sh,role=execute]
-----
-ssh -p 9000 -o StrictHostKeyChecking=no  \
-  -o UserKnownHostsFile=/dev/null \
-  root@localhost cat /proc/cpuinfo
-----
-
-When prompted for a password, enter:
-
-.Password
-[.no-copy-label]
-[source,text,role=execute,subs=attributes+]
-----
-password
-----
-
-
-[#jmptestingpytest]
-== Testing with Pytest
-
-While remotely connecting to a Jumpstarter Exporter to run tests is a huge step forward from traditional 
-methods of hardware testing, you can further improve your test procedures to be automated, repeatable, and reliable.
-
-You can use any testing framework with Jumpstarter, not only *Pytest*, but we recommend it due to its simplicity and popularity.
-
-=== About writing tests
-
-An example pytest script, that uses the Jumpstarter API looks like this:
-
-.test/test_on_hardware.py
 [source,python]
 ----
-import logging
-import sys
-
-import pytest
-
-from jumpstarter_testing.pytest import JumpstarterTest
-
-
-log = logging.getLogger(__name__)
-
-
-class TestRHIVOSOnHardware(JumpstarterTest):
-    selector = "type=virtual"
-
-    def test_boot(self, client):
-        """Test the boot process of the device."""
-        log.info("Testing boot process")
-        client.power.cycle()
+    def test_podman_images(self, client):
         with client.console.pexpect() as console:
-            # uncomment this if you want to see the console in action while testing
-            # console.logfile_read = sys.stdout.buffer
-            console.expect_exact("login:", timeout=120)
-            console.sendline("root")
-            console.expect_exact("Password:", timeout=10)
-            console.sendline("password")
+            console.sendline("podman images")
             console.expect_exact("]#", timeout=10)
-    def test_uname(self, client):
+            assert "localhost/app" in console.before.decode()
+----
+
+The second test is to check if the radio app is running as a system service:
+
+[source,python]
+----
+    def test_radio_service(self, client):
         with client.console.pexpect() as console:
-            console.sendline("uname -a")
-            console.expect_exact("]#", timeout=10)
-            print(console.before.decode())
-----
-
-Let's explore the script line by line.
-
-.import
-[source,python]
-----
-import logging
-import sys
-
-import pytest
-
-from jumpstarter_testing.pytest import JumpstarterTest
-----
-
-The first part of the script imports standard Python packages, as well as
-`pytest` and the `JumpstarterTest` helper from the `jumpstarter_testing` packages.
-
-
-.setup
-[source,python]
-----
-class TestRHIVOSOnHardware(JumpstarterTest):
-    selector = "type=virtual"
-----
-
-The actual test happens in class `TestRHIVOSOnHardware`, which is a subclass of `JumpstarterTest`.
-The `JumpstarterTest` class provides the required logic for connecting to an Exporter.
-To select which Exporter and device the test should run on, the `selector` class variable is used.
-
-
-.test-boot
-[source,python]
-----
-    def test_boot(self, client):
-        """Test the boot process of the device."""
-        log.info("Testing boot process")
-        client.power.cycle()
-        with client.console.pexpect() as console:
-            # uncomment this if you want to see the console in action while testing
-            # console.logfile_read = sys.stdout.buffer
-            console.expect_exact("login:", timeout=120)
-            console.sendline("root")
-            console.expect_exact("Password:", timeout=10)
-            console.sendline("password")
+            console.sendline("systemctl status --no-pager radio.service")
             console.expect_exact("]#", timeout=10)
 ----
 
-This is the first test case, which tests the boot process of the device.
+The third test is to interact with the radio service, and see if it can change the volume.
 
-It first cycles the power of the device, then it connects to the console and waits for
-the login prompt, then sends the username and password to log in to the device.
-
-After logging in, it waits for the shell prompt to show up, indicating that the login
-was successful.
-
-.test-uname
 [source,python]
 ----
-    def test_uname(self, client):
+    def test_radio_service_interaction(self, client):
         with client.console.pexpect() as console:
-            console.sendline("uname -a")
+            console.sendline("podman exec -i systemd-radio radio-client")
+            console.expect_exact("Connecting to radio service", timeout=10)
+
+            # test changing volume
+            console.sendline("+" * 10)
+            console.expect_exact("Volume:  [#####################]", timeout=10)
+            console.sendline("-" * 10)
+            console.expect_exact("Volume:  [                     ]", timeout=10)
+            console.sendline("+" * 5)
+            console.expect_exact("Volume:  [##########           ]", timeout=10)
+
+            console.sendline("q")
             console.expect_exact("]#", timeout=10)
-            print(console.before.decode())
 ----
 
-The second test case sends the `uname -a` command to the console and
-waits for the shell prompt to show up, then prints the output of the command.
+[#container]
+== Container image build
 
-NOTE: The above test is basically the same steps you performed in the previous section "First boot".
+Now that all the changes are done, you can commit the changes to the source code repository.
+You will first need to create a new branch and commit the changes. Then, you will create a *pull request* against the `main` branch.
 
-'''
-=== Running tests
+IMPORTANT: Open the branch selector menu by clicking the *main* button in the status bar footer at the bottom left of the screen.
 
-Now you can run the test script using pytest. The test scripts are located in the `tests` directory of the project.
+image::app/14-branch.png[]
 
-image::act4/test-sources.png[]
+IMPORTANT: In the input box, enter *develop*. Then, select *Create new branch*.
 
-You should still be in the remote Jumpstarter shell session:
+image::app/15-branch-create.png[]
 
-[,console]
-----
-jumpstarter ⚡remote ➤
-----
+WARNING: Make sure the button on the bottom left of the screen now says *develop*, the name of the newly created branch.
 
-TIP: If you are *NOT* inside the remote Jumpstarter shell session, run `jmp shell --selector type=virtual` to lease a new Exporter. Then run the `./scripts/flash-prebuilt` to flash the device again.
+IMPORTANT: Click the *Source Control* button in the left sidebar to open the source control tab.
 
-Run the test script using pytest:
+image::app/16-branch-created.png[]
 
-[source,sh,role=execute]
-----
-pytest
-----
+IMPORTANT: In the input box, put `"add new radio station"` as the commit message, then click *Commit*.
 
-You should see the test results:
+image::app/17-commit.png[]
 
-[,console]
-----
-jumpstarter-lab ⚡remote ➤ pytest
-========================================================================= test session starts =========================================================================
-platform linux -- Python 3.12.9, pytest-8.3.5, pluggy-1.5.0
-rootdir: /projects/jumpstarter-lab
-configfile: pytest.ini
-plugins: anyio-4.9.0, asyncio-0.26.0, cov-6.1.1
-asyncio: mode=Mode.STRICT, asyncio_default_fixture_loop_scope=function, asyncio_default_test_loop_scope=function
-collected 5 items
+IMPORTANT: Click the *Publish Branch* button to push the new changes to the code repository.
 
-tests/test_on_hardware.py::TestRHIVOSOnHardware::test_boot
----------------------------------------------------------------------------- live log call ----------------------------------------------------------------------------
-INFO     test_on_hardware:test_on_hardware.py:17 Testing boot process
-INFO     PowerClient:client.py:19 Starting power cycle sequence
-INFO     PowerClient:client.py:21 Waiting 2 seconds...
-INFO     PowerClient:client.py:24 Power cycle sequence complete
-PASSED
-tests/test_on_hardware.py::TestRHIVOSOnHardware::test_uname uname -a
-Linux demo 5.14.0-578.527.el9iv.aarch64 #1 SMP PREEMPT_RT Thu Apr 10 15:56:34 UTC 2025 aarch64 aarch64 aarch64 GNU/Linux
-[root@demo ~
-PASSED
-tests/test_on_hardware.py::TestRHIVOSOnHardware::test_podman_images SKIPPED (will test this once we build our app)
-tests/test_on_hardware.py::TestRHIVOSOnHardware::test_radio_service SKIPPED (will test this once we build our app)
-tests/test_on_hardware.py::TestRHIVOSOnHardware::test_radio_service_interaction SKIPPED (will test this once we build our app)
+image::app/18-push.png[]
 
-==================================================================== 2 passed, 3 skipped in 18.82s ====================================================================
-----
+After the changes are pushed to the code repository, a Red Hat OpenShift Pipelines pipeline run is triggered. This run builds the application and creates a new container image.
+
+To check the progress of the pipeline, switch to the
+https://backstage-backstage.{openshift_cluster_ingress_domain}/catalog/default/component/{user}-jumpstarter-lab/ci[Red Hat Developer Hub dashboard,window=_blank].
+
+The resulting container image is pushed to the enterprise container registry, https://www.redhat.com/en/technologies/cloud-computing/quay[Red Hat Quay].
+
+It is also deployed to its own namespace on the OpenShift cluster. As a developer, you could now do further testing or debugging, without having to rebuild the RIVOS image.
+
+
+[#merge]
+== Create a Merge Request
+
+Now that you have a container image, you can start the process of building the RHIVOS image. The build process is triggered by creating a `merge request` in GitLab.
+
+Switch to the https://backstage-backstage.{openshift_cluster_ingress_domain}/catalog/default/component/{user}-jumpstarter-lab/[Red Hat Developer Hub dashboard,window=_blank] and click on the *View source* button to navigate to the GitLab interface.
+
+image::act3/01-go-to-gitlab.png[]
+
+IMPORTANT: In GitLab, select the `develop` branch and click on the *Merge Request* button,
+
+image::act3/02-create-mr.png[]
+
+Merge requests are a great way to propose changes to the codebase. They allow for 
+
+- code reviews
+- discussion on changes
+- and automated testing 
+
+before merging changes into the main branch.
+
+IMPORTANT: To create a merge request, click on the *Create Merge Request* button
+
+image::act3/03-create-mr-2.png[]
+
+Creating a merge request triggers a pipeline that builds and tests the RHIVOS image. It is defined in `.tekton/tasks/pr-build-test.yaml`.
+
+image::act3/04-mr-pipeline-running.png[]
+
+If you switch back to the https://backstage-backstage.{openshift_cluster_ingress_domain}/catalog/default/component/{user}-jumpstarter-lab/ci[Red Hat Developer Hub dashboard,window=_blank], you can see the pipeline running.
+
+image::act3/05-pipeline-details-backstage.png[]
+
+image::act3/06-pipeline-details.png[]
+
+Looking at the pipeline in detail, it performs the following tasks:
+
+- `fetch-repository`: Clones the repository and checks out the *develop* branch.
+- `prepare-jumpstarter-config`: Prepares the Jumpstarter configuration files for authenticating to the Jumpstarter service.
+- `build-container`: Builds and pushes the container image with your application.
+- `tag-container`: Tags the container image as *latest*.
+- `prepare-build`: Configures the automotive image builder, based on the *.aib-ci.yaml* configuration file.
+- `automotive-image-builder`: Builds the RHIVOS image using the *automotive-image-builder* tool, which is a part of the Red Hat In-Vehicle OS (RHIVOS) project.
+- `create-jumpstarter-lease`: Requests and waits for a Jumpstarter exporter lease. The leased device (or virtual device) will be used for testing in the following tasks.
+- `flash-with-jumpstarter`: Flashes the RHIVOS image to the leased device.
+- `test-with-jumpstarter`: Runs the defined test cases in the *tests* directory of the project.
+- `release`: Ends the lease and releases the device back to pool of available devices.
+- `s3-upload`: Uploads the RHIVOS image to an *S3 bucket* for interactive use.
+
+Once the pipeline is finished, you can see the results reported back to GitLab:
+
+image::act3/07-mr-ready.png[]
+
+
+[#release]
+== Release deployment pipeline
+
+Once the test pipeline has finished, you can start the release workflow, assuming that all the tests have passed.
+
+To start the release workflow, you must merge the changes on the *develop* branch into the *main* branch. 
+This triggers the release pipeline, which is defined in `.tekton/tasks/pr-build-release.yaml`. 
+
+The release pipeline is similar to the test pipeline, but it focuses on releasing the OS image to actual hardware:
+
+- It builds the production-ready RHIVOS image optimized for a specific hardware platform (see NOTES below)
+- Uses Jumpstarter to flash the image directly to the physical hardware
+- Uses Jumpstarter to run the defined test cases on the physical hardware
+
+NOTE: The release pipeline focuses on hardware testing rather than virtual testing, assuming all validation has been completed in the development pipeline. 
+
+TIP: A good alternative is to always use physical devices on merge requests if your lab has sufficient resources. This way you can validate the code on hardware before merging it to the main branch.
+
+NOTE: Due to the limited availability of physical hardware in this lab, we will only show this on screen.
+
+Merging into *main* can be done by clicking on the *Merge* button in the merge request page:
+
+image::act3/08-merge-mr.png[]
 
 == Next
 
-You will notice that some of the tests are skipped, this is because we have not built our RHIVOS image yet. This will be covered in the next section.
+Now that you completed the development workflow, let’s recap what you have learned.
+
