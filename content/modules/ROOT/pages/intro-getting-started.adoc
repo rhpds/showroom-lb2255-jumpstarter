@@ -1,6 +1,6 @@
-= Getting Started
+= Getting started
 
-[#devhub]
+[#beforeyoustart]
 == Overview
 
 Here is a quick overview of the first activities in this lab:
@@ -13,7 +13,30 @@ Here is a quick overview of the first activities in this lab:
 Behind the scenes, Red Hat Developer Hub automatically structures your project and provides all the 
 supporting infrastructure through OpenShift GitOps so that you can focus on coding, not setup.
 
+== Before you start
 
+Some of the activities in this lab require you to perform certain actions in the various user interfaces or to type commands in a terminal window.
+In order to highlight the different activities and their importance, we use the following conventions:
+
+IMPORTANT: This is a step that is critical for the success of this lab.
+
+NOTE: This is information that you should know, but it is not critical for the success of this lab.
+
+TIP: This is a tip that will help you complete the lab.
+
+
+== Tips for working with the lab environment
+
+TIP: All login information is available via the side bar item, "Cheatsheet"
+
+TIP: Clicking a screen shot enlarges it. Clicking it again returns it to its original size.
+
+TIP: In Red Hat OpenShift Dev Spaces, you do not need to save your work. Changes are automatically saved.
+
+WARNING: In Red Hat OpenShift Dev Spaces, do *NOT* use Ctrl-W to close an editor. This will only close the entire browser window!
+
+
+[#devhub]
 == Access Red Hat Developer Hub
 
 First you have to access the https://backstage-backstage.{openshift_cluster_ingress_domain}[Red Hat Developer Hub,window=_blank]. You can access the login page using this link:

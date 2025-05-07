@@ -1,8 +1,4 @@
-= Introduction
-
-image::jumpstarter.svg[width=512px]
-
-== Introduction to the Lab
+= Introduction to the Lab
 
 The move to software-defined vehicles (SDVs) in the automotive industry presents challenges in developing software for electronic control units (ECUs) that 
 require hardware-in-the-loop (HIL) testing.

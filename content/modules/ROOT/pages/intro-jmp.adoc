@@ -1,4 +1,5 @@
-= About the Jumpstarter framework
+
+image::jumpstarter.svg[width=512px]
 
 == Overview
 
