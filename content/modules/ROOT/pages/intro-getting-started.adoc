@@ -1,6 +1,5 @@
-= Getting started
+= Getting Started
 
-[#beforeyoustart]
 == Overview
 
 Here is a quick overview of the first activities in this lab:
@@ -13,6 +12,7 @@ Here is a quick overview of the first activities in this lab:
 Behind the scenes, Red Hat Developer Hub automatically structures your project and provides all the 
 supporting infrastructure through OpenShift GitOps so that you can focus on coding, not setup.
 
+[#beforeyoustart]
 == Before you start
 
 Some of the activities in this lab require you to perform certain actions in the various user interfaces or to type commands in a terminal window.

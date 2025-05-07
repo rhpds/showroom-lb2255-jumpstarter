@@ -5,7 +5,7 @@
 
 * xref:intro-jmp.adoc[About Jumpstarter]
 
-* Getting started
+* xref:intro-getting-started.adoc[Getting started]
 ** xref:intro-getting-started.adoc#beforeyoustart[Before you start]
 ** xref:intro-getting-started.adoc#devhub[Access Developer Hub]
 ** xref:intro-getting-started.adoc#project[Project creation]
