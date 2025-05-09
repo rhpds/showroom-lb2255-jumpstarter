@@ -70,8 +70,8 @@ HIL testing takes validation to the next level by connecting actual vehicle hard
 actuators) to a cloud platform that creates a controlled test environment. This hybrid approach gives you the 
 best of both worlds: the safety and reproducibility of cloud environments with the confidence that comes from testing on real hardware. 
 
-[#jumpstarter]
-=== Jumpstarter
+
+== Jumpstarter
 
 Jumpstarter seamlessly integrates with your HIL testing environment, serving as the bridge between your CI/CD pipeline and physical hardware testing. 
 This https://github.com/jumpstarter-dev[open source,window=_blank] tool automates the deployment of your software to both virtual environments and actual 
