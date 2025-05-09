@@ -5,13 +5,13 @@ require hardware-in-the-loop (HIL) testing.
 
 This lab provides you with an integrated development environment that teaches you how to use a "Software Factory" approach for the 
 development of automotive software. You will learn how to develop, build and test automotive software 
-in https://developers.redhat.com/rhdh/overview[Red Hat Developer Hub] and how to build a 
-custom https://www.redhat.com/en/blog/new-standard-red-hat-vehicle-operating-system-modern-and-future-vehicles[Red Hat In-Vehicle OS (RHIVOS)] image with 
-containerized a automotive application embedded. 
+in https://developers.redhat.com/rhdh/overview[Red Hat Developer Hub,window=_blank] and how to build a 
+custom https://www.redhat.com/en/blog/new-standard-red-hat-vehicle-operating-system-modern-and-future-vehicles[Red Hat In-Vehicle OS,window=_blank] 
+image with a containerized automotive application embedded.
 
-Additionally, you’ll explore https://jumpstarter.dev/[Jumpstarter] for cloud-native HIL testing of ECUs and edge devices. 
-You'll learn how it integrates with https://developers.redhat.com/products/openshift-dev-spaces/overview[Red Hat OpenShift Dev Spaces]  and 
-https://www.redhat.com/en/technologies/cloud-computing/openshift/pipelines[Red Hat OpenShift Pipelines] to enable DevSecOps practices, 
+Additionally, you’ll explore https://jumpstarter.dev/[Jumpstarter,window=_blank] for cloud-native HIL testing of ECUs and edge devices. 
+You'll learn how it integrates with https://developers.redhat.com/products/openshift-dev-spaces/overview[Red Hat OpenShift Dev Spaces,window=_blank]  and 
+https://www.redhat.com/en/technologies/cloud-computing/openshift/pipelines[Red Hat OpenShift Pipelines,window=_blank] to enable DevSecOps practices, 
 such as automation, continuous integration, and infrastructure as code.
 
 == Lab activities and objectives

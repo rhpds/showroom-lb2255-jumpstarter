@@ -12,7 +12,7 @@ It demonstrates how typical automotive applications use https://some-ip.com/[SOM
 [#appbuild]
 == Build the application
 
-In a first step, you will build and test the application inside Red Hat OpenShift Dev Spaces.
+In the first step, you will build and test the application inside Red Hat OpenShift Dev Spaces.
 
 IMPORTANT: Click the *build* button at the bottom left of the window.
 
@@ -54,7 +54,7 @@ image::app/05-split.png[]
 
 You will see the terminal being split into two halves, with the `radio-service` running on the left, and a new shell to the right.
 
-Start *radio-client* by clicking the right half of the terminal and type the following command, then press `Enter`.
+Start the *radio-client* by clicking the right half of the terminal and entering the following command:
 
 [source,sh,role=execute]
 ----

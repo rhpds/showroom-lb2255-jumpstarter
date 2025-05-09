@@ -110,13 +110,16 @@ https://backstage-backstage.{openshift_cluster_ingress_domain}/catalog/default/c
 
 The resulting container image is pushed to the enterprise container registry, https://www.redhat.com/en/technologies/cloud-computing/quay[Red Hat Quay].
 
-It is also deployed to its own namespace on the OpenShift cluster. As a developer, you could now do further testing or debugging, without having to rebuild the RIVOS image.
+It is also deployed to its own namespace on the OpenShift cluster. As a developer, you could now do further testing or debugging, without having to rebuild the RHIVOS image.
 
 
 [#merge]
 == Create a Merge Request
 
-Now that you have a container image, you can start the process of building the RHIVOS image. The build process is triggered by creating a *"Merge Request"* in GitLab.
+Now that you have a container image, you can start the process of building the RHIVOS image. 
+
+The build process is triggered by creating a *"Merge Request"* in GitLab. Merge requests are a great way to propose changes to the codebase. They allow for code reviews, discussion on changes 
+and automated testing before merging changes into the main branch.
 
 Switch to the https://backstage-backstage.{openshift_cluster_ingress_domain}/catalog/default/component/{user}-jumpstarter-lab/[Red Hat Developer Hub dashboard,window=_blank] and click on the *View source* button to navigate to the GitLab interface.
 
@@ -126,23 +129,16 @@ IMPORTANT: In GitLab, select the `develop` branch and click on the *New* button,
 
 image::act3/02-create-mr.png[]
 
-Merge requests are a great way to propose changes to the codebase. They allow for 
-
-- code reviews
-- discussion on changes
-- and automated testing 
-
-before merging changes into the main branch.
-
 IMPORTANT: To create a merge request, click on the *Create Merge Request* button
 
 image::act3/03-create-mr-2.png[]
 
-Creating a merge request triggers a pipeline that builds and tests the RHIVOS image. It is defined in `.tekton/tasks/pr-build-test.yaml`.
+Creating a merge request triggers a pipeline that builds and tests the RHIVOS image. It is defined in `.tekton/tasks/pr-build-test.yaml`. 
+You can see the pipeline running in the GitLab interface.
 
 image::act3/04-mr-pipeline-running.png[]
 
-If you switch back to the https://backstage-backstage.{openshift_cluster_ingress_domain}/catalog/default/component/{user}-jumpstarter-lab/ci[Red Hat Developer Hub dashboard,window=_blank], you can see the pipeline running.
+If you switch back to the https://backstage-backstage.{openshift_cluster_ingress_domain}/catalog/default/component/{user}-jumpstarter-lab/ci[Red Hat Developer Hub dashboard,window=_blank], you can also see the pipeline running there.
 
 image::act3/05-pipeline-details-backstage.png[]
 
@@ -177,7 +173,7 @@ This triggers the release pipeline, which is defined in `.tekton/tasks/pr-build-
 
 The release pipeline is similar to the test pipeline, but it focuses on releasing the OS image to actual hardware:
 
-- It builds the production-ready RHIVOS image optimized for a specific hardware platform (see NOTES below)
+- Builds the production-ready RHIVOS image optimized for a specific hardware platform (see NOTES below)
 - Uses Jumpstarter to flash the image directly to the physical hardware
 - Uses Jumpstarter to run the defined test cases on the physical hardware
 

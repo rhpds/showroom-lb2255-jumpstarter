@@ -1,12 +1,13 @@
 = Working with Jumpstarter
 
-Not only can Jumpstarter help automate hardware testing in CI pipelines, but as your project grows, Jumpstarter's remote access capabilities
-allows your team to share limited hardware devices across geographically dispersed teams in a secure, controlled and efficient manner.
+Not only can Jumpstarter help automate hardware testing in CI pipelines, but as your project grows, 
+Jumpstarter’s remote access capabilities enables your team to share limited hardware devices across 
+geographically dispersed teams in a secure, controlled, and efficient manner.
 
-Jumpstarter manages remote access to Exporters using **Leases**, which give a client access to an Exporter, for a specified period of time. 
+Jumpstarter manages remote access to Exporters using Leases, which give a client access to an Exporter, for a specified period of time. 
 
-When a Lease is created, the Jumpstarter Service attempts to find a matching Exporter using a label selector. Once a Lease has been acquired,
-the client can start a session within that Lease to access the hardware remotely.
+When a Lease is created, the Jumpstarter Service attempts to find a matching Exporter using a label selector. 
+After a Lease has been acquired, the client starts a session within that Lease to access the hardware remotely.
 
 NOTE: Your workspace is already configured with credentials to access a Jumpstarter Service running on the cluster, with multiple Exporters available for lease.
 
@@ -41,7 +42,9 @@ a device of a particular architecture by using this label, e.g. `arch=aarch64`.
 
 == Leases and remote Exporters
 
-A Lease is a way to access an Exporter. To select an Exporter of `type=virtual` and create a Lease, run the following command:
+A `Lease` is a way to access an Exporter. 
+
+To select an Exporter of `type=virtual` and create a Lease, run the following command:
 
 [source,sh,role=execute]
 ----
