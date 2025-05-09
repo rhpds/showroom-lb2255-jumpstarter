@@ -1,31 +1,14 @@
 * xref:intro-rhadp.adoc[]
-** xref:intro-rhadp.adoc#solution_architecture[Solution Architecture]
-** xref:intro-rhadp.adoc#workflow[Development workflow]
-** xref:intro-rhadp.adoc#hiltesting[Virtual and Hardware-in-the-Loop Testing]
 
 * xref:intro-jmp.adoc[About Jumpstarter]
 
 * xref:activity-01.adoc[Getting started]
-** xref:activity-01.adoc#beforeyoustart[Before you start]
-** xref:activity-01.adoc#devhub[Access Developer Hub]
-** xref:activity-01.adoc#project[Project creation]
-** xref:activity-01.adoc#devspaces[Access the workspace]
-** xref:activity-01.adoc#workspace[Get ready for development]
 
 * xref:activity-02.adoc[Application Development]
-** xref:activity-02.adoc#appbuild[Build the application]
-** xref:activity-02.adoc#apptest[Test the application]
-** xref:activity-02.adoc#appmodify[Modify the application]
 
 * xref:activity-03.adoc[Working with Jumpstarter]
-** xref:activity-03.adoc#jmpexporterlease[Interact with an Exporter]
-** xref:activity-03.adoc#jmptestingpytest[Testing with Pytest]
 
 * xref:activity-04.adoc[Testing and Validation] 
-** xref:activity-04.adoc#test-app[Enable tests of the app]
-** xref:activity-04.adoc#container[Container image build]
-** xref:activity-04.adoc#merge[Create a Merge Request]
-** xref:activity-04.adoc#release[Release deployment pipeline]
 
 * xref:wrapup.adoc[Conclusion]
 

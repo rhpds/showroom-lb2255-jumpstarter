@@ -10,13 +10,14 @@ requires testing on virtual or physical hardware. This additional testing ensure
 - Compatibility across target platforms
 
 Before building a production-ready RHIVOS image, you must verify that your application functions correctly in a cloud environment. 
+
 After that, you can build a RHIVOS image with the modified application embedded, preparing it for end-to-end testing in
 virtualized hardware environments using Jumpstarter.
 
-NOTE: This activity builds upon the previous activity, where you modified the application code.
+NOTE: The following activity builds upon activity "Application Development", where you modified the application code.
 
 [#test-app]
-== Enable tests of the app
+== Enable tests
 
 Before committing your changes to the source code repository, you need to enable some test cases 
 that will be run against the application later in the pipeline.
@@ -79,7 +80,7 @@ The third test is to interact with the radio service, and see if it can change t
 
 Now that all the changes are done, you can commit the changes to the source code repository.
 
-You will first need to create a new branch and commit the changes. Then, you will create a *pull request* against the *main* branch.
+First, you need to create a new branch and commit the changes.
 
 IMPORTANT: Open the branch selector menu by clicking the *main* button in the status bar footer at the bottom left of the screen.
 
@@ -103,18 +104,19 @@ IMPORTANT: Click the *Publish Branch* button to push the new changes to the code
 
 image::app/18-push.png[]
 
-After the changes are pushed to the code repository, a Red Hat OpenShift Pipelines pipeline run is triggered. This run builds the application and creates a new container image.
-
-To check the progress of the pipeline, switch to the
-https://backstage-backstage.{openshift_cluster_ingress_domain}/catalog/default/component/{user}-jumpstarter-lab/ci[Red Hat Developer Hub dashboard,window=_blank].
+After the changes are pushed to the code repository, a Red Hat OpenShift Pipelines `pipeline run` is triggered. 
+This pipeline run builds the application and creates a new container image.
 
 The resulting container image is pushed to the enterprise container registry, https://www.redhat.com/en/technologies/cloud-computing/quay[Red Hat Quay,window=_blank].
 
 It is also deployed to its own namespace on the OpenShift cluster. As a developer, you could now do further testing or debugging, without having to rebuild the RHIVOS image.
 
+To check the progress of the pipeline, switch to the
+https://backstage-backstage.{openshift_cluster_ingress_domain}/catalog/default/component/{user}-jumpstarter-lab/ci[Red Hat Developer Hub dashboard,window=_blank].
+
 
 [#merge]
-== Create a Merge Request
+== Test pipeline
 
 Now that you have a container image, you can start the process of building the RHIVOS image. 
 
@@ -164,7 +166,7 @@ image::act3/07-mr-ready.png[]
 
 
 [#release]
-== Release deployment pipeline
+== Release pipeline
 
 Once the test pipeline has finished, you can start the release workflow, assuming that all the tests have passed.
 
