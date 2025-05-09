@@ -5,12 +5,12 @@
 
 * xref:intro-jmp.adoc[About Jumpstarter]
 
-* xref:intro-getting-started.adoc[Getting started]
-** xref:intro-getting-started.adoc#beforeyoustart[Before you start]
-** xref:intro-getting-started.adoc#devhub[Access Developer Hub]
-** xref:intro-getting-started.adoc#project[Project creation]
-** xref:intro-getting-started.adoc#devspaces[Access the workspace]
-** xref:intro-getting-started.adoc#workspace[Get ready for development]
+* xref:activity-01.adoc[Getting started]
+** xref:activity-01.adoc#beforeyoustart[Before you start]
+** xref:activity-01.adoc#devhub[Access Developer Hub]
+** xref:activity-01.adoc#project[Project creation]
+** xref:activity-01.adoc#devspaces[Access the workspace]
+** xref:activity-01.adoc#workspace[Get ready for development]
 
 * xref:activity-02.adoc[Application Development]
 ** xref:activity-02.adoc#appbuild[Build the application]
