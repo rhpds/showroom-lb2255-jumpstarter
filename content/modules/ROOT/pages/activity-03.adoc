@@ -40,7 +40,7 @@ Each exporter can be configured with a set of labels that can be used to select 
 For example, Exporters can be configured with a label named `arch` that indicates their architecture, and then you can select 
 a device of a particular architecture by using this label, e.g. `arch=aarch64`.
 
-== Leases and remote Exporters
+== Leases and Exporters
 
 A `Lease` is a way to access an Exporter. 
 
@@ -92,8 +92,8 @@ As the remote Exporter is connected to a `virtual QEMU device`, you can use the 
 
 A physical device with a similar interface could be interacted with in the same way.
 
-'''
-=== First boot
+
+== Booting a device
 
 Before booting your virtual device, you have to flash it with an operating system image:
 
@@ -142,8 +142,8 @@ IMPORTANT: Quit the serial console by *pressing `Ctrl+B` three times*.
 
 Your shell prompt will be restored to `jumpstarter ⚡remote ➤`.
 
-'''
-=== Port forwarding and remote access
+
+== Port forwarding and remote access
 
 NOTE: This section is optional and you can continue with section "Testing with Pytest" if you want to skip it.
 

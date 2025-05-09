@@ -1,7 +1,7 @@
 = Red Hat Automotive Development Platform
 
 == Overview
-https://developers.redhat.com/rhdh/overview[Red Hat Developer Hub] sits at the core of the Red Hat Automotive Development Platform (RHADP), 
+https://developers.redhat.com/rhdh/overview[Red Hat Developer Hub,window=_blank] sits at the core of the Red Hat Automotive Development Platform (RHADP), 
 creating an integrated ecosystem for software-defined vehicle development. Think of it as your central command center where you and your team can:
 
 - Access pre-configured tools and standardized workflows without the usual setup headaches.
@@ -16,7 +16,7 @@ prototyping when you need to validate concepts quickly.
 
 At its heart, RHADP combines Red Hat Developer Hub with Red Hat Dev Spaces to give you instant access to fully-configured development environments. 
 
-This Internal Development Platform (IDP) is built on the open-source https://backstage.spotify.com/[Backstage] project and comes ready 
+This Internal Development Platform (IDP) is built on the open-source https://backstage.spotify.com/[Backstage,window=_blank] project and comes ready 
 with all the tools, extensions, and configurations you need through a single dashboard. 
 
 This approach means that:
@@ -52,10 +52,10 @@ giving you confidence that your code will perform as expected in real vehicles.
 
 Key Components:
 
-- https://docs.redhat.com/en/documentation/openshift_container_platform/4.18/html/pipelines/index[OpenShift Pipelines] and https://docs.redhat.com/en/documentation/openshift_container_platform/4.18/html/gitops/index[OpenShift GitOps] for continuous integration and deployment.
-- https://pipelinesascode.com/[Pipelines as Code] for defining your CI/CD workflows as code.
-- https://docs.redhat.com/en/documentation/red_hat_openshift_dev_spaces/3.20[OpenShift Dev Spaces] for consistent, cloud-based development environments.
-- https://jumpstarter.dev/[Jumpstarter] for automated testing across virtual and physical hardware.
+- https://docs.redhat.com/en/documentation/openshift_container_platform/4.18/html/pipelines/index[OpenShift Pipelines,window=_blank] and https://docs.redhat.com/en/documentation/openshift_container_platform/4.18/html/gitops/index[OpenShift GitOps,window=_blank] for continuous integration and deployment.
+- https://pipelinesascode.com/[Pipelines as Code,window=_blank] for defining your CI/CD workflows as code.
+- https://docs.redhat.com/en/documentation/red_hat_openshift_dev_spaces/3.20[OpenShift Dev Spaces,window=_blank] for consistent, cloud-based development environments.
+- https://jumpstarter.dev/[Jumpstarter,window=_blank] for automated testing across virtual and physical hardware.
 
 [#hiltesting]
 == Virtual and Hardware-in-the-Loop Testing
@@ -74,7 +74,7 @@ best of both worlds: the safety and reproducibility of cloud environments with t
 === Jumpstarter
 
 Jumpstarter seamlessly integrates with your HIL testing environment, serving as the bridge between your CI/CD pipeline and physical hardware testing. 
-This https://github.com/jumpstarter-dev[open source] tool automates the deployment of your software to both virtual environments and actual 
+This https://github.com/jumpstarter-dev[open source,window=_blank] tool automates the deployment of your software to both virtual environments and actual 
 automotive hardware components, maintaining consistent testing conditions throughout your development process. 
 
 By incorporating Jumpstarter into your workflow, you'll eliminate the traditional disconnect between software development and hardware 
